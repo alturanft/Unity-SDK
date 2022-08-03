@@ -1,5 +1,3 @@
-
-
 using System;
 
 namespace AlturaSDK.Models
