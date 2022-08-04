@@ -4,24 +4,24 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:15802",
-      "sslPort": 44345
+      "applicationUrl": "http://localhost:60386",
+      "sslPort": 44305
     }
   },
   "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
+    "UnitySDK": {
+      "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7165;http://localhost:5278",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Altura-Unity_SDK": {
-      "commandName": "Project",
+    "IIS Express": {
+      "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7115;http://localhost:5156",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

@@ -1,11 +1,12 @@
-using System;
+﻿using System;
+using UnityEngine;
 
-namespace AlturaSDK.Models
-{
+namespace UnitySDK.Assets.AlturaSDK.Models
+{ 
     [Serializable]
     public class AlturaUser
     {
-        public string address;   
+        public string address;
 
         /// <summary>
         /// meatadata
@@ -42,3 +43,5 @@ namespace AlturaSDK.Models
 
     }
 }
+
+
