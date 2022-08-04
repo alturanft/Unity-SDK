@@ -1,9 +1,10 @@
-namespace AlturaSDK;
+namespace SDK.Assets.Models
+{
 
     [Serializable]
-    public class AlturaBid
+    public class Bid
     {
-    public string id;
+        public string id;
 
     public int chainId;
     public string newEvent;
@@ -45,3 +46,4 @@ namespace AlturaSDK;
     
 }
 
+}

@@ -1,25 +1,26 @@
 
-namespace AlturaSDK;
+namespace SDK.Assets.Models
+{
 
     [Serializable]
-    public class AlturaBlockEvent
+    public class BlockEvent
     {
     public string id;
 
     public string pairId;
     public string chainId;
         
-        public string bidIndex;
-        public string bidTx;
-        public string cancelTx;
-        public DateTime placedAt;
-        public DateTime cancelledAt;
-        public string from;
-        public string currency;
-        public int price;
-        public int priceUSD;
-        public bool active;
-        public DateTime updatedAt;
+    public string bidIndex;
+    public string bidTx;
+    public string cancelTx;
+    public DateTime placedAt;
+    public DateTime cancelledAt;
+    public string from;
+    public string currency;
+    public int price;
+    public int priceUSD;
+    public bool active;
+    public DateTime updatedAt;
 
     public string Id { get => id; set => id = value; }
     public string PairId { get => pairId; set => pairId = value; }
@@ -37,4 +38,4 @@ namespace AlturaSDK;
     public DateTime UpdatedAt { get => updatedAt; set => updatedAt = value; }
     
 }
-
+}

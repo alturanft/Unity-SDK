@@ -1,18 +1,16 @@
-using System;
-
-namespace AlturaSDK;
-
+namespace SDK.Assets.Models
+{
     [Serializable]
-    public class AlturaChain
+    public class Chain
     {
     private int id;
 
     private int latestHolderTimestamp;
     public int latestItemsTimestamp;
-        public int latestEventsTimestamp;
-        public int latestOfferTimestamp;
+    public int latestEventsTimestamp;
+    public int latestOfferTimestamp;
 
-        public DateTime updatedAt;
+    public DateTime updatedAt;
 
     public int Id { get => id; set => id = value; }
     public int LatestHolderTimestamp { get => latestHolderTimestamp; set => latestHolderTimestamp = value; }
@@ -22,4 +20,4 @@ namespace AlturaSDK;
     public DateTime UpdatedAt { get => updatedAt; set => updatedAt = value; }
     
 }
-
+}

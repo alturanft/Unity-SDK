@@ -1,24 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace AlturaSDK.Controllers;
+namespace SDK.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class AlturaUserController : ControllerBase
+public class UserController : ControllerBase
 {
 
 
-    private readonly ILogger<AlturaUserController> _logger;
+    private readonly ILogger<UserController> _logger;
 
-    public AlturaUserController(ILogger<AlturaUserController> logger)
+    public UserController(ILogger<UserController> logger)
     {
         _logger = logger;
     }
 
-    [HttpGet(Name = "GetAlturaUser")]
-    public IEnumerable<AlturaUser> Get()
+    [HttpGet(Name = "GetUser")]
+    public IEnumerable<SDK.Assets.Models.User> Get()
     {
-        return Enumerable.Range(1, 5).Select(index => new AlturaUser
+        return Enumerable.Range(1, 5).Select(index => new SDK.Assets.Models.User
         {
             Address = "AlturaUser " + index,
             Name = "AlturaUser " + index,
@@ -30,11 +30,11 @@ public class AlturaUserController : ControllerBase
             Nonce = index,
             LastLogin = DateTime.Now,
             AuthCode = "AlturaUser " + index,
-            Admin = index % 2 == 0,
-            AgreeToTerms = index % 2 == 0,
-            Blacklisted = index % 2 == 0
-        })
-        .ToArray();
+            Admin = false,
+            AgreeToTerms = true,
+            Blacklisted = false,
+        }).ToArray();
+
     }
 }
 

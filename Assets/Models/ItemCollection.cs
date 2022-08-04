@@ -1,9 +1,9 @@
 using System;
 
-namespace AlturaSDK.Models
+namespace SDK.Assets.Models
 {
     [Serializable]
-    public class itemCollection
+    public class ItemCollection
     {
         //blockchain id
         public string address;        
@@ -38,9 +38,6 @@ namespace AlturaSDK.Models
         public bool isVerified;
         public bool featured;
         public bool featuredMain;
-
-
-
 
     }
 }

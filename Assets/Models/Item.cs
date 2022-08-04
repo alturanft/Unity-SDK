@@ -1,13 +1,13 @@
 using System;
 
-namespace AlturaSDK;
- 
-    public class AlturaItem
+namespace SDK.Assets.Models
+{
+    public class Item
     {
         //blockchain id
-        private string tokenId;
+        public string tokenId;
 
-        private string itemCollection;
+        public string itemCollection;
         public string itemCollectionName;
         
         public string chainId;
@@ -64,3 +64,4 @@ namespace AlturaSDK;
         // otherImages is object
         // public object otherImages { get; set; }
     }
+}
