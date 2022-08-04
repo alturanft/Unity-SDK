@@ -7,20 +7,24 @@ namespace AlturaSDK.Models
     {
         public string id;        
         
-        public string pairId;
-        public string chainId;
+        public int chainId;
+        public string newEvent;
         
-        public string bidIndex;
-        public string bidTx;
-        public string cancelTx;
-        public DateTime placedAt;
-        public DateTime cancelledAt;
+        public int blockNumber;
+        public int timestamp;
+        public string to;
         public string from;
+        public string transactionHash;
+        public int tokenId;
+        public string itemCollection;
+        public string itemRef;
+
+        public int amount;
+        public string price;
         public string currency;
-        public int price;
-        public int priceUSD;
-        public bool active;
-        public DateTime updatedAt;
+        public int worth;
+        public int revenue;
+        public bool notified;
 
     }
 }
