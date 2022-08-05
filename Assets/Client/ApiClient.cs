@@ -21,7 +21,7 @@ namespace SDK.Assets.Client
         public ApiClient(String basePath = "https://api.alturanft.com", string apiVersion="/api/v2")
         {
             BasePath = basePath;
-            RestClient = new HttpClient(); //new RestClient(BasePath);
+            RestClient = new HttpClient(); 
             RestClient.BaseAddress = new Uri(BasePath);
             ApiVersion = apiVersion;
         }
@@ -40,10 +40,8 @@ namespace SDK.Assets.Client
         public async Task<HttpResponseMessage> CallApi(String path, HttpMethod method, String postBody,
             Dictionary<String, String> headerParams, Dictionary<String, String> queryParams, String[] authSettings)
         {
-            // Add Api & Version as HttpClient strips this off.
             path = $"{ApiVersion}{path}";
             
-            // Add query parameters to path.
             if (queryParams.Count > 0)
             {
                 using (var content = new FormUrlEncodedContent(queryParams))
