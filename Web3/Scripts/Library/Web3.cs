@@ -12,19 +12,11 @@ public class Web3
     public class Response<T> { public T response; }
     private readonly static string host = "https://api.alturanft.com/api/v2/";
 
-        public static  async Task<string> Itemz(string id)
+        public static  async Task<string> Itemz()
         {
             UnityWebRequest www = UnityWebRequest.Get(host + "item/" );
-             www.SendWebRequest();
-            if (www.isNetworkError || www.isHttpError)
-            {
-                Debug.Log(www.error);
-                return null;
-            }
-            else
-            {
-                return www.downloadHandler.text;
-            }
+            await www.SendWebRequest();
+            
         }
 
     public static async Task<string> GetHolders(int perPage, int page, bool includeListed)
@@ -58,3 +50,4 @@ public class Web3
         }
 
     }
+}
