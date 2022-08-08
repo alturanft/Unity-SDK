@@ -9,19 +9,52 @@ using Newtonsoft.Json;
 
 public class Web3 
 {
+    public class Response<T> { public T response; }
     private readonly static string host = "https://api.alturanft.com/api/v2/";
+
+        public static  async Task<string> Itemz(string id)
+        {
+            UnityWebRequest www = UnityWebRequest.Get(host + "item/" );
+             www.SendWebRequest();
+            if (www.isNetworkError || www.isHttpError)
+            {
+                Debug.Log(www.error);
+                return null;
+            }
+            else
+            {
+                return www.downloadHandler.text;
+            }
+        }
+
     public static async Task<string> GetHolders(int perPage, int page, bool includeListed)
-{
-    var url = host + "holders?perPage=" + perPage + "&page=" + page + "&includeListed=" + includeListed;
-    WWWForm form = new WWWForm();
-    form.AddField("perPage", perPage);
-    form.AddField("page", page);
-    string uri = host + "item";
-    //UnityWebRequest www = UnityWebRequest.Get(Url);
-    using (UnityWebRequest req = UnityWebRequest.Get(uri)) 
     {
-        await req.SendWebRequest();
-        Respons<string> rez = JsonUtility.FromJson<Response<string>>(System.Text.Encoding.UTF8.GetString(req.downloadHandler.data));
-        return rez.data;
+        var url = host + "holders?perPage=" + perPage + "&page=" + page + "&includeListed=" + includeListed;
+        WWWForm form = new WWWForm();
+        form.AddField("perPage", perPage);
+        form.AddField("page", page);
+        string uri = host + "item";
+        UnityWebRequest www = UnityWebRequest.Get(uri);
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri)) 
+        {
+            await webRequest.SendWebRequest();
+            Response<string> data = JsonUtility.FromJson<Response<string>>(System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data));
+            return data.response;
+        }
     }
-}
+   //public static async Task<string>
+
+   public static async Task<string> GetHistory(int perPage, int page,)
+    {
+        var uri = host + "item/events/${address}/${tokenId}";
+        WWWForm form = new WWWForm();
+        form.AddField("perPage", perPage);
+        form.AddField("page", page);
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri)) 
+        {
+            await webRequest.SendWebRequest();
+            Response<string> data = JsonUtility.FromJson<Response<string>>(System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data));
+            return data.response;
+        }
+
+    }
