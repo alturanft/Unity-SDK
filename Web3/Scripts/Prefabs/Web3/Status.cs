@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Status : MonoBehaviour
 {
-    async void private void Start() {
+    async void Start() {
         {
             string chain = "ethereum";
             string network = "mainnet";
