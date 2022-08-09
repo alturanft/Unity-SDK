@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
-
-public class Web3 
+using System.Runtime.CompilerServices;
+public class AlturaWeb3 
 {
     public class Response<T> { public T response; }
     private readonly static string host = "https://api.alturanft.com/api/v2/";
@@ -94,10 +94,40 @@ public class Web3
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri)) 
         {
             //await 
-            webRequest.SendWebRequest();
+            await webRequest.SendWebRequest();
             Response<string> data = JsonUtility.FromJson<Response<string>>(System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data));
             return data.response;
         }
 
     }
 }
+
+
+
+ public class UnityWebRequestAwaiter : INotifyCompletion {
+        private UnityWebRequestAsyncOperation asyncOp;
+        private Action continuation;
+
+        public UnityWebRequestAwaiter(UnityWebRequestAsyncOperation asyncOp) {
+            this.asyncOp = asyncOp;
+            asyncOp.completed += OnRequestCompleted;
+        }
+
+        public bool IsCompleted { get { return asyncOp.isDone; } }
+
+        public void GetResult() { }
+
+        public void OnCompleted(Action continuation) {
+            this.continuation = continuation;
+        }
+
+        private void OnRequestCompleted(AsyncOperation obj) {
+            continuation();
+        }
+    }
+
+    public static class ExtensionMethods {
+        public static UnityWebRequestAwaiter GetAwaiter(this UnityWebRequestAsyncOperation asyncOp) {
+            return new UnityWebRequestAwaiter(asyncOp);
+        }
+    }

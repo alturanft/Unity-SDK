@@ -11,7 +11,7 @@ public class AlturaAPICall : MonoBehaviour
         string user = "0x0";
         string rpc = "https://api.alturanft.com/api/v2/";
 
-        string collection = await Web3.Itemz();
+        string collection = await AlturaWeb3.Itemz();
         print(collection);
     }
 }

@@ -14,7 +14,7 @@ public class AlturaCall : MonoBehaviour
         string abi = "0x0";
         string method = "0x0";
         string args = "0x0";
-        string response = await Web3.AlturaCall(chain, network, user, rpc, contract, abi, method);
+        string response = await AlturaWeb3.AlturaCall(chain, network, user, rpc, contract, abi, method);
         print(response);
     
     }

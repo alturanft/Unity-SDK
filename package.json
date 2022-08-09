@@ -1,0 +1,15 @@
+{
+    "name": "alturanft",
+    "version": "0.0.2",
+    "description": "AlturaUnity SDK provides a set of tools to help developers to integrate Unity into Altura Smart NFT",
+    "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "2.0.0"
+    },
+    "author": {
+        "name": "Mohammed Maali",
+        "email": "mohamgoham@gmail.com"
+    },
+    "hideInEditor": false,
+    "type": "tool",
+    "unity": "2019.4"
+}
