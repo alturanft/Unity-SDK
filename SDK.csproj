@@ -8,9 +8,11 @@
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Unity3D.UnityEngine" Version="2020.3.21" />
-    <PackageReference Include="Nethereum" Version="0.95.0--date20210125-0551.git-05a29e9" />
+
+    <PackageReference Include="Nethereum" Version="0.95.0--date202ç10125-0551.git-05a29e9" />
+   <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+   <PackageReference Include="Unity3D.UnityEngine" Version="2020.3.21" />
+
   </ItemGroup>
 
   <ItemGroup>
