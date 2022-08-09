@@ -10,10 +10,12 @@ autom4te.cache/
 *.tar.gz
 tarballs/
 test-results/
-
+/Assets
 # Mac bundle stuff
 *.dmg
 *.app
+SDK.sln
+SDK.csproj
 
 # content below from: https://github.com/github/gitignore/blob/main/Global/macOS.gitignore
 # General
