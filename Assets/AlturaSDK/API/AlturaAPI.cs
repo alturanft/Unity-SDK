@@ -95,7 +95,6 @@ namespace AlturaSDK.API
             var url = request.url;
             var data = request.downloadHandler.text;
 
-            Debug.Log($"URL: {url}{Environment.NewLine}Response: {data}");
 
             switch (isHttpError)
             {
@@ -111,10 +110,7 @@ namespace AlturaSDK.API
         {
             if (_wasRefreshed || (!(exception is ApiHttpException) && !(exception is InvalidRequestException)))
             {
-                if (_wasRefreshed)
-                {
-                    Debug.LogWarning("Access Token was already refreshed. Stopping");
-                }
+    
 
                 Debug.LogError(exception);
 
@@ -122,7 +118,6 @@ namespace AlturaSDK.API
                 return;
             }
 
-            Debug.LogWarning("Will try to refresh the Access Token");
 
         //    Altura.Token.Refresh(() =>
         //    {
@@ -240,10 +235,6 @@ namespace AlturaSDK.API
         {
             var dictionary = new Dictionary<string, string>();
 
-            if (AlturaSettings.Instance.apiMode == ApiMode.Sandbox)
-            {
-                dictionary["X-Sandbox"] = "true";
-            }
 
           //  if (request.UseAuthorization && Altura.Token.Exists())
           //  {
@@ -252,6 +243,5 @@ namespace AlturaSDK.API
 
             return dictionary;
         }
-     //   private static UnityWebRequest ConvertToUnity
     }
 }
