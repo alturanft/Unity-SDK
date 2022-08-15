@@ -55,11 +55,13 @@
      <Compile Include="Assets/AlturaSDK/Exceptions/InvalidRequestException.cs" />
      <Compile Include="Assets/AlturaSDK/API/ApiRequest.cs" />
      <Compile Include="Assets/AlturaSDK/API/Responses/GetItemResponse.cs" />
+     <Compile Include="Assets/AlturaSDK/Altura.cs" />
      <Compile Include="Assets/AlturaSDK/Settings/AuthSettings.cs" />
      <Compile Include="Assets/AlturaSDK/Auth/AlturaAuth.cs" />
      <Compile Include="Assets/AlturaSDK/Utils/Debug.cs" />
      <Compile Include="Assets/AlturaSDK/API/Responses/GetUserResponse.cs" />
      <Compile Include="Assets/AlturaSDK/API/Responses/GenericResponse.cs" />
+     <Compile Include="Assets/AlturaSDK/Models/User.cs" />
      <Compile Include="Assets/AlturaSDK/API/AlturaAPI.Methods.cs" />
      <Compile Include="Assets/AlturaSDK/Exceptions/ApiNetworkException.cs" />
      <Compile Include="Assets/AlturaSDK/API/Requests/GetUserRequest.cs" />

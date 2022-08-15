@@ -1,0 +1,27 @@
+{
+    "name": "com.altura.nft-unity",
+    "version": "0.1.1",
+    "displayName": "Altura NFT SDK",
+    "description": "A library for interacting with Altura NFT SDK",
+    "unity": "2018.4",
+    "documentationUrl": "https://github.com/alturanft/Unity-SDK/",
+    "dependencies": {},
+    "keywords": [
+      "blockchain",
+      "web3",
+      "nft"
+    ],
+    "samples": [
+      {
+        "displayName": "Login Scene",
+        "description": "Login Scene",
+        "path": "Examples/Login"
+      }
+    ],
+    "author": {
+      "name": "Altura Gaming",
+      "email": "info@alturanft.com",
+      "url": "https://alturanft.com"
+    }
+  }
+  
