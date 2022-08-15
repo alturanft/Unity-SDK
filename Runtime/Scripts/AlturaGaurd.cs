@@ -251,6 +251,29 @@ namespace AlturaSDK {
         }
     }
 
+      /**
+   * Transfers a single NFT from your developer wallet to another user
+   * @param collectionAddress The item's collection address
+   * @param tokenId The item's tokenId
+   * @param amount The quantity of this particular item you wish to transfer.
+   * This operation will fail if you try to transfer more than your balance.
+   * @param to The recipient's EVM-compatible address (0x...)
+   */
+    public static async Task<Dictionary<string, string>> TransferItem(string collectionAddress, string tokenId, string amount, string to)
+    {
+        string url = apiBasePath + "item/transfer";
+        var query = "?apiKey=7N4F067-HK0MFS3-PA7XGKA-WN2C1J6 collectionAddress={collectionAddress}&tokenId={tokenId}&amount={amount}&to={to}";
+        UnityWebRequest webRequest = UnityWebRequest.Post(url + "?" + query);
+        await webRequest.SendWebRequest();
+        Dictionary<string, string> jsonMap = JsonConvert.DeserializeObject<Dictionary<string, string>>(
+            System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data));
+        if (jsonMap != null) {
+            return jsonMap;
+        } else {
+            throw new Exception("No items found");
+        }
+    }
+
 }
 
  public class UnityWebRequestAwaiter : INotifyCompletion {
