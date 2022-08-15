@@ -57,6 +57,7 @@ namespace AlturaSDK.API
             yield return request.SendWebRequest();
 #else
 			yield return request.Send();
+
 #endif
         }
 
@@ -118,24 +119,6 @@ namespace AlturaSDK.API
                 return;
             }
 
-
-        //    Altura.Token.Refresh(() =>
-        //    {
-        //        _wasRefreshed = true;
-
-        //        Request<T>(request, (response) =>
-      //          {
-      //              _wasRefreshed = false;
-      //              onSuccess?.Invoke(response);
-     //           }, onError);
-    //        }, refreshException =>
-   //         {
-    //            Debug.LogError(exception);
-
-     //           onError?.Invoke(refreshException);
-
-         //       Altura.Token.OnInvalid?.Invoke();
-    //        });
         }
 
         private static UnityWebRequest ConvertToUnityRequest(ApiRequest request)

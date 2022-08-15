@@ -7,23 +7,25 @@ using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
+
 public class Test : MonoBehaviour
 {
     async void Start() {
         string url = "https://api.alturanft.com/api/v2/";
-                using (UnityWebRequest req = UnityWebRequest.Get(url + "user/verify_auth_code/0xfb7C2D5c65e00d05C48AfF5c02C6D4682156DF33/7N4F067-HK0MFS3-PA7XGKA-WN2C1J6")) {
+                using (UnityWebRequest req = UnityWebRequest.Get(url + "user/verify_auth_code/0xfb7C2D5c65e00d05C48AfF5c02C6D4682156DF33/dA0ALg")) {
             req.SetRequestHeader("Authorization", "Bearer " + PlayerPrefs.GetString("token"));
             req.SetRequestHeader("Content-Type", "application/json");
             await req.SendWebRequest();
             Debug.Log(req.downloadHandler.text);
         }
-        using (UnityWebRequest req = UnityWebRequest.Get(url + "user")) {
+        using (UnityWebRequest req = UnityWebRequest.Get(url + "user?name=AlturaNFT")) {
             req.SetRequestHeader("Authorization", "Bearer " + PlayerPrefs.GetString("token"));
             req.SetRequestHeader("Content-Type", "application/json");
             await req.SendWebRequest();
             Debug.Log(req.downloadHandler.text);
         }
-             using (UnityWebRequest req = UnityWebRequest.Get(url + "item")) {
+             using (UnityWebRequest req = UnityWebRequest.Get(url + "user/items/0xcaf45074fc329692995d812aeb099070c7fdee2b?collectionAddress=0xdb0047cb1dfc44696f6e9868ef6bb40000280b05&slim=true&page=1")) {
             req.SetRequestHeader("Authorization", "Bearer " + PlayerPrefs.GetString("token"));
             req.SetRequestHeader("Content-Type", "application/json");
             await req.SendWebRequest();
@@ -35,6 +37,13 @@ public class Test : MonoBehaviour
             await req.SendWebRequest();
             Debug.Log(req.downloadHandler.text);
         }
+
+        // Generate ApiKEy
+        var key = new byte[32];
+        using (var generator = RandomNumberGenerator.Create())
+        generator.GetBytes(key);
+        string apiKey = Convert.ToBase64String(key);
+        Debug.Log(apiKey);
     }
 }
 
