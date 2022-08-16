@@ -50,6 +50,7 @@
      <Compile Include="Assets/AlturaSDK/Enum/LogLevel.cs" />
      <Compile Include="Assets/AlturaSDK/API/Responses/GetCollectionResponse.cs" />
      <Compile Include="Assets/AlturaSDK/Utils/Constants.cs" />
+     <Compile Include="Assets/Scripts/Prefabs/Testing.cs" />
      <Compile Include="Assets/AlturaSDK/Enum/PlatformType.cs" />
      <Compile Include="Assets/AlturaSDK/API/Requests/GetItemRequest.cs" />
      <Compile Include="Assets/AlturaSDK/Exceptions/InvalidRequestException.cs" />
@@ -57,6 +58,7 @@
      <Compile Include="Assets/AlturaSDK/API/Responses/GetItemResponse.cs" />
      <Compile Include="Assets/AlturaSDK/Altura.cs" />
      <Compile Include="Assets/AlturaSDK/Settings/AuthSettings.cs" />
+     <Compile Include="Assets/Scripts/AlturaGaurd.cs" />
      <Compile Include="Assets/AlturaSDK/Auth/AlturaAuth.cs" />
      <Compile Include="Assets/AlturaSDK/Utils/Debug.cs" />
      <Compile Include="Assets/AlturaSDK/API/Responses/GetUserResponse.cs" />
