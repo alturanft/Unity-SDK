@@ -1,201 +1,226 @@
 using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using UnityEngine.Networking;
-using UnityEngine;
 using Newtonsoft.Json;
-//using Nethereum;
-//using Nethereum.Signer;
-//using Nethereum.Web3;
+using UnityEngine;
+using UnityEngine.Networking;
+using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using System.Text;
+using System.IO;    
+using System.Net;
+using System.Net.Sockets;
+using System.Threading;
+using System.Net.NetworkInformation;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
-namespace AlturaSDK {
-
-    public class AlturaWeb3 {
-
-
-        public class Response<T> { public T response; } //generic response
-
-        public readonly static string host = "https://api.alturanft.com/api/v2/"; //host for apis
-        
-    //     public static Task<string> CreateNewEthereumAddressAsync()
-    //     {
-    //        var key = Nethereum.Signer.EthECKey.GenerateKey();
-    //        var pKey = key.GetPrivateKeyAsBytes().ToString();
-    //        var acc = new Nethereum.Web3.Accounts.Account(pKey);
-    //        return await web3.Personal.NewAccount.SendRequestAsync("");
-    //        return Task.FromResult(acc.Address);
-            
-           
-    //    }
-    //////////////
-    //// USER ////
-    //////////////
-
+namespace AlturaWeb3.SDK {
     /// <summary>
-    /// Altura Web3 API for getting a Users.
+    /// Altura SDK for Unity
     /// </summary>
-        public static async Task<string> GetUser(string address) {
-            string url = host + "user" + "/" + address;
-            UnityWebRequest webRequest = UnityWebRequest.Get(url);
-            await webRequest.SendWebRequest();
-            return System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
 
-        }
-    /// <summary>
-    /// Get a Users Items.
-    /// </summary>
-        public static async Task<string> GetUserItem(string address) {
-            string url = host + "user/items" + "/" + address;
-            UnityWebRequest webRequest = UnityWebRequest.Get(url);
-            await webRequest.SendWebRequest();
-            return System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
+    public class AlturaClient 
+    {
+        public class Response<T> { public T response; }
 
-        }
+        public readonly static string BASE_URL = "https://api.alturanft.com/api/v2/";
 
-    /// <summary>
-    /// Verify a Users Auth Code
-    /// </summary>
-        public static async Task<string> AuthenticateUser(string address, string code) 
+        /// <summary>
+        /// Calls the user/verify_auth_code endpoint. with address and code
+        /// returns true or false, no query params
+        /// </summary>
+        public static async Task<string> VerifyAuthCode(string address, string code)
         {
-            string url = host + "user/verify_auth_code" + "/" + address + "/"  + code;
-            UnityWebRequest webRequest = UnityWebRequest.Get(url);
-            await webRequest.SendWebRequest();
-            return System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
-
+            UnityWebRequest req = UnityWebRequest.Get(BASE_URL + "user/verify_auth_code" + "/" + address + "/" + code);
+            await req.SendWebRequest();
+            return req.downloadHandler.text;
         }
 
-    /// <summary>
-    /// Altura Web3 API for getting all Users.
-    /// </summary>
-        public static async Task<string> GetUsers() {
-            string url = host + "user/";
-            UnityWebRequest webRequest = UnityWebRequest.Get(url);
-            await webRequest.SendWebRequest();
-            return System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
-
+        /// <summary>
+        /// Calls the "user/:address" endpoint. queryParams
+        /// returns the  user object
+        /// </summary>
+        public static async Task<string> GetUser(string address)
+        {
+            UnityWebRequest request = UnityWebRequest.Get(BASE_URL + "user" + "/" + address);
+  
+            await request.SendWebRequest();
+            return request.downloadHandler.text;
         }
 
-
-    //////////////
-    //// Items ////
-    //////////////
-
-
-    /// <summary>
-    /// Altura Web3 API for Items.
-    /// </summary>
-        public static async Task<string> GetItems() {
-            string url = host + "item/";
-            UnityWebRequest webRequest = UnityWebRequest.Get(url);
-            await webRequest.SendWebRequest();
-            return System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
-
-        }
-        public static async Task<string> GetItem(string address, string tokenId) {
-            string url = host + "item" + "/" + address + "/"  + tokenId;
-            UnityWebRequest webRequest = UnityWebRequest.Get(url);
-            await webRequest.SendWebRequest();
-            return System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
-
-        }
-
-        public static async Task<string> GetItemHolders(string address, string tokenId) {
-            string url = host + "item/holders" + "/" + address + "/"  + tokenId;
-            UnityWebRequest webRequest = UnityWebRequest.Get(url);
-            await webRequest.SendWebRequest();
-            return System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
-
-        }
-
-        public static async Task<string> GetItemHistory(string address, string tokenId) {
-            string url = host + "item/events" + "/" + address + "/"  + tokenId;
-            UnityWebRequest webRequest = UnityWebRequest.Get(url);
-            await webRequest.SendWebRequest();
-            return System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
-
-        }
-
-        public static async Task<string> GetItemActivity() {
-            string url = host + "item/activity";
-            UnityWebRequest webRequest = UnityWebRequest.Get(url);
-            await webRequest.SendWebRequest();
-            return System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
-
-        }
-
-    //////////////////////
-    //// Collection /////
-    ////////////////////
-        public static async Task<string> GetCollection(string addrerss) {
-            string url = host + "collection/" + addrerss;
-            UnityWebRequest webRequest = UnityWebRequest.Get(url);
-            await webRequest.SendWebRequest();
-            return System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
-
+        public static async Task<string> GetUsers(string queryParams)
+        {
+            UnityWebRequest request = UnityWebRequest.Get(BASE_URL + "user" + queryParams);
+  
+            await request.SendWebRequest();
+            return request.downloadHandler.text;
+            
         }
 
 
-        public static async Task<string> GetCollections() {
-            string url = host + "collection/";
-            UnityWebRequest webRequest = UnityWebRequest.Get(url);
-            await webRequest.SendWebRequest();
-            return System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
+        /// <summary>
+        /// Calls the "item" endpoint. queryParams determing how many perPage, page, sortBy, sortOrder, and slim
+        /// returns the  many item objects
+        /// </summary>
+        public static async Task<string> GetItems(string queryParams)
+        {
+            UnityWebRequest request = UnityWebRequest.Get(BASE_URL + "item" + queryParams);
+            await request.SendWebRequest();
+            return request.downloadHandler.text;
+        }
+        
+
+        /// <summary>
+        /// Calls the "item/:address/:tokenId" endpoint. queryParams
+        /// returns the  a single item object takes in address and tokenId
+        /// </summary>
+        public static async Task<string> GetItem(string address, string tokenId)
+        {
+            UnityWebRequest request = UnityWebRequest.Get(BASE_URL + "item" + "/" + address + "/" + tokenId);
+            await request.SendWebRequest();
+            return request.downloadHandler.text;
+        }
+   
+        /// <summary>
+        ///Calls the "item/holders/:address/:tokenId" endpoint. queryParams
+        /// returns the  a single item object takes in address and tokenId
+        /// </summary>
+    
+    
+        public static async Task<string> GetItemHolders(string address, string tokenId)
+        {
+            UnityWebRequest request = UnityWebRequest.Get(BASE_URL + "item/holders" + "/" + address + "/" + tokenId);
+            await request.SendWebRequest();
+            return request.downloadHandler.text;
+        }
+    
+
+        /// <summary>
+        /// Calls the "item/events/:address/:tokenId" endpoint. queryParams
+        /// returns the  a single item object takes in address and tokenId
+        /// </summary>
+        public static async Task<string> GetItemEvents(string address, string tokenId)
+        {
+            UnityWebRequest request = UnityWebRequest.Get(BASE_URL + "item/events" + "/" + address + "/" + tokenId);
+            await request.SendWebRequest();
+            return request.downloadHandler.text;
 
         }
 
+        
+        /// <summary>
+        /// Calls the "item/activity" endpoint. queryParams
+        /// returns the  a single item object takes in address and tokenId
+        /// </summary>
+    
+        public static async Task<string> GetItemActivity(string queryParams)
+        {
+            UnityWebRequest request = UnityWebRequest.Get(BASE_URL + "item/activity" + queryParams);
+            await request.SendWebRequest();
+            return request.downloadHandler.text;
+        }
 
-    //////////////////////
-    //// POST /////
-    ////////////////////
-        public static async Task<string> TransferItem(string apiKey, string address, string tokenId, int amount, string to) {
+
+        /// <summary>
+        /// Calls the "collection/:address" endpoint. queryParams
+        /// returns the  a single collection object takes in address
+        /// </summary>
+        public static async Task<string> GetCollection(string address)
+        {
+            UnityWebRequest request = UnityWebRequest.Get(BASE_URL + "collection" + "/" + address);
+            await request.SendWebRequest();
+            return request.downloadHandler.text;
+        }
+
+        /// <summary>
+        /// Calls the "collection/" endpoint. queryParams
+        /// returns the  all collections based on queryParams perPage, page, sortBy, sortOrder, and slim
+        /// </summary>
+        public static async Task<string> GetCollections(string queryParams)
+        {
+            UnityWebRequest request = UnityWebRequest.Get(BASE_URL + "collection" + queryParams);
+            await request.SendWebRequest();
+            return request.downloadHandler.text;
+        }
+
+
+        /// <summary>
+        /// Calls the "/api/v2/item/transfer" endpoint. queryParams
+        /// user must be authenticated to use this endpoint
+        /// takes in collectionAddress, tokenId, toAddress, and returns txnHash string
+        /// POST request
+        /// </summary>
+        
+        
+
+        public static async Task<string> TransferItem(string apikey, string address, string to, string amount, string tokenId)
+        {
+            WWWForm form = new WWWForm();
+            form.AddField("address", address);
+            form.AddField("to", to);
+            form.AddField("tokenId", tokenId);
+            form.AddField("amount", amount);
+            UnityWebRequest request = UnityWebRequest.Post(BASE_URL + "item/transfer" + "?apiKey=" + apikey, form);
+
+            await request.SendWebRequest();
+            return request.downloadHandler.text;
+        }
+        
+        
+ 
+        /// <summary>
+        /// Calls the "/api/v2/item/transfer" endpoint. queryParams
+        /// user must be authenticated to use this endpoint
+        /// takes in collectionAddress, tokenId, toAddress, and returns txnHash string
+        /// send bulk transfer POST request
+        /// </summary>
+
+
+        public static async Task<string> TransferItems(string apikey, string address, string to, string amounts, string tokenIds)
+        {
+            WWWForm form = new WWWForm();
+            form.AddField("address", address);
+            form.AddField("to", to);
+            form.AddField("tokenId", tokenIds);
+            form.AddField("amount", amounts);
+            UnityWebRequest request = UnityWebRequest.Post(BASE_URL + "item/transfer" + "?apiKey=" + apikey, form);
+
+            await request.SendWebRequest();
+            return request.downloadHandler.text;
+        }
+        
+
+
+        /// <summary>
+        /// Calls the '/api/v2/item/mint' constrainst must be authenticated to use this endpoint
+        /// takes in address tokenId, amount and to, returns txnHash string
+        /// POST request
+        /// </summary>
+        
+        
+        public static async Task<string> MintItem(string apikey, string address, string tokenId, string to, string amount)
+        {
             WWWForm form = new WWWForm();
             form.AddField("address", address);
             form.AddField("tokenId", tokenId);
             form.AddField("amount", amount);
             form.AddField("to", to);
+            UnityWebRequest request = UnityWebRequest.Post(BASE_URL + "item/mint" + "?apiKey=" + apikey, form);
 
-            string url = host + "item/transfer" + "?" + "apiKey=" + apiKey + "&" + "address=" + address + "&" + "tokenId=" + tokenId + "&" + "amount=" + amount + "&" + "to=" + to;
-            UnityWebRequest webRequest = UnityWebRequest.Post(url, form);
+            await request.SendWebRequest();
+            return request.downloadHandler.text;        
+            }
 
-            await webRequest.SendWebRequest();
-            return System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
-
-        }
-
-        public static async Task<string> TransferItems(string apiKey, string collectionAddress, string tokenIds, int amounts, string to) {
-            WWWForm form = new WWWForm();
-            form.AddField("collectionAddress", collectionAddress);
-            form.AddField("tokenIds", tokenIds);
-            form.AddField("amounts", amounts);
-            form.AddField("to", to);
-
-            string url = host + "item/transfer" + "?" + "apiKey=" + apiKey + "&" + "collectionAddress=" + form.ToString();
-            UnityWebRequest webRequest = UnityWebRequest.Post(url, form);
-            await webRequest.SendWebRequest();
-            return System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
-
-        }
-
-        public static async Task<string> MintAdditionalNFT(string apiKey, string address, string tokenId, int amount, string to) {
-            WWWForm form = new WWWForm();
-            form.AddField("address", address);
-            form.AddField("tokenId", tokenId);
-            form.AddField("amount", amount);
-            form.AddField("to", to);
-
-            string url = host + "item/mint" + "?" + "apiKey=" + apiKey + "&" + form.ToString();
-            UnityWebRequest webRequest = UnityWebRequest.Post(url, form);
-            webRequest.SetRequestHeader("Content-Type", "application/json");
-            webRequest.SetRequestHeader("X-API-KEY", apiKey);
-            await webRequest.SendWebRequest();
-            return System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
-
-        }
+    }
 
 }
 
- public class UnityWebRequestAwaiter : INotifyCompletion {
+ /// <summary>
+    /// Class to enable asynchronous web requests via Unity 
+    /// </summary>
+    public class UnityWebRequestAwaiter : INotifyCompletion {
         private UnityWebRequestAsyncOperation asyncOp;
         private Action continuation;
 
@@ -222,4 +247,3 @@ namespace AlturaSDK {
             return new UnityWebRequestAwaiter(asyncOp);
         }
     }
-}

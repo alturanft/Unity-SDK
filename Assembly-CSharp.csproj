@@ -44,13 +44,10 @@
      <Compile Include="Assets/AlturaSDK/Exceptions/ApiHttpException.cs" />
      <Compile Include="Assets/AlturaSDK/Settings/AlturaSettings.cs" />
      <Compile Include="Assets/AlturaSDK/API/AlturaAPI.cs" />
-     <Compile Include="Assets/Scripts/Prefabs/Test.cs" />
-     <Compile Include="Assets/AlturaSDK/Examples/Login/Scripts/AuthController.cs" />
      <Compile Include="Assets/AlturaSDK/Enum/CallbackType.cs" />
      <Compile Include="Assets/AlturaSDK/Enum/LogLevel.cs" />
      <Compile Include="Assets/AlturaSDK/API/Responses/GetCollectionResponse.cs" />
      <Compile Include="Assets/AlturaSDK/Utils/Constants.cs" />
-     <Compile Include="Assets/Scripts/Prefabs/Testing.cs" />
      <Compile Include="Assets/AlturaSDK/Enum/PlatformType.cs" />
      <Compile Include="Assets/AlturaSDK/API/Requests/GetItemRequest.cs" />
      <Compile Include="Assets/AlturaSDK/Exceptions/InvalidRequestException.cs" />
@@ -702,26 +699,17 @@
     <Reference Include="Unity.VisualScripting.Flow.Editor">
         <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/Unity.VisualScripting.Flow.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="FusedVR.Web3">
+        <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/FusedVR.Web3.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
         <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Services.Core.Analytics">
-        <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/Unity.Services.Core.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Shared.Editor">
-        <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/Unity.VisualScripting.Shared.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
         <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Services.Core.Environments">
-        <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/Unity.Services.Core.Environments.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
         <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-        <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
         <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
@@ -737,6 +725,9 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
         <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="AlturaWeb3.SDK">
+        <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/AlturaWeb3.SDK.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
         <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/Unity.VisualScripting.Flow.dll</HintPath>
@@ -756,11 +747,23 @@
     <Reference Include="Unity.Services.Core">
         <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/Unity.Services.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.State">
-        <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/Unity.VisualScripting.State.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VisualScripting.Core">
         <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/Unity.VisualScripting.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Services.Core.Analytics">
+        <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/Unity.Services.Core.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Shared.Editor">
+        <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/Unity.VisualScripting.Shared.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Services.Core.Environments">
+        <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/Unity.Services.Core.Environments.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline.Editor">
+        <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.State">
+        <HintPath>/Users/h3cker/lol/Unity-SDK/Library/ScriptAssemblies/Unity.VisualScripting.State.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
