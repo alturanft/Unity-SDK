@@ -9,7 +9,8 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
-
+/UserSettings/
+Packages/
 # Visual Studio cache directory
 .vs/
 
