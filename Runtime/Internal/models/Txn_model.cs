@@ -1,13 +1,30 @@
 using System;
+using System.Collections.Generic;
 
 namespace AlturaNFT
 {
+        [Serializable]
+    public class Auth_model
+    {
+        public string authenticated;
+
+    }
+
+
+    [Serializable]
+    public class Transfer_model
+    {
+        public string txHash;
+    }
+
 
     [Serializable]
     public class Collection_model
     {
         public string response;
         public Collection collection;
+        public List<Collection> collections;
+
 
     }
     [Serializable] 

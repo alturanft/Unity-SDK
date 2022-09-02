@@ -13,7 +13,7 @@ namespace AlturaNFT
     [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_Txn_Account)]
     [ExecuteAlways]
     [HelpURL(AlturaConstants.Docs_Txns_Account)]
-    public class Txn_Account : MonoBehaviour
+     public class Txn_Account : MonoBehaviour
     {
         /// <summary>
         /// Currently Supported chains for this endpoint.
@@ -23,30 +23,42 @@ namespace AlturaNFT
             ethereum,
             binance,
             bsctest,
-        }
-        
-        public enum Type
-        {
-            all, mint, burn, transfer_from, transfer_to, list, buy, sell, make_bid , get_bid
+            rinkeby,
         }
 
         #region Parameter Defines
 
-        [SerializeField] private Chains chain;
-            
             [SerializeField]
-            private string _account_address = "Input Account Address to get NFT Transactions of";
+            private Chains chain = Chains.bsctest;
+            
+  
+            [SerializeField]
+            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
+            private string _perPage = "Input How much pqges you want to get";
+            [SerializeField]
+            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
+            private string _page = "Input Which page you want to get";
+                        [SerializeField]
+            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
+            private string _sortBy = "Input Sort By = name";
+                        [SerializeField]
+            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
+            private string _sortDir = "Input Asc or Desc";
 
-            [SerializeField] private Type _type = Type.all;
+            [Header("Optional: Filter and fetch items with specified property")]
 
-            private string RequestUriInit = "https://api.alturanft.com/api/v2/user";
+            [SerializeField]
+            [Tooltip("Filter from a documents by any properties")]
+            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
+            string _isVerified;
+            private string RequestUriInit = "https://api.alturanft.com/api/v2/collection";
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
 
 
             private UnityAction<string> OnErrorAction;
-            private UnityAction<Txn_model> OnCompleteAction;
+            private UnityAction<Collection_model> OnCompleteAction;
             
             [Space(20)]
             //[Header("Called After Successful API call")]
@@ -55,12 +67,13 @@ namespace AlturaNFT
             public UnityEvent afterError;
 
             [Header("Run Component when this Game Object is Set Active")]
-            [SerializeField] private bool onEnable = false;
+            [SerializeField] private bool onEnable = true;
             public bool debugErrorLog = true;
-            public bool debugLogRawApiResponse = false;
+            public bool debugLogRawApiResponse = true;
             
             [Header("Gets filled with data and can be referenced:")]
-            public Txn_model txnModel;
+            public Collection_model collectionModel;
+
 
         #endregion
 
@@ -97,51 +110,69 @@ namespace AlturaNFT
             }
 
         /// <summary>
-        /// Set Parameters to retrieve NFT From
+        /// Set Parameters to retrieve User From.  ≧◔◡◔≦ .
         /// </summary>
-        /// <param name="account_address"> as string.</param>
-        /// <param name="type"> as Type{ all, mint, burn, transfer_from, transfer_to, list, buy, sell, make_bid , get_bid}.</param>
-        public Txn_Account SetParameters(string account_address = null, Type type = Type.all)
-        {
-            if(account_address!=null)
-                this._account_address = account_address;
-            if (_type != type)
-                _type = type;
-            
-            return this;
-        }
-        
-        /// <summary>
-        /// Blockchain from which to query NFTs.
-        /// </summary>
-        /// <param name="chain"> Choose from available 'Chains' enum</param>
-        public Txn_Account SetChain(Chains chain)
-        {
-            this.chain = chain;
-            return this;
-        }
+        /// <param name="perPage"> amount of pages to query</param>
+        /// <param name="page"> page to query</param>
+        /// <param name="sortBy"> sort by field</param>
+        /// <param name="sortDir"> sort direction</param>
+        public Txn_Account SetParameters(string perPage = "20", string page = "1", string sortBy = "name", string sortDir = "asc")
+            {
 
-        /// <summary>
-        /// Action on successful API Fetch. (*^∇^)ヾ(￣▽￣*)
-        /// </summary>
-        /// <param name="Txn_model"> Use: .OnComplete(Txns=> txns = Txns) , where txns is of type Txn_model;</param>
-        /// <returns> NFTs_OwnedByAnAccount_model.Root </returns>
-        public Txn_Account OnComplete(UnityAction<Txn_model> action)
-        {
-            this.OnCompleteAction = action;
-            return this;
-        }
-        
-        /// <summary>
-        /// Action on Error (;•͈́༚•͈̀)(•͈́༚•͈̀;)՞༘՞༘՞
-        /// </summary>
-        /// <param name="UnityAction action"> string.</param>
-        /// <returns> Information on Error as string text.</returns>
-        public Txn_Account OnError(UnityAction<string> action)
-        {
-            this.OnErrorAction = action;
-            return this;
-        }
+                if(perPage!=null)
+                    this._perPage = perPage;
+                if(page!=null)
+                    this._page = page;
+                if(sortBy!=null)
+                    this._sortBy = sortBy;
+                if(sortDir!=null)
+                    this._sortDir = sortDir;
+     
+
+                return this;
+            }
+
+            /// <summary>
+            /// Set Filter by to return NFTs only from the given contract address/collection. 
+            /// </summary>
+            ///<param name="name"> as string.</param>
+            public Txn_Account AlturaOptions(string isVerified)
+            {
+                this._isVerified = isVerified;
+                return this;
+            }
+            
+            /// <summary>
+            /// Blockchain from which to query NFTs.
+            /// </summary>
+            /// <param name="chain"> Choose from available 'Chains' enum</param>
+            public Txn_Account SetChain(Chains chain)
+            {
+                this.chain = chain;
+                return this;
+            }
+
+            /// <summary>
+            /// Action on successful API Fetch. (*^∇^)ヾ(￣▽￣*)
+            /// </summary>
+            /// <param name="NFTs_OwnedByAnAccount_model.Root"> Use: .OnComplete(NFTs=> NFTsOfUser = NFTs) , where NFTsOfUser = NFTs_OwnedByAnAccount_model.Root;</param>
+            /// <returns> NFTs_OwnedByAnAccount_model.Root </returns>
+            public Txn_Account OnComplete(UnityAction<Collection_model> action)
+            {
+                this.OnCompleteAction = action;
+                return this;
+            }
+            
+            /// <summary>
+            /// Action on Error (⊙.◎)
+            /// </summary>
+            /// <param name="UnityAction action"> string.</param>
+            /// <returns> Information on Error as string text.</returns>
+            public Txn_Account OnError(UnityAction<string> action)
+            {
+                this.OnErrorAction = action;
+                return this;
+            }
             
         #endregion
 
@@ -150,25 +181,28 @@ namespace AlturaNFT
             /// <summary>
             /// Runs the Api call and fills the corresponding model in the component on success.
             /// </summary>
-            public Txn_model Run()
+            public Collection_model Run()
             {
                 WEB_URL = BuildUrl();
                 StopAllCoroutines();
                 StartCoroutine(CallAPIProcess());
-                return txnModel;
+                return collectionModel;
             }
 
             string BuildUrl()
             {
-                if (chain == Chains.binance)
+                if (chain == Chains.bsctest)
                 {
-                    WEB_URL = "https://api.alturanft.com/api/v2/user" + _account_address;
+                    WEB_URL = RequestUriInit + "?perPage=" + _perPage + "&page=" + _page + "&sortBy=" + _sortBy + "&sortDir=" + _sortDir + "&isVerified=" + _isVerified;
+                    if(debugErrorLog)
+                        Debug.Log("Querying Details of User: "  + " on " + chain);
                 }
                 else
                 {
-                    WEB_URL = RequestUriInit + _account_address;
-                    
-                }
+                    WEB_URL = RequestUriInit + "?perPage=" + _perPage + "&page=" + _page + "&sortBy=" + _sortBy + "&sortDir=" + _sortDir + "&isVerified=" + _isVerified;
+                    if(debugErrorLog)
+                        Debug.Log("Querying Details of User: " +  " on " + chain);
+                } 
                 return WEB_URL;
             }
             
@@ -180,8 +214,6 @@ namespace AlturaNFT
                 request.SetRequestHeader("source", AlturaUser.GetSource());
                 request.SetRequestHeader("Authorization", _apiKey);
                 
-                if(debugErrorLog)
-                    Debug.Log("Querying Transactions of Account: " + _account_address + " on " + chain);
 
                 {
                     yield return request.SendWebRequest();
@@ -195,16 +227,15 @@ namespace AlturaNFT
                         if(OnErrorAction!=null)
                             OnErrorAction($"Null data. Response code: {request.responseCode}. Result {jsonResult}");
                         if(debugErrorLog)
-                            Debug.Log($"(;•͈́༚•͈̀)(•͈́༚•͈̀;)՞༘՞༘՞ Null data. Response code: {request.responseCode}. Result {jsonResult}");
+                            Debug.Log($"(⊙.◎) Null data. Response code: {request.responseCode}. Result {jsonResult}");
                         if(afterError!=null)
                             afterError.Invoke();
+                        collectionModel = null;
                         //yield break;
-                        txnModel = null;
                     }
                     else
                     {
-                        //Fill Data Model from recieved class
-                        txnModel = JsonConvert.DeserializeObject<Txn_model>(
+                        collectionModel = JsonConvert.DeserializeObject<Collection_model>(
                             jsonResult,
                             new JsonSerializerSettings
                             {
@@ -213,13 +244,12 @@ namespace AlturaNFT
                             });
                         
                         if(OnCompleteAction!=null)
-                            OnCompleteAction.Invoke(txnModel);
+                            OnCompleteAction.Invoke(collectionModel);
                         
                         if(afterSuccess!=null)
                             afterSuccess.Invoke();
                         
-                        if(debugErrorLog)
-                            Debug.Log($"Response: Success , view Txns model" );
+                            Debug.Log($" ´ ▽ ` )ﾉ Success , Get Many Collection Models" );
                     }
                 }
                 request.Dispose();

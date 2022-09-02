@@ -32,10 +32,10 @@ namespace AlturaNFT
             private Chains chain = Chains.bsctest;
             
   
-                        [SerializeField]
+            [SerializeField]
             [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
-                        private string _perPage = "Input How much pqges you want to get";
-                                    [SerializeField]
+            private string _perPage = "Input How much pqges you want to get";
+            [SerializeField]
             [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string _page = "Input Which page you want to get";
                         [SerializeField]
@@ -45,7 +45,12 @@ namespace AlturaNFT
             [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string _sortDir = "Input Asc or Desc";
 
+            [Header("Optional: Filter and fetch items with specified property")]
 
+            [SerializeField]
+            [Tooltip("Filter from a documents by any properties")]
+            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
+            string _name;
             private string RequestUriInit = "https://api.alturanft.com/api/v2/user/";
             private string WEB_URL;
             private string _apiKey;
@@ -126,6 +131,16 @@ namespace AlturaNFT
 
                 return this;
             }
+
+            /// <summary>
+            /// Set Filter by to return NFTs only from the given contract address/collection. 
+            /// </summary>
+            ///<param name="name"> as string.</param>
+            public Users_Details AlturaOptions(string name)
+            {
+                this._name = name;
+                return this;
+            }
             
             /// <summary>
             /// Blockchain from which to query NFTs.
@@ -178,13 +193,13 @@ namespace AlturaNFT
             {
                 if (chain == Chains.bsctest)
                 {
-                    WEB_URL = RequestUriInit + "?perPage=" + _perPage + "&page=" + _page + "&sortBy=" + _sortBy + "&sortDir=" + _sortDir;
+                    WEB_URL = RequestUriInit + "?perPage=" + _perPage + "&page=" + _page + "&sortBy=" + _sortBy + "&sortDir=" + _sortDir + "&name=" + _name;
                     if(debugErrorLog)
                         Debug.Log("Querying Details of User: "  + " on " + chain);
                 }
                 else
                 {
-                    WEB_URL = RequestUriInit + "?perPage=" + _perPage + "&page=" + _page + "&sortBy=" + _sortBy + "&sortDir=" + _sortDir;
+                    WEB_URL = RequestUriInit + "?perPage=" + _perPage + "&page=" + _page + "&sortBy=" + _sortBy + "&sortDir=" + _sortDir + "&name=" + _name;
                     if(debugErrorLog)
                         Debug.Log("Querying Details of User: " +  " on " + chain);
                 } 

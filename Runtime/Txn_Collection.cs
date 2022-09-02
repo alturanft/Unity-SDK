@@ -25,10 +25,6 @@ namespace AlturaNFT
             bsctest,
         }
         
-        public enum Type
-        {
-            all, mint, burn, transfer_from, transfer_to, list, buy, sell, make_bid , get_bid
-        }
 
         #region Parameter Defines
 
@@ -131,7 +127,6 @@ namespace AlturaNFT
         }
         
         /// <summary>
-        /// Action on Error (;•͈́༚•͈̀)(•͈́༚•͈̀;)՞༘՞༘՞
         /// </summary>
         /// <param name="UnityAction action"> string.</param>
         /// <returns> Information on Error as string text.</returns>
@@ -192,7 +187,7 @@ namespace AlturaNFT
                         if(OnErrorAction!=null)
                             OnErrorAction($"Null data. Response code: {request.responseCode}. Result {jsonResult}");
                         if(debugErrorLog)
-                            Debug.Log($"(;•͈́༚•͈̀)(•͈́༚•͈̀;)՞༘՞༘՞ Null data. Response code: {request.responseCode}. Result {jsonResult}");
+                            Debug.Log($" Response code: {request.responseCode}. Result {jsonResult}");
                         if(afterError!=null)
                             afterError.Invoke();
                         collectionModel = null;
@@ -200,7 +195,6 @@ namespace AlturaNFT
                     }
                     else
                     {
-                        //Fill Data Model from recieved class
                         collectionModel = JsonConvert.DeserializeObject<Collection_model>(
                             jsonResult,
                             new JsonSerializerSettings

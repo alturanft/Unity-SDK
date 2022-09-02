@@ -10,10 +10,10 @@ namespace AlturaNFT
     /// <summary>
     /// NFTs of a contract / collections
     /// </summary>
-    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_NFTs_OfContract)]
+    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_Altura_Guard)]
     [ExecuteAlways]
-    [HelpURL(AlturaConstants.NFTs_OfContract)]
-    public class NFTs_OfAContract : MonoBehaviour
+    [HelpURL(AlturaConstants.Altura_Guard)]
+    public class Altura_Guard : MonoBehaviour
     {
         /// <summary>
         /// Currently Supported chains for this endpoint.
@@ -39,28 +39,20 @@ namespace AlturaNFT
             private Chains chain = Chains.binance;
             
             [SerializeField]
-            private string contract_address = "Input Contract Address To Fetch NFT's from";
-
-            [Header("Optional:")]
-            
-            [Header("Include optional data in the response.")]
-            [Tooltip("default is the default response, metadata includes NFT metadata and cached_file_url, and all includes extra information like file_information and mint_date in Retrieve NFT details.")]
+            private string wallet_address = "Input Wallet Address to verify";
             [SerializeField]
-            Includes include = Includes.all;
+            private string altura_gaurd = "Input Altura Gaurd code to verify";
 
-            [Tooltip(
-                "One API call might not be able to provide all NFTs in one go if user holds a lot of NFTs and not filtered, this string is passed in API call which can be used in next one to continue from last query")]
-            public string continuation = "";
 
             
-            private string RequestUriInit = "https://api.alturanft.com/api/v2/collection/";
+       //     private string RequestUriInit = "https://api.alturanft.com/api/v2/user/verify_auth_code/";
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
 
 
             private UnityAction<string> OnErrorAction;
-            private UnityAction<Collection_model> OnCompleteAction;
+            private UnityAction<Auth_model> OnCompleteAction;
             
             [Space(20)]
             //[Header("Called After Successful API call")]
@@ -69,12 +61,12 @@ namespace AlturaNFT
             public UnityEvent afterError;
 
             [Header("Run Component when this Game Object is Set Active")]
-            [SerializeField] private bool onEnable = false;
+            [SerializeField] private bool onEnable = true;
             public bool debugErrorLog = true;
-            public bool debugLogRawApiResponse = false;
+            public bool debugLogRawApiResponse = true;
             
             [Header("Gets filled with data and can be referenced:")]
-            public Collection_model NFTs;
+            public Auth_model gaurd;
 
         #endregion
 
@@ -101,9 +93,9 @@ namespace AlturaNFT
         /// Initialize creates a gameobject and assings this script as a component. This must be called if you are not refrencing the script any other way and it doesn't already exists in the scene.
         /// </summary>
         /// <param name="destroyAtEnd"> Optional bool parameter can set to false to avoid Spawned GameObject being destroyed after the Api process is complete. </param>
-        public static NFTs_OfAContract Initialize(bool destroyAtEnd = true)
+        public static Altura_Guard Initialize(bool destroyAtEnd = true)
             {
-                var _this = new GameObject("NFTs Of a Contract").AddComponent<NFTs_OfAContract>();
+                var _this = new GameObject("NFTs Of a Contract").AddComponent<Altura_Guard>();
                 _this.destroyAtEnd = destroyAtEnd;
                 _this.onEnable = false;
                 _this.debugErrorLog = false;
@@ -113,10 +105,11 @@ namespace AlturaNFT
             /// <summary>
             /// Set Contract Address to retrieve NFTs from as string
             /// </summary>
-            /// <param name="contract_address"> as string.</param>
-            public NFTs_OfAContract SetContractAddress(string contract_address)
+            /// <param name="wallet_address"> as string.</param>
+            public Altura_Guard SetParams(string wallet_address, string altura_gaurd)
             {
-                this.contract_address = contract_address;
+                this.wallet_address = wallet_address;
+                this.altura_gaurd = altura_gaurd;
                 return this;
             }
             
@@ -124,50 +117,31 @@ namespace AlturaNFT
             /// Blockchain from which to query NFTs.
             /// </summary>
             /// <param name="chain"> Choose from available 'Chains' enum</param>
-            public NFTs_OfAContract SetChain(Chains chain)
+            public Altura_Guard SetChain(Chains chain)
             {
                 this.chain = chain;
                 return this;
             }
             
-            /// <summary>
-            /// Include optional data in the response. default is the default response and metadata includes NFT metadata, like in Retrieve NFT details, and contract_information includes information of the NFT’s contract, Choose from Includes.
-            /// </summary>
-            /// <param name="include"> Choose from available 'Includes' enum </param>
-            public NFTs_OfAContract SetInclude(Includes include)
-            {
-                this.include = include;
-                return this;
-            }
 
             /// <summary>
             /// Action on succesfull API Fetch.
             /// </summary>
             /// <param name="NFTs_OwnedByAnAccount_model.Root"> Use: .OnComplete(NFTs=> NFTsOfUser = NFTs) , where NFTsOfUser = NFTs_OwnedByAnAccount_model.Root;</param>
             /// <returns> NFTs_OwnedByAnAccount_model.Root </returns>
-            public NFTs_OfAContract OnComplete(UnityAction<Collection_model> action)
+            public Altura_Guard OnComplete(UnityAction<Auth_model> action)
             {
                 this.OnCompleteAction = action;
                 return this;
             }
             
-                 
-            /// <summary>
-            /// Set Continuation
-            /// </summary>
-            ///<param name="continuation"> page number as int.</param>
-            public NFTs_OfAContract SetContinuation(string continuation)
-            {
-                this.continuation = continuation;
-                return this;
-            }
             
             /// <summary>
             /// Action on Error
             /// </summary>
             /// <param name="UnityAction action"> string.</param>
             /// <returns> Information on Error as string text.</returns>
-            public NFTs_OfAContract OnError(UnityAction<string> action)
+            public Altura_Guard OnError(UnityAction<string> action)
             {
                 this.OnErrorAction = action;
                 return this;
@@ -180,36 +154,25 @@ namespace AlturaNFT
             /// <summary>
             /// Runs the Api call and fills the corresponding model in the component on success.
             /// </summary>
-            public Collection_model Run()
+            public Auth_model Run()
             {
                 WEB_URL = BuildUrl();
                 StopAllCoroutines();
                 StartCoroutine(CallAPIProcess());
-                return NFTs;
+                return gaurd;
             }
 
             string BuildUrl()
             {
                 if (chain == Chains.bsctest)
                 {
-                    WEB_URL = "https://api.alturanft.com/api/v2/collection/" + contract_address;
-                    if (continuation != "")
-                    {
-                        WEB_URL = WEB_URL + "?page_number=" + continuation.ToString() + "&include=" + include.ToString().ToLower();;
-                    }
-                    else
-                    {
-                        WEB_URL += "?include=" + include.ToString().ToLower();
-                    }
+                    WEB_URL = "https://api.alturanft.com/api/v2/user/verify_auth_code/" + wallet_address + "/" + altura_gaurd;
+
                 }
                 else
                 {
-                    WEB_URL = RequestUriInit + contract_address;
-                    if (continuation != "")
-                    {
-                        WEB_URL = WEB_URL + "&page_number=" + continuation.ToString();
-                    }
-                    WEB_URL = WEB_URL + "&include=" + include.ToString().ToLower();
+                    WEB_URL = "https://api.alturanft.com/api/v2/user/verify_auth_code/" + wallet_address + "/" + altura_gaurd;
+
                 }
                 return WEB_URL;
             }
@@ -243,7 +206,7 @@ namespace AlturaNFT
                     else
                     {
                         //Fill Data Model from recieved class
-                        NFTs = JsonConvert.DeserializeObject<Collection_model>(
+                        gaurd = JsonConvert.DeserializeObject<Auth_model>(
                             jsonResult,
                             new JsonSerializerSettings
                             {
@@ -252,13 +215,13 @@ namespace AlturaNFT
                             });
                         
                         if(OnCompleteAction!=null)
-                            OnCompleteAction.Invoke(NFTs);
+                            OnCompleteAction.Invoke(gaurd);
                         
                         if(afterSuccess!=null)
                             afterSuccess.Invoke();
                         
                         if(debugErrorLog)
-                            Debug.Log($" ´ ▽ ` )ﾉ Success , view NFTs model" );
+                            Debug.Log($" ´ ▽ ` )ﾉ Success , Verify Auth ran" );
                     }
                 }
                 request.Dispose();

@@ -13,7 +13,7 @@ public class Test : MonoBehaviour
       .SetParameters(
 
           //for ethereum- EVM chains
-          contract_address:"0xb260b4b5e3357b3942ba71cfa0a7bdd32763f8ae",
+          collection_address:"0xb260b4b5e3357b3942ba71cfa0a7bdd32763f8ae",
           token_id:1
 
           //for solana:

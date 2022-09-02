@@ -19,11 +19,11 @@ namespace AlturaNFT
         #region Parameter Defines
 
             [Space(20)]
-            //[Header("Called When API call starts")]
+            [Header("Called When API call starts")]
             public UnityEvent OnRequestStarted;
-            //[Header("Called After Successful API call")]
+            [Header("Called After Successful API call")]
             public UnityEvent afterSuccess;
-            //[Header("Called After Error API call")]
+            [Header("Called After Error API call")]
             public UnityEvent afterError;
             
             [Header("Run Component when this Game Object is Set Active")]

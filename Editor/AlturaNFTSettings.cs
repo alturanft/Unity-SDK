@@ -362,12 +362,12 @@ namespace AlturaNFT.Editor
             AlturaUser.SetFromAuto();
             AlturaUserSettings
                 .Initialize(true)
-                .OnError(usermodel=> StatsErrore())
+                .OnError(usermodel=> StatsError())
                 .OnComplete(usermodel=> userModel = usermodel)
                 .Run();
         }
 
-        static void StatsErrore()
+        static void StatsError()
         {
             if (!windowopen && !APIkeyOk())
             {

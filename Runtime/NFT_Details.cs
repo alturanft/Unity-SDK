@@ -29,15 +29,15 @@ namespace AlturaNFT
         #region Parameter Defines
 
             [SerializeField]
-            private Chains chain = Chains.ethereum;
+            private Chains chain = Chains.bsctest;
+            
+           [SerializeField]
+           [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
+            private string _collection_address = "Input Collection Address of the Item";
             
             [SerializeField]
-          //  [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
-            private string _contract_address = "Input Contract Address of the NFT collection";
-            
-            [SerializeField]
-          //  [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
-            [Tooltip("Token ID of the NFT")]
+            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
+            [Tooltip("Token ID of the Item")]
             private int _token_id = 1;
             
 
@@ -57,9 +57,9 @@ namespace AlturaNFT
             public UnityEvent afterError;
 
             [Header("Run Component when this Game Object is Set Active")]
-            [SerializeField] private bool onEnable = false;
+            [SerializeField] private bool onEnable = true;
             public bool debugErrorLog = true;
-            public bool debugLogRawApiResponse = false;
+            public bool debugLogRawApiResponse = true;
             
             [Header("Gets filled with data and can be referenced:")]
             public Items_model item;
@@ -101,12 +101,12 @@ namespace AlturaNFT
         /// <summary>
         /// Set Parameters to retrieve NFT From.  ≧◔◡◔≦ .
         /// </summary>
-        /// <param name="contract_address"> as string - EVM</param>
+        /// <param name="collection_address"> as string - EVM</param>
         /// <param name="token_id"> as int - EVM.</param>
-        public NFT_Details SetParameters(string contract_address = null, int token_id = -1)
+        public NFT_Details SetParameters(string collection_address = null, int token_id = -1)
             {
-                if(contract_address!=null)
-                    this._contract_address = contract_address;
+                if(collection_address!=null)
+                    this._collection_address = collection_address;
                 if (token_id != -1)
                     _token_id = token_id;
 
@@ -165,15 +165,15 @@ namespace AlturaNFT
             {
                 if (chain == Chains.bsctest)
                 {
-                    WEB_URL = RequestUriInit + _contract_address + "/" + _token_id.ToString();
+                    WEB_URL = RequestUriInit + _collection_address + "/" + _token_id.ToString();
                     if(debugErrorLog)
-                        Debug.Log("Querying Details of NFT: " + _contract_address + " on " + chain);
+                        Debug.Log("Querying Single Item by address and tokenId: " + _collection_address + " on " + chain);
                 }
                 else
                 {
-                    WEB_URL = RequestUriInit + _contract_address + "/" + _token_id.ToString();
+                    WEB_URL = RequestUriInit + _collection_address + "/" + _token_id.ToString();
                     if(debugErrorLog)
-                        Debug.Log("Querying Details of NFT: " + _contract_address + "  token ID  " + _token_id + " on " + chain);
+                        Debug.Log("Querying Details of Item: " + _collection_address + "  token ID  " + _token_id + " on " + chain);
                 } 
                 return WEB_URL;
             }
@@ -200,7 +200,7 @@ namespace AlturaNFT
                         if(OnErrorAction!=null)
                             OnErrorAction($"Null data. Response code: {request.responseCode}. Result {jsonResult}");
                         if(debugErrorLog)
-                            Debug.Log($"(⊙.◎) Null data. Response code: {request.responseCode}. Result {jsonResult}");
+                            Debug.Log($" Null data. Response code: {request.responseCode}. Result {jsonResult}");
                         if(afterError!=null)
                             afterError.Invoke();
                         //yield break;

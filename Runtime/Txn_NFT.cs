@@ -21,43 +21,44 @@ namespace AlturaNFT
         public enum Chains
         {
             ethereum,
-            binance
-        }
-        
-        public enum Type
-        {
-            all, mint, burn, transfer_from, transfer_to, list, buy, sell, make_bid , get_bid
+            binance,
+            bsctest
+            
         }
 
         #region Parameter Defines
 
         [SerializeField] private Chains chain;
-            
+
             [SerializeField]
             [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
-            private string _contract_address = "Input Contract Address of the NFT collection";
-                
+            private string _perPage = "Input How much pqges you want to get";
             [SerializeField]
             [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
-            [Tooltip("Token ID of the NFT")]
-            private int _token_id = 0;
-                
-            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDraw)]
+            private string _page = "Input Which page you want to get";
             [SerializeField]
-            [Tooltip(" Mint Address of the NFT on binance")]
-            private string _mint_address = "Input Mint Address of the NFT";
-        
+            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
+            private string _sortBy = "Input Sort By = name";
+            [SerializeField]
+            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
+            private string _sortDir = "Input Asc or Desc";
+            [SerializeField]
+            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
+            private string _slim = "false";
 
-            [SerializeField] private Type _type = Type.all;
+            [Header("Optional: Filter and fetch items with specified collection address")]
 
-            private string RequestUriInit = "https://api.alturanft.com/v2/user";
+            [SerializeField]
+            [Tooltip("Filter from a documents by any properties")]
+            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
+            string collection_address;
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
 
 
             private UnityAction<string> OnErrorAction;
-            private UnityAction<Txn_model> OnCompleteAction;
+            private UnityAction<Items_model> OnCompleteAction;
             
             [Space(20)]
             //[Header("Called After Successful API call")]
@@ -66,12 +67,12 @@ namespace AlturaNFT
             public UnityEvent afterError;
 
             [Header("Run Component when this Game Object is Set Active")]
-            [SerializeField] private bool onEnable = false;
+            [SerializeField] private bool onEnable = true;
             public bool debugErrorLog = true;
-            public bool debugLogRawApiResponse = false;
+            public bool debugLogRawApiResponse = true;
             
             [Header("Gets filled with data and can be referenced:")]
-            public Txn_model txnModel;
+            public Items_model item;
 
         #endregion
 
@@ -107,25 +108,41 @@ namespace AlturaNFT
                 return _this;
             }
 
+            /// <summary>
+            /// Set Filter by to return NFTs only from the given contract address/collection. 
+            /// </summary>
+            ///<param name="collection_address"> as string.</param>
+            public Txn_NFT AlturaOptions(string collection_address)
+            {
+                this.collection_address = collection_address;
+                return this;
+            }
+
         /// <summary>
-        /// Set Parameters to retrieve NFT From.  ≧◔◡◔≦ .
+        /// Set Parameters to retrieve User From.  ≧◔◡◔≦ .
         /// </summary>
-        /// <param name="contract_address"> as string - EVM</param>
-        /// <param name="token_id"> as int - EVM.</param>
-        /// <param name="mint_address"> mint_address - binance.</param>
-        /// <param name="type"> as Type{ all, mint, burn, transfer_from, transfer_to, list, buy, sell, make_bid , get_bid}.</param>
-        public Txn_NFT SetParameters(string contract_address = null, int token_id = -1, string mint_address = null, Type type = Type.all)
-        {
-            if(contract_address!=null)
-                this._contract_address = contract_address;
-            if (token_id != -1)
-                _token_id = token_id;
-            if (mint_address != null)
-                _mint_address = mint_address;
-            if (_type != type)
-                _type = type;
-            return this;
-        }
+        /// <param name="perPage"> amount of pages to query</param>
+        /// <param name="page"> page to query</param>
+        /// <param name="sortBy"> sort by field</param>
+        /// <param name="sortDir"> sort direction</param>
+        /// <param name="slim"> bool</param>
+        public Txn_NFT SetParameters(string perPage = "20", string page = "1", string sortBy = "name", string sortDir = "asc", string slim = "true")
+            {
+                if(perPage!=null)
+                    this._perPage = perPage;
+                if(page!=null)
+                    this._page = page;
+                if(sortBy!=null)
+                    this._sortBy = sortBy;
+                if(sortDir!=null)
+                    this._sortDir = sortDir;
+                if(slim!=null)
+                    this._slim = slim;
+     
+
+                return this;
+            }
+            
 
         /// <summary>
         /// Blockchain from which to query NFTs.
@@ -138,18 +155,16 @@ namespace AlturaNFT
         }
 
         /// <summary>
-        /// Action on successful API Fetch. (*^∇^)ヾ(￣▽￣*)
         /// </summary>
-        /// <param name="Txn_model"> Use: .OnComplete(Txns=> txns = Txns) , where txns is of type Txn_model;</param>
+        /// <param name="Items_model"> Use: .OnComplete(Txns=> txns = Txns) , where txns is of type Items_model;</param>
         /// <returns> NFTs_OwnedByAnAccount_model.Root </returns>
-        public Txn_NFT OnComplete(UnityAction<Txn_model> action)
+        public Txn_NFT OnComplete(UnityAction<Items_model> action)
         {
             this.OnCompleteAction = action;
             return this;
         }
         
         /// <summary>
-        /// Action on Error (;•͈́༚•͈̀)(•͈́༚•͈̀;)՞༘՞༘՞
         /// </summary>
         /// <param name="UnityAction action"> string.</param>
         /// <returns> Information on Error as string text.</returns>
@@ -166,29 +181,30 @@ namespace AlturaNFT
             /// <summary>
             /// Runs the Api call and fills the corresponding model in the component on success.
             /// </summary>
-            public Txn_model Run()
+            public Items_model Run()
             {
                 WEB_URL = BuildUrl();
                 StopAllCoroutines();
                 StartCoroutine(CallAPIProcess());
-                return txnModel;
+                return item;
             }
 
             string BuildUrl()
             {
                 if (chain == Chains.binance)
                 {
-                    WEB_URL = "https://api.alturanft.com/v2/user" + _mint_address + "?type=" + _type.ToString();
+                    WEB_URL = "https://api.alturanft.com/api/v2/item" + "?perPage=" + _perPage + "&page=" + _page + "&sortBy=" + _sortBy + "&sortDir=" + _sortDir + "&slim=" + _slim + "&collectionAddress=" + collection_address;
+
                     
                     if(debugErrorLog)
-                        Debug.Log("Querying Transactions of NFT: " + _mint_address + " on " + chain);
+                        Debug.Log("Querying Many Items: "  + " on " + chain);
                 }
                 else
                 {
-                    WEB_URL = RequestUriInit + _contract_address + "/" + _token_id.ToString() + "?chain=" + chain.ToString().ToLower() + "&type=" + _type.ToString();
+                    WEB_URL = "https://api.alturanft.com/api/v2/item" + "?perPage=" + _perPage + "&page=" + _page + "&sortBy=" + _sortBy + "&sortDir=" + _sortDir + "&slim=" + _slim + "&collectionAddress=" + collection_address;
                     
                     if(debugErrorLog)
-                        Debug.Log("Querying Transactions of NFT: " + _contract_address + "  token ID  " + _token_id + " on " + chain);
+                        Debug.Log("Querying Many Items: " + " on " + chain);
                 }
                 return WEB_URL;
             }
@@ -219,13 +235,13 @@ namespace AlturaNFT
                         if(afterError!=null)
                             afterError.Invoke();
 
-                        txnModel = null;
+                        item = null;
                         //yield break;
                     }
                     else
                     {
                         //Fill Data Model from recieved class
-                        txnModel = JsonConvert.DeserializeObject<Txn_model>(
+                        item = JsonConvert.DeserializeObject<Items_model>(
                             jsonResult,
                             new JsonSerializerSettings
                             {
@@ -234,7 +250,7 @@ namespace AlturaNFT
                             });
                         
                         if(OnCompleteAction!=null)
-                            OnCompleteAction.Invoke(txnModel);
+                            OnCompleteAction.Invoke(item);
                         
                         if(afterSuccess!=null)
                             afterSuccess.Invoke();
