@@ -127,6 +127,7 @@ namespace AlturaNFT
                     this._sortBy = sortBy;
                 if(sortDir!=null)
                     this._sortDir = sortDir;
+
      
 
                 return this;

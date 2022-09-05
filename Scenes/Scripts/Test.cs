@@ -7,21 +7,18 @@ public class Test : MonoBehaviour
 {
    void Start()
   {
-    NFT_Details
+    GetItems
       .Initialize(destroyAtEnd:true)
-      .SetChain(NFT_Details.Chains.bsctest)
-      .SetParameters(
+      .SetChain(GetItems.Chains.bsctest)
+      .SetParameters(perPage:"29", page: "4", sortBy: "name", sortDir: "desc", slim: "false")
 
-          //for ethereum- EVM chains
-          collection_address:"0xb260b4b5e3357b3942ba71cfa0a7bdd32763f8ae",
-          token_id:1
-
-          //for solana:
-          //mint_address: "EH8AaTF9vNiW2poTKoQZKf6yqExYSrnoTxAd62TEfaWn",
-
-          )
       .OnError(error=>Debug.Log(error))
       .Run();
+
+      Users_Details
+        .Initialize(destroyAtEnd:true)
+        .SetParameters(perPage:"29", page: "4", sortBy: "name", sortDir: "desc")
+        .Run();
 
   }
 

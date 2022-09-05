@@ -13,7 +13,7 @@ namespace AlturaNFT
     [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_Txn_NFT)]
     [ExecuteAlways]
     [HelpURL(AlturaConstants.Docs_Txns_NFT)]
-    public class Txn_NFT : MonoBehaviour
+    public class GetItems : MonoBehaviour
     {
         /// <summary>
         /// Currently Supported chains for this endpoint.
@@ -99,9 +99,9 @@ namespace AlturaNFT
         /// Initialize creates a gameobject and assings this script as a component. This must be called if you are not refrencing the script any other way and it doesn't already exists in the scene.
         /// </summary>
         /// <param name="destroyAtEnd"> Optional bool parameter can set to false to avoid Spawned GameObject being destroyed after the Api process is complete. </param>
-        public static Txn_NFT Initialize(bool destroyAtEnd = true)
+        public static GetItems Initialize(bool destroyAtEnd = true)
             {
-                var _this = new GameObject(AlturaConstants.FeatureName_Txn_NFT).AddComponent<Txn_NFT>();
+                var _this = new GameObject(AlturaConstants.FeatureName_Txn_NFT).AddComponent<GetItems>();
                 _this.destroyAtEnd = destroyAtEnd;
                 _this.onEnable = false;
                 _this.debugErrorLog = false;
@@ -112,7 +112,7 @@ namespace AlturaNFT
             /// Set Filter by to return NFTs only from the given contract address/collection. 
             /// </summary>
             ///<param name="collection_address"> as string.</param>
-            public Txn_NFT AlturaOptions(string collection_address)
+            public GetItems AlturaOptions(string collection_address)
             {
                 this.collection_address = collection_address;
                 return this;
@@ -126,7 +126,7 @@ namespace AlturaNFT
         /// <param name="sortBy"> sort by field</param>
         /// <param name="sortDir"> sort direction</param>
         /// <param name="slim"> bool</param>
-        public Txn_NFT SetParameters(string perPage = "20", string page = "1", string sortBy = "name", string sortDir = "asc", string slim = "true")
+        public GetItems SetParameters(string perPage = "20", string page = "1", string sortBy = "name", string sortDir = "asc", string slim = "true")
             {
                 if(perPage!=null)
                     this._perPage = perPage;
@@ -148,7 +148,7 @@ namespace AlturaNFT
         /// Blockchain from which to query NFTs.
         /// </summary>
         /// <param name="chain"> Choose from available 'Chains' enum</param>
-        public Txn_NFT SetChain(Chains chain)
+        public GetItems SetChain(Chains chain)
         {
             this.chain = chain;
             return this;
@@ -156,9 +156,7 @@ namespace AlturaNFT
 
         /// <summary>
         /// </summary>
-        /// <param name="Items_model"> Use: .OnComplete(Txns=> txns = Txns) , where txns is of type Items_model;</param>
-        /// <returns> NFTs_OwnedByAnAccount_model.Root </returns>
-        public Txn_NFT OnComplete(UnityAction<Items_model> action)
+        public GetItems OnComplete(UnityAction<Items_model> action)
         {
             this.OnCompleteAction = action;
             return this;
@@ -168,7 +166,7 @@ namespace AlturaNFT
         /// </summary>
         /// <param name="UnityAction action"> string.</param>
         /// <returns> Information on Error as string text.</returns>
-        public Txn_NFT OnError(UnityAction<string> action)
+        public GetItems OnError(UnityAction<string> action)
         {
             this.OnErrorAction = action;
             return this;
@@ -229,9 +227,9 @@ namespace AlturaNFT
                     if (request.error != null)
                     {
                         if(OnErrorAction!=null)
-                            OnErrorAction($"Null data. Response code: {request.responseCode}. Result {jsonResult}");
+                            OnErrorAction($"Null data {request.responseCode}. Result {jsonResult}");
                         if(debugErrorLog)
-                            Debug.Log($"(;•͈́༚•͈̀)(•͈́༚•͈̀;)՞༘՞༘՞ Null data. Response code: {request.responseCode}. Result {jsonResult}");
+                            Debug.Log($"(Null data: {request.responseCode}. Result {jsonResult}");
                         if(afterError!=null)
                             afterError.Invoke();
 
@@ -240,7 +238,6 @@ namespace AlturaNFT
                     }
                     else
                     {
-                        //Fill Data Model from recieved class
                         item = JsonConvert.DeserializeObject<Items_model>(
                             jsonResult,
                             new JsonSerializerSettings

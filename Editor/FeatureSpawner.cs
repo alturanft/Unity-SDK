@@ -61,7 +61,7 @@ namespace AlturaNFT.Editor
         [MenuItem(GameObjMenu + AlturaConstants.FeatureName_Txn_NFT)]
         static void Spawn_Txn_NFT()
         {
-            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_Txn_NFT).AddComponent<Txn_NFT>().gameObject;
+            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_Txn_NFT).AddComponent<GetItems>().gameObject;
         }
         
         [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_Txn_Collection)]
