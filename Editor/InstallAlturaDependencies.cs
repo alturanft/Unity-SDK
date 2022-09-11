@@ -23,7 +23,7 @@ namespace AlturaNFT.Internal {
             SetSize(win);
         }
 
-        #region Scri[tinDefines
+        #region ScriptingDefines
         public static bool CheckScriptingDefine(string scriptingDefine)
         {
             BuildTargetGroup buildTargetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
