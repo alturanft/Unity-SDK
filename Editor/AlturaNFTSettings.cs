@@ -235,17 +235,7 @@ namespace AlturaNFT.Editor
             EditorGUILayout.LabelField("");
             EditorGUILayout.LabelField("Altura SDK examples coming soon!");
             EditorGUILayout.BeginHorizontal();
-          /*  
-            Texture button_tex = (Texture)Resources.Load<Texture>("pg-gallery1");
-            GUIContent button_tex_con = new GUIContent(button_tex);
-            if (GUILayout.Button(button_tex_con,_sampleButtonStyle, GUILayout.Width(260), GUILayout.Height(100))) 
-                Application.OpenURL(AlturaConstants.AdvPlaygroundGallery);
 
-            Texture button_tex2 = (Texture)Resources.Load<Texture>("pg-gallery2");
-            GUIContent button_tex_con2 = new GUIContent(button_tex2);
-            if (GUILayout.Button(button_tex_con2,_sampleButtonStyle, GUILayout.Width(260), GUILayout.Height(100))) 
-                Application.OpenURL(AlturaConstants.PlaygroundButterflyMint);
-            */
             EditorGUILayout.EndHorizontal();
 
 
