@@ -227,7 +227,7 @@ namespace AlturaNFT
                         if(OnErrorAction!=null)
                             OnErrorAction($"Null data. Response code: {request.responseCode}. Result {jsonResult}");
                         if(debugErrorLog)
-                            Debug.Log($"(⊙.◎) Null data. Response code: {request.responseCode}. Result {jsonResult}");
+                            Debug.Log($"Null data. Response code: {request.responseCode}. Result {jsonResult}");
                         if(afterError!=null)
                             afterError.Invoke();
                         collectionModel = null;
@@ -249,7 +249,7 @@ namespace AlturaNFT
                         if(afterSuccess!=null)
                             afterSuccess.Invoke();
                         
-                            Debug.Log($" ´ ▽ ` )ﾉ Success , Get Many Collection Models" );
+                            Debug.Log($"Get Many Collection Models" );
                     }
                 }
                 request.Dispose();

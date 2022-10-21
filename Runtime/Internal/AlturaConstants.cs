@@ -11,7 +11,6 @@ namespace AlturaNFT.Internal
         public const string Docs_UsersDetails = "https://docs.v2.alturanft.com/api-reference/getting-started"; 
 
         public const string Docs_Transfer = "https://docs.v2.alturanft.com/api-reference/getting-startede";
-        public const string Docs_StorageMetadata= "https://docs.v2.alturanft.com/api-reference/getting-started";
         public const string Docs_NFTDetails = "https://docs.v2.alturanft.com/api-reference/items";
         public const string NFTs_OfAccount = "https://docs.v2.alturanft.com/api-reference/users";
         public const string Altura_Guard = "https://docs.v2.alturanft.com/api-reference/items";
@@ -49,7 +48,6 @@ namespace AlturaNFT.Internal
         public const string FeatureName_Txn_Account = "Get Many Collections | GetCollections";
         public const string FeatureName_Txn_Collection = "Get 1 Collection | GetCollection";
         public const string FeatureName_Transfer = "Transfer | TransferItem";
-        public const string FeatureName_StorageMetadata = "Storage | Upload Metadata";
         public const string FeatureName_AssetDownloader = "Asset Downloader";
         public const string FeatureName_Mint_Custom = "Mint | Customizable minting";
         public const string FeatureName_Mint_URL = "Mint | Easy mint using URL";

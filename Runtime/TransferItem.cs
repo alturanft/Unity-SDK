@@ -217,7 +217,7 @@ namespace AlturaNFT
                         if(OnErrorAction!=null)
                             OnErrorAction($"Null data. Response code: {request.responseCode}. Result {jsonResult}");
                         if(debugErrorLog)
-                            Debug.Log($"(⊙.◎) Null data. Response code: {request.responseCode}. Result {jsonResult}");
+                            Debug.Log($" Null data. Response code: {request.responseCode}. Result {jsonResult}");
                         if(afterError!=null)
                             afterError.Invoke();
                         txHash = null;
@@ -239,7 +239,7 @@ namespace AlturaNFT
                         if(afterSuccess!=null)
                             afterSuccess.Invoke();
                         
-                            Debug.Log($" ´ ▽ ` )ﾉ Success , view User under User model" );
+                            Debug.Log($" view User under User model" );
                     }
                 }
                 request.Dispose();

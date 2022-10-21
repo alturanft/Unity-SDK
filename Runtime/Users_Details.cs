@@ -45,13 +45,7 @@ namespace AlturaNFT
             [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string _sortDir = "Input Asc or Desc";
 
-            [Header("Optional: Filter and fetch items with specified property")]
-
-            [SerializeField]
-            [Tooltip("Filter from a documents by any properties")]
-            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
-            string _name;
-            private string RequestUriInit = "https://api.alturanft.com/api/v2/user/";
+            private string RequestUriInit = "https://api.alturanft.com/api/v2/user";
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
@@ -67,9 +61,9 @@ namespace AlturaNFT
             public UnityEvent afterError;
 
             [Header("Run Component when this Game Object is Set Active")]
-            [SerializeField] private bool onEnable = false;
+            [SerializeField] private bool onEnable = true;
             public bool debugErrorLog = true;
-            public bool debugLogRawApiResponse = false;
+            public bool debugLogRawApiResponse = true;
             
             [Header("Gets filled with data and can be referenced:")]
             public User_model users;
@@ -133,15 +127,7 @@ namespace AlturaNFT
                 return this;
             }
 
-            /// <summary>
-            /// Set Filter by to return NFTs only from the given contract address/collection. 
-            /// </summary>
-            ///<param name="name"> as string.</param>
-            public Users_Details AlturaOptions(string name)
-            {
-                this._name = name;
-                return this;
-            }
+
             
             /// <summary>
             /// Blockchain from which to query NFTs.
@@ -194,13 +180,13 @@ namespace AlturaNFT
             {
                 if (chain == Chains.bsctest)
                 {
-                    WEB_URL = RequestUriInit + "?perPage=" + _perPage + "&page=" + _page + "&sortBy=" + _sortBy + "&sortDir=" + _sortDir + "&name=" + _name;
+                    WEB_URL = RequestUriInit + "?perPage=" + _perPage + "&page=" + _page + "&sortBy=" + _sortBy + "&sortDir=" + _sortDir;
                     if(debugErrorLog)
                         Debug.Log("Querying Details of User: "  + " on " + chain);
                 }
                 else
                 {
-                    WEB_URL = RequestUriInit + "?perPage=" + _perPage + "&page=" + _page + "&sortBy=" + _sortBy + "&sortDir=" + _sortDir + "&name=" + _name;
+                    WEB_URL = RequestUriInit;
                     if(debugErrorLog)
                         Debug.Log("Querying Details of User: " +  " on " + chain);
                 } 
@@ -228,7 +214,7 @@ namespace AlturaNFT
                         if(OnErrorAction!=null)
                             OnErrorAction($"Null data. Response code: {request.responseCode}. Result {jsonResult}");
                         if(debugErrorLog)
-                            Debug.Log($"(⊙.◎) Null data. Response code: {request.responseCode}. Result {jsonResult}");
+                            Debug.Log($" Null data. Response code: {request.responseCode}. Result {jsonResult}");
                         if(afterError!=null)
                             afterError.Invoke();
                         users = null;
@@ -250,7 +236,7 @@ namespace AlturaNFT
                         if(afterSuccess!=null)
                             afterSuccess.Invoke();
                         
-                            Debug.Log($" ´ ▽ ` )ﾉ Success , view User under User model" );
+                            Debug.Log($"view User under User model" );
                     }
                 }
                 request.Dispose();

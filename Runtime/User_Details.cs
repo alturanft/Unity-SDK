@@ -10,7 +10,7 @@ namespace AlturaNFT
     
     using Internal;
     /// <summary>
-    /// Details of particular NFT
+    /// Details of particular User
     /// </summary>
     [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_User_Details)]
     [ExecuteAlways]
@@ -55,9 +55,9 @@ namespace AlturaNFT
             public UnityEvent afterError;
 
             [Header("Run Component when this Game Object is Set Active")]
-            [SerializeField] private bool onEnable = false;
+            [SerializeField] private bool onEnable = true;
             public bool debugErrorLog = true;
-            public bool debugLogRawApiResponse = false;
+            public bool debugLogRawApiResponse = true;
             
             [Header("Gets filled with data and can be referenced:")]
             public User_model users;
@@ -83,10 +83,7 @@ namespace AlturaNFT
 
         #region SetParams and Chain Functions
 
-        /// <summary>
-        /// Initialize creates a gameobject and assings this script as a component. This must be called if you are not refrencing the script any other way and it doesn't already exists in the scene.
-        /// </summary>
-        /// <param name="destroyAtEnd"> Optional bool parameter can set to false to avoid Spawned GameObject being destroyed after the Api process is complete. </param>
+     
         public static User_Details Initialize(bool destroyAtEnd = true)
             {
                 var _this = new GameObject(AlturaConstants.FeatureName_User_Details).AddComponent<User_Details>();
@@ -97,7 +94,7 @@ namespace AlturaNFT
             }
 
         /// <summary>
-        /// Set Parameters to retrieve User From.  ≧◔◡◔≦ .
+        /// Set Parameters to retrieve User From
         /// </summary>
         /// <param name="_address"> as string - EVM</param>
         public User_Details SetParameters(string _addresss = null)
@@ -120,7 +117,7 @@ namespace AlturaNFT
             }
 
             /// <summary>
-            /// Action on successful API Fetch. (*^∇^)ヾ(￣▽￣*)
+            /// Action on successful API Fetch.
             /// </summary>
             /// <param name="NFTs_OwnedByAnAccount_model.Root"> Use: .OnComplete(NFTs=> NFTsOfUser = NFTs) , where NFTsOfUser = NFTs_OwnedByAnAccount_model.Root;</param>
             /// <returns> NFTs_OwnedByAnAccount_model.Root </returns>
@@ -166,9 +163,9 @@ namespace AlturaNFT
                 }
                 else
                 {
-                    WEB_URL = RequestUriInit + _address;
+                    WEB_URL = RequestUriInit + _address ;
                     if(debugErrorLog)
-                        Debug.Log("Querying Details of User: " + _address +  " on " + chain);
+                        Debug.Log("Querying Details of User: "   + chain);
                 } 
                 return WEB_URL;
             }
@@ -194,7 +191,7 @@ namespace AlturaNFT
                         if(OnErrorAction!=null)
                             OnErrorAction($"Null data. Response code: {request.responseCode}. Result {jsonResult}");
                         if(debugErrorLog)
-                            Debug.Log($"(⊙.◎) Null data. Response code: {request.responseCode}. Result {jsonResult}");
+                            Debug.Log($" Null data. Response code: {request.responseCode}. Result {jsonResult}");
                         if(afterError!=null)
                             afterError.Invoke();
                         users = null;
@@ -217,7 +214,7 @@ namespace AlturaNFT
                         if(afterSuccess!=null)
                             afterSuccess.Invoke();
                         
-                            Debug.Log($" ´ ▽ ` )ﾉ Success , view User under User model" );
+                            Debug.Log($"view User under User model" );
                     }
                 }
                 request.Dispose();
