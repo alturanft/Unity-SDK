@@ -51,7 +51,6 @@ namespace AlturaNFT.Samples.AlturaDemo{
 
         private async void Start()
         {
-            var d = await AlturaWeb3.GetItem();
             PopulateChainDropDownList();
         }
     }
