@@ -1,0 +1,16 @@
+{
+    "name": "AlturaNFT.Samples.AlturaDemo",
+    "rootNamespace": "",
+    "references": [
+        "GUID:d67ea1a519fc84929a22ce035e0f8b15"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
