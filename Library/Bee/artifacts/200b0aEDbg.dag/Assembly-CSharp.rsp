@@ -333,6 +333,7 @@
 -r:"/Users/h3cker/lol/Unity-SDK/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.0.2/Runtime/Newtonsoft.Json.dll"
 -r:"/Users/h3cker/lol/Unity-SDK/Library/PackageCache/com.unity.visualscripting@1.7.8/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
 -r:"Library/Bee/artifacts/200b0aEDbg.dag/AlturaNFT.AlturaNFT.ref.dll"
+-r:"Library/Bee/artifacts/200b0aEDbg.dag/AlturaNFT.Editor.ref.dll"
 -r:"Library/Bee/artifacts/200b0aEDbg.dag/AlturaNFT.Samples.PlayerConnect.ref.dll"
 -r:"Library/Bee/artifacts/200b0aEDbg.dag/Unity.PlasticSCM.Editor.ref.dll"
 -r:"Library/Bee/artifacts/200b0aEDbg.dag/Unity.Rider.Editor.ref.dll"
@@ -355,7 +356,7 @@
 -r:"Library/Bee/artifacts/200b0aEDbg.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/200b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/200b0aEDbg.dag/UnityEngine.UI.ref.dll"
-"Assets/Unity-SDK/Scenes/Scripts/Test.cs"
+"Assets/Unity-SDK/API/AlturaWeb3.cs"
 -langversion:9.0
 
 /deterministic

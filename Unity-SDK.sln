@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEngine.UI", "UnityEngi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.VisualScripting.Flow", "Unity.VisualScripting.Flow.csproj", "{cbe5fc42-b7d7-3d3f-8bde-24112f594420}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlturaNFT.AlturaNFT", "AlturaNFT.AlturaNFT.csproj", "{2226928c-f7fa-447d-e240-601934f32164}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Services.Core.Telemetry", "Unity.Services.Core.Telemetry.csproj", "{3f8c18bc-4fcf-87c1-b143-0158bf2f0a96}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.VisualScripting.State", "Unity.VisualScripting.State.csproj", "{cd70bacc-50f8-e50e-ad02-941a9fe414a2}"
@@ -29,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Services.Core.Interna
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Services.Core.Analytics", "Unity.Services.Core.Analytics.csproj", "{1b28ded4-3695-6398-0766-8e104b096280}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlturaNFT.AlturaNFT", "AlturaNFT.AlturaNFT.csproj", "{2226928c-f7fa-447d-e240-601934f32164}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Services.Core.Scheduler", "Unity.Services.Core.Scheduler.csproj", "{bdf3a828-60d4-3f00-74a6-ec3df141df6b}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Services.Core.Registration", "Unity.Services.Core.Registration.csproj", "{005930b5-d89e-618f-6d1e-e18bc2e80521}"
@@ -42,6 +42,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Services.Core.Configuration", "Unity.Services.Core.Configuration.csproj", "{e0dd9e4f-8913-0e0e-aec9-f9f3f2704d60}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{c2d53274-e3fa-2dfa-c902-ae9f02d08cc7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlturaNFT.Samples.AlturaDemo", "AlturaNFT.Samples.AlturaDemo.csproj", "{0a7a595a-bd38-2b95-fe84-7ddc0ed63aa6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlturaNFT.Samples.PlayerConnect", "AlturaNFT.Samples.PlayerConnect.csproj", "{8e7f14a2-c13e-68d3-2231-7ea0fe9266f2}"
 EndProject
@@ -69,7 +71,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Services.Core.Editor"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Rider.Editor", "Unity.Rider.Editor.csproj", "{5bbc38ce-52d1-503e-a994-ed4500026369}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{4f57d893-61af-273b-f7e6-9384f74d5211}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlturaNFT.Editor", "AlturaNFT.Editor.csproj", "{2a3c1622-d41c-2478-0e3b-e6fcf9b77578}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.VSCode.Editor", "Unity.VSCode.Editor.csproj", "{38e2364c-4d3a-39b8-9a56-97e51cf560e4}"
 EndProject
@@ -90,8 +92,6 @@ Global
 		{3eb33caf-2d3d-6266-558a-3261345c9ba6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{cbe5fc42-b7d7-3d3f-8bde-24112f594420}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{cbe5fc42-b7d7-3d3f-8bde-24112f594420}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2226928c-f7fa-447d-e240-601934f32164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2226928c-f7fa-447d-e240-601934f32164}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3f8c18bc-4fcf-87c1-b143-0158bf2f0a96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3f8c18bc-4fcf-87c1-b143-0158bf2f0a96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{cd70bacc-50f8-e50e-ad02-941a9fe414a2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -112,6 +112,8 @@ Global
 		{a4361c1e-e102-c37c-4c11-4bf5819beb6d}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1b28ded4-3695-6398-0766-8e104b096280}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1b28ded4-3695-6398-0766-8e104b096280}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2226928c-f7fa-447d-e240-601934f32164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2226928c-f7fa-447d-e240-601934f32164}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{bdf3a828-60d4-3f00-74a6-ec3df141df6b}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{bdf3a828-60d4-3f00-74a6-ec3df141df6b}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{005930b5-d89e-618f-6d1e-e18bc2e80521}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -126,6 +128,8 @@ Global
 		{e0dd9e4f-8913-0e0e-aec9-f9f3f2704d60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{c2d53274-e3fa-2dfa-c902-ae9f02d08cc7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{c2d53274-e3fa-2dfa-c902-ae9f02d08cc7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0a7a595a-bd38-2b95-fe84-7ddc0ed63aa6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0a7a595a-bd38-2b95-fe84-7ddc0ed63aa6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8e7f14a2-c13e-68d3-2231-7ea0fe9266f2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8e7f14a2-c13e-68d3-2231-7ea0fe9266f2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44b49d22-ced9-78ef-4afe-ba0603281119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -152,8 +156,8 @@ Global
 		{76b7f6c5-df1c-b0dd-dacc-745bf86b125a}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5bbc38ce-52d1-503e-a994-ed4500026369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5bbc38ce-52d1-503e-a994-ed4500026369}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4f57d893-61af-273b-f7e6-9384f74d5211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4f57d893-61af-273b-f7e6-9384f74d5211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2a3c1622-d41c-2478-0e3b-e6fcf9b77578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2a3c1622-d41c-2478-0e3b-e6fcf9b77578}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38e2364c-4d3a-39b8-9a56-97e51cf560e4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{38e2364c-4d3a-39b8-9a56-97e51cf560e4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37d761f4-ff6e-9acc-fcb1-ee639487e610}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

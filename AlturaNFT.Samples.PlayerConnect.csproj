@@ -36,8 +36,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets/Unity-SDK/Samples/WalletWebGL/PlayerConnect_Sample.cs" />
-     <None Include="Assets/Unity-SDK/Samples/WalletWebGL/AlturaNFT.Samples.PlayerConnect.asmdef" />
+     <Compile Include="Assets/Unity-SDK/Samples/Player Connect + WebGL Templates/PlayerConnect_Sample.cs" />
+     <None Include="Assets/Unity-SDK/Samples/Player Connect + WebGL Templates/AlturaNFT.Samples.PlayerConnect.asmdef" />
     <Reference Include="UnityEngine">
         <HintPath>/Applications/Unity/Hub/Editor/2022.1.12f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

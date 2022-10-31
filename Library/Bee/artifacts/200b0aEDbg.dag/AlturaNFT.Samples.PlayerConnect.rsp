@@ -346,7 +346,7 @@
 -r:"/Users/h3cker/lol/Unity-SDK/Library/PackageCache/com.unity.visualscripting@1.7.8/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
 -r:"Library/Bee/artifacts/200b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/200b0aEDbg.dag/UnityEngine.UI.ref.dll"
-"Assets/Unity-SDK/Samples/WalletWebGL/PlayerConnect_Sample.cs"
+"Assets/Unity-SDK/Samples/Player Connect + WebGL Templates/PlayerConnect_Sample.cs"
 -langversion:9.0
 
 /deterministic
