@@ -27,11 +27,7 @@ namespace AlturaNFT
         }
 
         #region Parameter Defines
-
-            [SerializeField]
-            private Chains chain = Chains.bsctest;
-            
-  
+              
             [SerializeField]
             [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string _perPage = "Input How much pqges you want to get";
@@ -141,22 +137,8 @@ namespace AlturaNFT
                 this._isVerified = isVerified;
                 return this;
             }
-            
-            /// <summary>
-            /// Blockchain from which to query NFTs.
-            /// </summary>
-            /// <param name="chain"> Choose from available 'Chains' enum</param>
-            public Txn_Account SetChain(Chains chain)
-            {
-                this.chain = chain;
-                return this;
-            }
 
-            /// <summary>
-            /// Action on successful API Fetch. (*^∇^)ヾ(￣▽￣*)
-            /// </summary>
-            /// <param name="NFTs_OwnedByAnAccount_model.Root"> Use: .OnComplete(NFTs=> NFTsOfUser = NFTs) , where NFTsOfUser = NFTs_OwnedByAnAccount_model.Root;</param>
-            /// <returns> NFTs_OwnedByAnAccount_model.Root </returns>
+
             public Txn_Account OnComplete(UnityAction<Collection_model> action)
             {
                 this.OnCompleteAction = action;
@@ -191,18 +173,11 @@ namespace AlturaNFT
 
             string BuildUrl()
             {
-                if (chain == Chains.bsctest)
-                {
+
                     WEB_URL = RequestUriInit + "?perPage=" + _perPage + "&page=" + _page + "&sortBy=" + _sortBy + "&sortDir=" + _sortDir + "&isVerified=" + _isVerified;
                     if(debugErrorLog)
-                        Debug.Log("Querying Details of User: "  + " on " + chain);
-                }
-                else
-                {
-                    WEB_URL = RequestUriInit + "?perPage=" + _perPage + "&page=" + _page + "&sortBy=" + _sortBy + "&sortDir=" + _sortDir + "&isVerified=" + _isVerified;
-                    if(debugErrorLog)
-                        Debug.Log("Querying Details of User: " +  " on " + chain);
-                } 
+                        Debug.Log("Querying Details of User: " );
+
                 return WEB_URL;
             }
             

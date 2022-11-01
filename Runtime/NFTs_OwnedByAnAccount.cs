@@ -38,15 +38,12 @@ namespace AlturaNFT
         
         #region Parameter Defines
 
-            [SerializeField]
-            private Chains chain = Chains.binance;
             
             [SerializeField]
             private string address = "Input Account Address To Fetch NFT's from";
 
             
             
-            private string RequestUriInit = "https://api.alturanft.com/api/v2/user/items/";
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
@@ -112,24 +109,9 @@ namespace AlturaNFT
                 this.address = account_address;
                 return this;
             }
-            
-            /// <summary>
-            /// Blockchain from which to query NFTs.
-            /// </summary>
-            /// <param name="chain"> Choose from available 'Chains' enum</param>
-            public NFTs_OwnedByAnAccount SetChain(Chains chain)
-            {
-                this.chain = chain;
-                return this;
-            }
-            
+  
 
-            
-            /// <summary>
-            /// Action on succesfull API Fetch.
-            /// </summary>
-            /// <param name="NFTs_OwnedByAnAccount_model.Root"> Use: .OnComplete(NFTs=> NFTsOfUser = NFTs) , where NFTsOfUser = NFTs_OwnedByAnAccount_model.Root;</param>
-            /// <returns> NFTs_OwnedByAnAccount_model.Root </returns>
+
             public NFTs_OwnedByAnAccount OnComplete(UnityAction<Items_model> action)
             {
                 this.OnCompleteAction = action;
@@ -164,20 +146,13 @@ namespace AlturaNFT
 
             string BuildUrl()
             {
-                if (chain == Chains.binance)
-                {
+
                     WEB_URL = "https://api.alturanft.com/api/v2/user/items/" + address;
            
-                }
-                else
-                {
-                    WEB_URL = RequestUriInit + address;
-   
-                }
-
+                
                 if (debugErrorLog)
                 {
-                    var s = "Querying NFTs owned of Account: " + address + " on " + chain;
+                    var s = "Querying NFTs owned of Account: " + address + " on " ;
                     if (item.item.collectionAddress != "")
                         s += " / Filter from collection: " + item.item.collectionAddress;
                     Debug.Log(s);
@@ -231,7 +206,7 @@ namespace AlturaNFT
                             afterSuccess.Invoke();
                         
                         if(debugErrorLog)
-                            Debug.Log($" ´ ▽ ` )ﾉ Success , view NFTs model" );
+                            Debug.Log("Success , view NFTs model" );
                     }
                 }
                 request.Dispose();

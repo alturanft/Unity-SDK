@@ -35,8 +35,6 @@ namespace AlturaNFT
         
         #region Parameter Defines
 
-            [SerializeField]
-            private Chains chain = Chains.binance;
             
             [SerializeField]
             private string wallet_address = "Input Wallet Address to verify";
@@ -112,23 +110,9 @@ namespace AlturaNFT
                 this.altura_gaurd = altura_gaurd;
                 return this;
             }
-            
-            /// <summary>
-            /// Blockchain from which to query NFTs.
-            /// </summary>
-            /// <param name="chain"> Choose from available 'Chains' enum</param>
-            public Altura_Guard SetChain(Chains chain)
-            {
-                this.chain = chain;
-                return this;
-            }
+
             
 
-            /// <summary>
-            /// Action on succesfull API Fetch.
-            /// </summary>
-            /// <param name="NFTs_OwnedByAnAccount_model.Root"> Use: .OnComplete(NFTs=> NFTsOfUser = NFTs) , where NFTsOfUser = NFTs_OwnedByAnAccount_model.Root;</param>
-            /// <returns> NFTs_OwnedByAnAccount_model.Root </returns>
             public Altura_Guard OnComplete(UnityAction<Auth_model> action)
             {
                 this.OnCompleteAction = action;
@@ -164,16 +148,8 @@ namespace AlturaNFT
 
             string BuildUrl()
             {
-                if (chain == Chains.bsctest)
-                {
-                    WEB_URL = "https://api.alturanft.com/api/v2/user/verify_auth_code/" + wallet_address + "/" + altura_gaurd;
+                WEB_URL = "https://api.alturanft.com/api/v2/user/verify_auth_code/" + wallet_address + "/" + altura_gaurd;
 
-                }
-                else
-                {
-                    WEB_URL = "https://api.alturanft.com/api/v2/user/verify_auth_code/" + wallet_address + "/" + altura_gaurd;
-
-                }
                 return WEB_URL;
             }
             
@@ -221,7 +197,7 @@ namespace AlturaNFT
                             afterSuccess.Invoke();
                         
                         if(debugErrorLog)
-                            Debug.Log($" ´ ▽ ` )ﾉ Success , Verify Auth ran" );
+                            Debug.Log("Success , Verify Auth ran" );
                     }
                 }
                 request.Dispose();

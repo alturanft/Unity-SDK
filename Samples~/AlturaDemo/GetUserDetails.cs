@@ -20,10 +20,9 @@ namespace AlturaNFT.Samples.AlturaDemo{
         [SerializeField] private Text contractFilter;
         [SerializeField] private Text outputWindow;
         
-        public async void UsersDetails_Run()
+        public void UsersDetails_Run()
         {
             usersDetails
-                .SetChain(GetChainFromDropDownSelection())
                 .Run();
         }
 
@@ -49,7 +48,7 @@ namespace AlturaNFT.Samples.AlturaDemo{
 
         #endregion
 
-        private async void Start()
+        private void Start()
         {
             PopulateChainDropDownList();
         }

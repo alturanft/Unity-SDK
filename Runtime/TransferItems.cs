@@ -29,11 +29,9 @@ namespace AlturaNFT
 
         #region Parameter Defines
 
-            [SerializeField]
-            private Chains chain = Chains.bsctest;
-       
 
-                   [SerializeField]
+
+            [SerializeField]
             [DrawIf("chaiId", Chains.bsctest , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string chainId;
   
@@ -120,12 +118,6 @@ namespace AlturaNFT
                     this._to_addr = to_addr;
      
 
-                return this;
-            }
-
-            public TransferItems SetChain(Chains chain)
-            {
-                this.chain = chain;
                 return this;
             }
 

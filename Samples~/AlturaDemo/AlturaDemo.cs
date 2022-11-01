@@ -22,7 +22,6 @@ namespace AlturaNFT.Samples.AlturaDemo{
         {
             
             usersDetails
-                .SetChain(GetChainFromDropDownSelection())
                 .Run();
         }
 

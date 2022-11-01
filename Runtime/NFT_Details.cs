@@ -28,8 +28,6 @@ namespace AlturaNFT
 
         #region Parameter Defines
 
-            [SerializeField]
-            private Chains chain = Chains.bsctest;
             
            [SerializeField]
            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
@@ -113,22 +111,7 @@ namespace AlturaNFT
 
                 return this;
             }
-            
-            /// <summary>
-            /// Blockchain from which to query NFTs.
-            /// </summary>
-            /// <param name="chain"> Choose from available 'Chains' enum</param>
-            public NFT_Details SetChain(Chains chain)
-            {
-                this.chain = chain;
-                return this;
-            }
 
-            /// <summary>
-            /// Action on successful API Fetch. (*^∇^)ヾ(￣▽￣*)
-            /// </summary>
-            /// <param name="NFTs_OwnedByAnAccount_model.Root"> Use: .OnComplete(NFTs=> NFTsOfUser = NFTs) , where NFTsOfUser = NFTs_OwnedByAnAccount_model.Root;</param>
-            /// <returns> NFTs_OwnedByAnAccount_model.Root </returns>
             public NFT_Details OnComplete(UnityAction<Items_model> action)
             {
                 this.OnCompleteAction = action;
@@ -163,18 +146,10 @@ namespace AlturaNFT
 
             string BuildUrl()
             {
-                if (chain == Chains.bsctest)
-                {
+
                     WEB_URL = RequestUriInit + _collection_address + "/" + _token_id.ToString();
                     if(debugErrorLog)
-                        Debug.Log("Querying Single Item by address and tokenId: " + _collection_address + " on " + chain);
-                }
-                else
-                {
-                    WEB_URL = RequestUriInit + _collection_address + "/" + _token_id.ToString();
-                    if(debugErrorLog)
-                        Debug.Log("Querying Details of Item: " + _collection_address + "  token ID  " + _token_id + " on " + chain);
-                } 
+                        Debug.Log("Querying Single Item by address and tokenId: " + _collection_address + " on " );
                 return WEB_URL;
             }
             
@@ -223,7 +198,7 @@ namespace AlturaNFT
                             afterSuccess.Invoke();
                         
                         if(debugErrorLog)
-                            Debug.Log($" ´ ▽ ` )ﾉ Success , view NFT under NFTs model" );
+                            Debug.Log("Success , view NFT under NFTs model" );
                     }
                 }
                 request.Dispose();

@@ -29,8 +29,6 @@ namespace AlturaNFT
 
         #region Parameter Defines
 
-            [SerializeField]
-            private Chains chain = Chains.bsctest;
        
 
                    [SerializeField]
@@ -120,12 +118,6 @@ namespace AlturaNFT
                     this._to_addr = to_addr;
      
 
-                return this;
-            }
-
-            public MintAdditionalNFT SetChain(Chains chain)
-            {
-                this.chain = chain;
                 return this;
             }
 

@@ -28,7 +28,6 @@ namespace AlturaNFT
 
         #region Parameter Defines
 
-        [SerializeField] private Chains chain;
 
             [SerializeField]
             [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
@@ -142,20 +141,7 @@ namespace AlturaNFT
 
                 return this;
             }
-            
 
-        /// <summary>
-        /// Blockchain from which to query NFTs.
-        /// </summary>
-        /// <param name="chain"> Choose from available 'Chains' enum</param>
-        public GetItems SetChain(Chains chain)
-        {
-            this.chain = chain;
-            return this;
-        }
-
-        /// <summary>
-        /// </summary>
         public GetItems OnComplete(UnityAction<Items_model> action)
         {
             this.OnCompleteAction = action;
@@ -189,21 +175,12 @@ namespace AlturaNFT
 
             string BuildUrl()
             {
-                if (chain == Chains.binance)
-                {
+
                     WEB_URL = "https://api.alturanft.com/api/v2/item" + "?perPage=" + _perPage + "&page=" + _page + "&sortBy=" + _sortBy + "&sortDir=" + _sortDir + "&slim=" + _slim + "&collectionAddress=" + collection_address;
 
                     
                     if(debugErrorLog)
-                        Debug.Log("Querying Many Items: "  + " on " + chain);
-                }
-                else
-                {
-                    WEB_URL = "https://api.alturanft.com/api/v2/item" + "?perPage=" + _perPage + "&page=" + _page + "&sortBy=" + _sortBy + "&sortDir=" + _sortDir + "&slim=" + _slim + "&collectionAddress=" + collection_address;
-                    
-                    if(debugErrorLog)
-                        Debug.Log("Querying Many Items: " + " on " + chain);
-                }
+                        Debug.Log("Querying Many Items: "  + " on " );
                 return WEB_URL;
             }
             

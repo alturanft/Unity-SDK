@@ -30,8 +30,6 @@ namespace AlturaNFT
 
         #region Parameter Defines
 
-            [SerializeField]
-            private Chains chain = Chains.bsctest;
             
             [SerializeField]
             [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
@@ -106,21 +104,7 @@ namespace AlturaNFT
                 return this;
             }
             
-            /// <summary>
-            /// Blockchain from which to query NFTs.
-            /// </summary>
-            /// <param name="chain"> Choose from available 'Chains' enum</param>
-            public User_Details SetChain(Chains chain)
-            {
-                this.chain = chain;
-                return this;
-            }
 
-            /// <summary>
-            /// Action on successful API Fetch.
-            /// </summary>
-            /// <param name="NFTs_OwnedByAnAccount_model.Root"> Use: .OnComplete(NFTs=> NFTsOfUser = NFTs) , where NFTsOfUser = NFTs_OwnedByAnAccount_model.Root;</param>
-            /// <returns> NFTs_OwnedByAnAccount_model.Root </returns>
             public User_Details OnComplete(UnityAction<User_model> action)
             {
                 this.OnCompleteAction = action;
@@ -155,18 +139,10 @@ namespace AlturaNFT
 
             string BuildUrl()
             {
-                if (chain == Chains.bsctest)
-                {
+
                     WEB_URL = RequestUriInit + _address;
                     if(debugErrorLog)
-                        Debug.Log("Querying Details of User: " + _address + " on " + chain);
-                }
-                else
-                {
-                    WEB_URL = RequestUriInit + _address ;
-                    if(debugErrorLog)
-                        Debug.Log("Querying Details of User: "   + chain);
-                } 
+                        Debug.Log("Querying Details of User: " + _address + " on " );
                 return WEB_URL;
             }
             

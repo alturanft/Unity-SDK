@@ -28,7 +28,6 @@ namespace AlturaNFT
 
         #region Parameter Defines
 
-        [SerializeField] private Chains chain;
         
             [SerializeField]
             [Tooltip("Input Collection_id / Contract Address of the NFTs")]
@@ -93,11 +92,7 @@ namespace AlturaNFT
                 return _this;
             }
 
-        /// <summary>
-        /// Set Parameters to retrieve NFT From.  ≧◔◡◔≦ .
-        /// </summary>
-        /// <param name="collection_address"> as string - EVM</param>
-        /// <param name="type"> as Type{ all, mint, burn, transfer_from, transfer_to, list, buy, sell, make_bid , get_bid}.</param>
+
         public Txn_Collection SetParameters(string collection_address = null)
         {
             if(collection_address!=null)
@@ -105,21 +100,6 @@ namespace AlturaNFT
             return this;
         }
 
-        /// <summary>
-        /// Blockchain from which to query NFTs.
-        /// </summary>
-        /// <param name="chain"> Choose from available 'Chains' enum</param>
-        public Txn_Collection SetChain(Chains chain)
-        {
-            this.chain = chain;
-            return this;
-        }
-
-        /// <summary>
-        /// Action on successful API Fetch. (*^∇^)ヾ(￣▽￣*)
-        /// </summary>
-        /// <param name="Collection_model"> Use: .OnComplete(Txns=> txns = Txns) , where txns is of type Collection_model;</param>
-        /// <returns> NFTs_OwnedByAnAccount_model.Root </returns>
         public Txn_Collection OnComplete(UnityAction<Collection_model> action)
         {
             this.OnCompleteAction = action;
@@ -153,17 +133,10 @@ namespace AlturaNFT
 
             string BuildUrl()
             {
-                if (chain == Chains.binance)
-                {
-                    WEB_URL = RequestUriInit + _collection_address;
-                }
-                else
-                {
-                    WEB_URL = RequestUriInit + _collection_address;
-                }
+                WEB_URL = RequestUriInit + _collection_address;
                 
                 if(debugErrorLog)
-                    Debug.Log("Querying Transactions of Collection: " + _collection_address + " on " + chain);
+                    Debug.Log("Querying Transactions of Collection: " + _collection_address );
                 
                 return WEB_URL;
             }
