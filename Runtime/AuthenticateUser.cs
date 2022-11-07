@@ -8,12 +8,12 @@ namespace AlturaNFT
 { using Internal;
     
     /// <summary>
-    /// NFTs of a contract / collections
+    /// User authentication
     /// </summary>
-    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_Altura_Guard)]
+    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_AuthenticateUser)]
     [ExecuteAlways]
-    [HelpURL(AlturaConstants.Altura_Guard)]
-    public class Altura_Guard : MonoBehaviour
+    [HelpURL(AlturaConstants.AuthenticateUser)]
+    public class AuthenticateUser : MonoBehaviour
     {
         /// <summary>
         /// Currently Supported chains for this endpoint.
@@ -91,9 +91,9 @@ namespace AlturaNFT
         /// Initialize creates a gameobject and assings this script as a component. This must be called if you are not refrencing the script any other way and it doesn't already exists in the scene.
         /// </summary>
         /// <param name="destroyAtEnd"> Optional bool parameter can set to false to avoid Spawned GameObject being destroyed after the Api process is complete. </param>
-        public static Altura_Guard Initialize(bool destroyAtEnd = true)
+        public static AuthenticateUser Initialize(bool destroyAtEnd = true)
             {
-                var _this = new GameObject("NFTs Of a Contract").AddComponent<Altura_Guard>();
+                var _this = new GameObject("NFTs Of a Contract").AddComponent<AuthenticateUser>();
                 _this.destroyAtEnd = destroyAtEnd;
                 _this.onEnable = false;
                 _this.debugErrorLog = false;
@@ -104,7 +104,7 @@ namespace AlturaNFT
             /// Set Contract Address to retrieve NFTs from as string
             /// </summary>
             /// <param name="wallet_address"> as string.</param>
-            public Altura_Guard SetParams(string wallet_address, string altura_gaurd)
+            public AuthenticateUser SetParams(string wallet_address, string altura_gaurd)
             {
                 this.wallet_address = wallet_address;
                 this.altura_gaurd = altura_gaurd;
@@ -113,7 +113,7 @@ namespace AlturaNFT
 
             
 
-            public Altura_Guard OnComplete(UnityAction<Auth_model> action)
+            public AuthenticateUser OnComplete(UnityAction<Auth_model> action)
             {
                 this.OnCompleteAction = action;
                 return this;
@@ -125,7 +125,7 @@ namespace AlturaNFT
             /// </summary>
             /// <param name="UnityAction action"> string.</param>
             /// <returns> Information on Error as string text.</returns>
-            public Altura_Guard OnError(UnityAction<string> action)
+            public AuthenticateUser OnError(UnityAction<string> action)
             {
                 this.OnErrorAction = action;
                 return this;

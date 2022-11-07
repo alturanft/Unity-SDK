@@ -36,11 +36,11 @@ namespace AlturaNFT.Editor
            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_NFTs_OfAccount).AddComponent<NFTs_OwnedByAnAccount>().gameObject;
         }
         
-        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_Altura_Guard)]
-        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_Altura_Guard)]
+        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_AuthenticateUser)]
+        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_AuthenticateUser)]
         static void Spawn_NFtsOfContract()
         {
-            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_Altura_Guard).AddComponent<Altura_Guard>().gameObject;
+            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_AuthenticateUser).AddComponent<AuthenticateUser>().gameObject;
         }
 
         [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_ConnectUserWallet)]

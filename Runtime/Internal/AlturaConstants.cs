@@ -17,7 +17,7 @@ namespace AlturaNFT.Internal
 
         public const string Docs_NFTDetails = "https://docs.v2.alturanft.com/api-reference/items";
         public const string NFTs_OfAccount = "https://docs.v2.alturanft.com/api-reference/users";
-        public const string Altura_Guard = "https://docs.v2.alturanft.com/api-reference/items";
+        public const string AuthenticateUser = "https://docs.v2.alturanft.com/api-reference/items";
         public const string Docs_Mint_URL = "https://docs.v2.alturanft.com/api-reference/items";
         public const string Docs_Mint_File = "https://docs.v2.alturanft.com/api-reference/items";
         public const string Docs_Mint_Custom = "https://docs.v2.alturanft.com/api-reference/items";
@@ -41,7 +41,7 @@ namespace AlturaNFT.Internal
 
         public const string BaseComponentMenu = "AlturaNFT/";
         public const string BaseFeatureSpawnerMenu = "AlturaNFT/API/";
-        public const string FeatureName_Altura_Guard = "Verify Auth Code | Verify";
+        public const string FeatureName_AuthenticateUser = "Verify Auth Code | Verify";
         public const string FeatureName_ConnectUserWallet = "Connect Player Wallet";
         public const string FeatureName_User_Details = "Get User | GetUser";
 

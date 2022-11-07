@@ -47,9 +47,11 @@ namespace AlturaNFT.Samples.AlturaDemo{
 
         #endregion
 
-        private void Start()
+        private async void Start()
         {
+    var s = await AlturaNFT.AuthenticateUser(string);
             PopulateChainDropDownList();
         }
     }
+
 }
