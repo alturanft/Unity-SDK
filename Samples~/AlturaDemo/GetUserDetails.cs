@@ -4,6 +4,7 @@ namespace AlturaNFT.Samples.AlturaDemo{
     using System.Collections.Generic;
     using UnityEngine;
     using AlturaNFT;
+    using AlturaWeb3;
 
     using UnityEngine.UI;
 
@@ -48,8 +49,9 @@ namespace AlturaNFT.Samples.AlturaDemo{
 
         #endregion
 
-        private void Start()
+        private async void Start()
         {
+            //var verify = await AlturaWeb3.AuthenticateUser();
             PopulateChainDropDownList();
         }
     }
