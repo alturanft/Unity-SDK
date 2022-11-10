@@ -13,14 +13,14 @@
     ],
     "author": {
       "name": "AlturaNFT",
-      "email": "@alturanft",
+      "email": "team@alturanft.com",
       "url": "https://www.alturanft.com"
     },
     "samples": [
       {
         "displayName":"AlturaDemo",
         "description": "Altura API Data",
-        "path": "Samples/AlturaDemo"
+        "path": "Samples~/AlturaDemo"
       }
     ],
     "type": "tool",
