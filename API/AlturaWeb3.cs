@@ -1,7 +1,7 @@
 using System.Collections;
 using Newtonsoft.Json;
 using UnityEngine;
-
+/* TODO Do we need this function? if yes the name need to be changed!
 namespace AlturaNFT
 {
     using Internal;
@@ -19,4 +19,4 @@ namespace AlturaNFT
 
 
     }
-}
+}*/

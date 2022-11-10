@@ -16,7 +16,7 @@ using System.Net.NetworkInformation;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace AlturaWeb3 {
+namespace AlturaNFT {
     /// <summary>
     /// Altura SDK for Unity
     /// </summary>

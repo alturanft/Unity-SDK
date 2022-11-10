@@ -1,5 +1,5 @@
 using UnityEngine;
-
+/* TODO there is no Altura Gurd script
 namespace AlturaNFT.Editor
 {
     using UnityEditor;
@@ -31,4 +31,4 @@ namespace AlturaNFT.Editor
         }
     }
 }
-
+*/
