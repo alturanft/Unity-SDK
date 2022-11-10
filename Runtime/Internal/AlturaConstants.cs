@@ -21,7 +21,6 @@ namespace AlturaNFT.Internal
         public const string Docs_Mint_URL = "https://docs.v2.alturanft.com/api-reference/items";
         public const string Docs_Mint_File = "https://docs.v2.alturanft.com/api-reference/items";
         public const string Docs_Mint_Custom = "https://docs.v2.alturanft.com/api-reference/items";
-        public const string Docs_AssetDownloader = "https://docs.v2.alturanft.com/api-reference/items";
         public const string Docs_ConnectUserWallet = "https://docs.v2.alturanft.com/api-reference/items";
         public const string Docs_DeployContract = "https://docs.v2.alturanft.com/api-reference/items";
         public const string Docs_PlayerWalletConnect = "https://docs.v2.alturanft.com/api-reference/items";
@@ -54,7 +53,6 @@ namespace AlturaNFT.Internal
         public const string FeatureName_Transfer = "Transfer | TransferItem";
         public const string FeatureName_TransferItems = "Transfers | TransferItems";
         public const string FeatureName_MintAdditionalNFT = "Mint | MintAdditionalNFT";
-        public const string FeatureName_AssetDownloader = "Asset Downloader";
         public const string FeatureName_Mint_Custom = "Mint | Customizable minting";
         public const string FeatureName_Mint_URL = "Mint | Easy mint using URL";
         public const string FeatureName_Mint_File = "Mint | Easy mint using File Upload";

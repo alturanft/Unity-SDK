@@ -5,6 +5,7 @@ namespace AlturaNFT.Samples.AlturaDemo{
     using UnityEngine;
     using AlturaNFT;
     using UnityEngine.UI;
+    using AlturaWeb3;
 
     public class AlturaDemo : MonoBehaviour
     {
@@ -47,9 +48,8 @@ namespace AlturaNFT.Samples.AlturaDemo{
 
         #endregion
 
-        private async void Start()
+        private void Start()
         {
-    var s = await AlturaNFT.AuthenticateUser(string);
             PopulateChainDropDownList();
         }
     }

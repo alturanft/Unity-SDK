@@ -12,15 +12,15 @@
       "nft"
     ],
     "author": {
-      "name": "Mohammed M",
-      "email": "mohamgoham@gmail.com",
+      "name": "AlturaNFT",
+      "email": "@alturanft",
       "url": "https://www.alturanft.com"
     },
     "samples": [
       {
         "displayName":"AlturaDemo",
         "description": "Altura API Data",
-        "path": "Samples~/AlturaDemo"
+        "path": "Samples/AlturaDemo"
       }
     ],
     "type": "tool",

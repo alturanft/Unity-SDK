@@ -89,6 +89,7 @@ namespace AlturaNFT
         {
             User.ConnectedPlayerNetworkID = networkID;
             connectedNetworkID = networkID;
+            
         }
         
         //called from index - For WebGL
