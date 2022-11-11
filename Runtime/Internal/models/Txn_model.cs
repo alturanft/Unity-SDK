@@ -76,19 +76,4 @@ namespace AlturaNFT
         public string mintDate;
     } 
    
-    
-
-    
-    [Serializable]
-    public class Creator
-    {
-        public string account_address ;
-        public string creator_share ;
-        public string address;
-        public object share;
-        public bool verified;
-    }
-
-
-
 }

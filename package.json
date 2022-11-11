@@ -20,7 +20,7 @@
       {
         "displayName":"AlturaDemo",
         "description": "Altura API Data",
-        "path": "Samples~/AlturaDemo"
+        "path": "Altura-Sample~/AlturaDemo"
       }
     ],
     "type": "tool",
