@@ -18,7 +18,6 @@ namespace AlturaNFT.Utils
         static Params _params = new Params();
         public static Params Formeet(string filePath)
         {
-            ////â‰§â— â€¿â— â‰¦âœŒ _sz_ Î //≧◠‿◠≦✌ _sz_ Ω
             var filetype = DetermineFileType.File(filePath);
             
             List<IMultipartFormSection> form= new List<IMultipartFormSection>
