@@ -18,8 +18,8 @@ namespace AlturaNFT.Editor
 
             myScript = (ConnectPlayerWallet) target;
 
-\            GUILayout.BeginHorizontal();
-\            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+            GUILayout.EndHorizontal();
 
             if (GUILayout.Button("View Documentation", GUILayout.Height(25)))
                 Application.OpenURL(AlturaConstants.Docs_PlayerWalletConnect);

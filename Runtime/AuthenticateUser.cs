@@ -15,24 +15,7 @@ namespace AlturaNFT
     [HelpURL(AlturaConstants.AuthenticateUser)]
     public class AuthenticateUser : MonoBehaviour
     {
-        /// <summary>
-        /// Currently Supported chains for this endpoint.
-        /// </summary>
-        public enum Chains
-        {
-            ethereum,
-            bsctest,
-            rinkeby,
-            binance
-        }
-        
-        public enum Includes
-        {
-            Default,
-            metadata, 
-            all
-        }
-        
+
         #region Parameter Defines
 
             
@@ -40,10 +23,7 @@ namespace AlturaNFT
             private string wallet_address = "Input Wallet Address to verify";
             [SerializeField]
             private string altura_gaurd = "Input Altura Gaurd code to verify";
-
-
             
-       //     private string RequestUriInit = "https://api.alturanft.com/api/v2/user/verify_auth_code/";
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
@@ -100,10 +80,6 @@ namespace AlturaNFT
                 return _this;
             }
             
-            /// <summary>
-            /// Set Contract Address to retrieve NFTs from as string
-            /// </summary>
-            /// <param name="wallet_address"> as string.</param>
             public AuthenticateUser SetParams(string wallet_address, string altura_gaurd)
             {
                 this.wallet_address = wallet_address;

@@ -17,26 +17,12 @@ namespace AlturaNFT
     [HelpURL(AlturaConstants.Docs_UserDetails)]
     public class User_Details : MonoBehaviour
     {
-        /// <summary>
-        /// Currently Supported chains for this endpoint.
-        /// </summary>
-        public enum Chains
-        {
-            ethereum,
-            binance,
-            bsctest,
-            rinkeby,
-        }
-
         #region Parameter Defines
 
             
             [SerializeField]
-            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string _address = "Input Address of the Altura User";
             
-            
-
             private string RequestUriInit = "https://api.alturanft.com/api/v2/user/";
             private string WEB_URL;
             private string _apiKey;

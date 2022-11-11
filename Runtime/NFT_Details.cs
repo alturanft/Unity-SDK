@@ -15,26 +15,13 @@ namespace AlturaNFT
     [HelpURL(AlturaConstants.Docs_NFTDetails)]
     public class NFT_Details : MonoBehaviour
     {
-        /// <summary>
-        /// Currently Supported chains for this endpoint.
-        /// </summary>
-        public enum Chains
-        {
-            ethereum,
-            binance,
-            bsctest,
-            rinkeby,
-        }
 
         #region Parameter Defines
-
-            
-           [SerializeField]
-           [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
+  
+            [SerializeField]
             private string _collection_address = "Input Collection Address of the Item";
             
             [SerializeField]
-            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
             [Tooltip("Token ID of the Item")]
             private int _token_id = 1;
             
@@ -97,7 +84,7 @@ namespace AlturaNFT
             }
 
         /// <summary>
-        /// Set Parameters to retrieve NFT From.  ≧◔◡◔≦ .
+        /// Set Parameters to retrieve Item Details
         /// </summary>
         /// <param name="collection_address"> as string - EVM</param>
         /// <param name="token_id"> as int - EVM.</param>

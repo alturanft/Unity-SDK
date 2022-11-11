@@ -10,39 +10,18 @@ using UnityEngine.Serialization;
 namespace AlturaNFT  
 { using Internal;
     
-    /// <summary>
-    /// NFTs owned by a given account (wallet address), Can also return each NFT metadata with include parameter and filter from specific collection.
-    /// </summary>
+
     [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_NFTs_OfAccount)]
     [ExecuteAlways]
     [HelpURL(AlturaConstants.NFTs_OfAccount)]
     public class NFTs_OwnedByAnAccount : MonoBehaviour
     {
-        /// <summary>
-        /// Currently Supported chains for this endpoint.
-        /// </summary>
-        public enum Chains
-        {
-            ethereum,
-            binance,
-            bsctest,
-            rinkeby,
-        }
-        
-        public enum Includes
-        {
-            Default,
-            metadata, 
-            contract_information
-        }
-        
+
         #region Parameter Defines
 
             
             [SerializeField]
             private string address = "Input Account Address To Fetch NFT's from";
-
-            
             
             private string WEB_URL;
             private string _apiKey;

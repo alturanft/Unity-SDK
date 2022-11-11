@@ -15,37 +15,22 @@ namespace AlturaNFT
     [HelpURL(AlturaConstants.Docs_Txns_Account)]
      public class Txn_Account : MonoBehaviour
     {
-        /// <summary>
-        /// Currently Supported chains for this endpoint.
-        /// </summary>
-        public enum Chains
-        {
-            ethereum,
-            binance,
-            bsctest,
-            rinkeby,
-        }
 
         #region Parameter Defines
               
             [SerializeField]
-            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string _perPage = "Input How much pqges you want to get";
             [SerializeField]
-            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string _page = "Input Which page you want to get";
-                        [SerializeField]
-            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
+            [SerializeField]
             private string _sortBy = "Input Sort By = name";
-                        [SerializeField]
-            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
+            [SerializeField]
             private string _sortDir = "Input Asc or Desc";
 
             [Header("Optional: Filter and fetch items with specified property")]
 
             [SerializeField]
             [Tooltip("Filter from a documents by any properties")]
-            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
             string _isVerified;
             private string RequestUriInit = "https://api.alturanft.com/api/v2/collection";
             private string WEB_URL;
@@ -106,7 +91,7 @@ namespace AlturaNFT
             }
 
         /// <summary>
-        /// Set Parameters to retrieve User From.  ≧◔◡◔≦ .
+        /// Set Parameters to retrieve User From .
         /// </summary>
         /// <param name="perPage"> amount of pages to query</param>
         /// <param name="page"> page to query</param>
@@ -146,7 +131,7 @@ namespace AlturaNFT
             }
             
             /// <summary>
-            /// Action on Error (⊙.◎)
+            /// Action on Error
             /// </summary>
             /// <param name="UnityAction action"> string.</param>
             /// <returns> Information on Error as string text.</returns>

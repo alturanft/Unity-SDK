@@ -15,17 +15,6 @@ namespace AlturaNFT
     [HelpURL(AlturaConstants.Txn_Collection)]
     public class Txn_Collection : MonoBehaviour
     {
-        /// <summary>
-        /// Currently Supported chains for this endpoint.
-        /// </summary>
-        public enum Chains
-        {
-            ethereum,
-            binance,
-            bsctest,
-        }
-        
-
         #region Parameter Defines
 
         
@@ -33,8 +22,6 @@ namespace AlturaNFT
             [Tooltip("Input Collection_id / Contract Address of the NFTs")]
             private string _collection_address = "Input Collection/Contract Address of the NFTs";
         
-
-
             private string RequestUriInit = "https://api.alturanft.com/api/v2/collection/";
             private string WEB_URL;
             private string _apiKey;
