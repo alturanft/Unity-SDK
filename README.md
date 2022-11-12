@@ -26,7 +26,7 @@
 <br />
 <br />
 
-# **Installation**
+# **About**
 Using Altua NFT Unity SDK, you are able to interact with Altura services such as authenticating users using [Altura Guard](https://docs.alturanft.com/altura-developer-api/getting-started/altura-guard), get Users information and items, get items and collection information and transfer or mint new items.
 
 # installation
@@ -44,34 +44,34 @@ After you added Altura SDK to Unity, additional packages needs to be installed t
 
 Altura SDK installed successfully!
 
-# Import in in your script
+## Import in in your script
   ```C#
   using AlturaNFT;
   ```
 
-# Import Samples
+## Import Samples
 To import some samples made by Altura Team do:
 1. Open Unity and then open `Window > Package Manager` 
-2. Select <b>Altura Web3<b>
-3. Select <Samples> and import
+2. Select <b>Altura Web3</b>
+3. Select <b>Samples</b> and import
 
-
-# Methods
+## Documentation
+Read our [Documentation](https://docs.alturanft.com/altura-developer-api/integrate/unity-sdk-reference) to learn more about <b>Altura SDK</b>.
+## Methods
  
 | Method                              | Description    |
 | ------------- | ----------- |
 | AuthenticateUser(address, code)     | Use this method to authenticate user with Altura Guard. On success, `true` is returned.                                              |
-| GetUser(address)     | Description    |
-| GetUsers(perPage, page, sortBy, sortDir)     | Description    |
-| GetItem(collecttionAddress, tokenId)     | Description    |
-| GetItems(perPage, page, sortBy, sortDir, slim)     | Description    |
-| GetCollection(address)     | Description    |
-| GetCollections(perPage, page, sortBy, sortDir)     | Description    |
+| GetUser(address)     | Use this method to get user information such as Name, Bio, social etc. etc. On success, the data is returned as JSON.    |
+| GetUsers(perPage, page, sortBy, sortDir)     | Use this method to get information of multiple users at same time such as Name, Bio, social etc. etc. On success, the data is returned as JSON.    |
+| GetItem(collecttionAddress, tokenId)     | Use this method to get item metadata. On success, the data is returned as JSON.    |
+| GetItems(perPage, page, sortBy, sortDir, slim)     | Use this method to get metadata of multiple Items at same time. On success, the data is returned as JSON.    |
+| GetCollection(address)     | Use this method to get Collection information. On success, the data is returned as JSON.    |
+| GetCollections(perPage, page, sortBy, sortDir)     | Use this method to get information of multiple Collections at same time. On success, the data is returned as JSON.    |
 | TransferItem(collectionAddress, tokenId, amount, to)     | Description    |
 | TransferItems()     | Description    |
 | MintAdditionalSupply()     | Description    |
-| GetUserItems()     | Use this method to get items of specific user.
-On success, the data is returned as JSON.    |
+| GetUserItems()     | Use this method to get items of specific user.On success, the data is returned as JSON.    |
 | GetHolders()     | Description    |
 | GetHistory()     | Description    |
 | UpdateProperty()     | Description    |
