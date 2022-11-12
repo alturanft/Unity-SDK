@@ -18,9 +18,7 @@ namespace AlturaNFT.Editor
 
             myScript = (ConnectPlayerWallet) target;
 
-            //Texture banner = Resources.Load<Texture>("c_pminteasyURL");
             GUILayout.BeginHorizontal();
-            //GUILayout.Box(banner);
             GUILayout.EndHorizontal();
 
             if (GUILayout.Button("View Documentation", GUILayout.Height(25)))

@@ -118,7 +118,7 @@ namespace AlturaNFT
             }
 
         /// <summary>
-        /// Set Parameters to retrieve User From.  ≧◔◡◔≦ .
+        /// Set Parameters to retrieve User From.
         /// </summary>
         /// <param name="perPage"> amount of pages to query</param>
         /// <param name="page"> page to query</param>

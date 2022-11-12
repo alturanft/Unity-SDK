@@ -29,23 +29,15 @@ namespace AlturaNFT
 
         #region Parameter Defines
 
-
-
             [SerializeField]
-            [DrawIf("chaiId", Chains.bsctest , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string chainId;
-  
             [SerializeField]
-            [DrawIf("chain", Chains.bsctest , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string address;
             [SerializeField]
-            [DrawIf("chain", Chains.bsctest , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string _token_id = "Input Which page you want to get";
             [SerializeField]
-            [DrawIf("chain", Chains.bsctest , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string _amount = "Input Sort By = name";
-                        [SerializeField]
-            [DrawIf("chain", Chains.bsctest , DrawIfAttribute.DisablingType.DontDrawInverse)]
+            [SerializeField]
             private string _to_addr = "Input Asc or Desc";
 
 

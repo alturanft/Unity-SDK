@@ -16,36 +16,19 @@ namespace AlturaNFT
     [HelpURL(AlturaConstants.Docs_Mint)]
     public class MintAdditionalNFT : MonoBehaviour
     {
-        /// <summary>
-        /// Currently Supported chains for this endpoint.
-        /// </summary>
-        public enum Chains
-        {
-            ethereum,
-            binance,
-            bsctest,
-            rinkeby,
-        }
-
         #region Parameter Defines
 
        
-
-                   [SerializeField]
-            [DrawIf("chaiId", Chains.bsctest , DrawIfAttribute.DisablingType.DontDrawInverse)]
+            [SerializeField]
             private string chainId;
   
             [SerializeField]
-            [DrawIf("chain", Chains.bsctest , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string address;
             [SerializeField]
-            [DrawIf("chain", Chains.bsctest , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string _token_id = "Input Which page you want to get";
             [SerializeField]
-            [DrawIf("chain", Chains.bsctest , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string _amount = "Input Sort By = name";
-                        [SerializeField]
-            [DrawIf("chain", Chains.bsctest , DrawIfAttribute.DisablingType.DontDrawInverse)]
+            [SerializeField]
             private string _to_addr = "Input Asc or Desc";
 
 

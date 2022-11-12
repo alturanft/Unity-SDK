@@ -12,7 +12,6 @@ namespace AlturaNFT.Utils
         {
             string contentType = "";
             var fileExtension = Path.GetExtension(filePath).Replace(".","").ToLower();
-            ////â‰§â— â€¿â— â‰¦âœŒ _sz_ Î //≧◠‿◠≦✌ _sz_ Ω
 
             if (
                 fileExtension == "png" ||

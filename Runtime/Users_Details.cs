@@ -8,46 +8,29 @@ namespace AlturaNFT
 { using Internal;
     
     /// <summary>
-    /// Details of particular NFT
+    /// Get Users Details API
     /// </summary>
     [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_Users_Details)]
     [ExecuteAlways]
     [HelpURL(AlturaConstants.Docs_UserDetails)]
     public class Users_Details : MonoBehaviour
     {
-        /// <summary>
-        /// Currently Supported chains for this endpoint.
-        /// </summary>
-        public enum Chains
-        {
-            ethereum,
-            binance,
-            bsctest,
-            rinkeby,
-        }
 
         #region Parameter Defines
-
-            
   
             [SerializeField]
-            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
-            private string _perPage = "Input How much pqges you want to get";
+            private string _perPage = "Input How much pages you want to get";
             [SerializeField]
-            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string _page = "Input Which page you want to get";
-                        [SerializeField]
-            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
+            [SerializeField]
             private string _sortBy = "Input Sort By = name";
-                        [SerializeField]
-            [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
+            [SerializeField]
             private string _sortDir = "Input Asc or Desc";
 
             private string RequestUriInit = "https://api.alturanft.com/api/v2/user";
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
-
 
             private UnityAction<string> OnErrorAction;
             private UnityAction<User_model> OnCompleteAction;
@@ -102,7 +85,7 @@ namespace AlturaNFT
             }
 
         /// <summary>
-        /// Set Parameters to retrieve User From.  ≧◔◡◔≦ .
+        /// Set Parameters to retrieve User From .
         /// </summary>
         /// <param name="perPage"> amount of pages to query</param>
         /// <param name="page"> page to query</param>
@@ -119,9 +102,6 @@ namespace AlturaNFT
                     this._sortBy = sortBy;
                 if(sortDir!=null)
                     this._sortDir = sortDir;
-
-     
-
                 return this;
             }
 
@@ -130,7 +110,6 @@ namespace AlturaNFT
                 this.OnCompleteAction = action;
                 return this;
             }
-            
             /// <summary>
             /// Action on Error (⊙.◎)
             /// </summary>
