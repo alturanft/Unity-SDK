@@ -10,10 +10,10 @@ namespace AlturaNFT
     /// <summary>
     /// Get Users Details API
     /// </summary>
-    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_Users_Details)]
+    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_GetUsers)]
     [ExecuteAlways]
-    [HelpURL(AlturaConstants.Docs_UserDetails)]
-    public class Users_Details : MonoBehaviour
+    [HelpURL(AlturaConstants.Docs_GetUsers)]
+    public class GetUsers : MonoBehaviour
     {
 
         #region Parameter Defines
@@ -75,9 +75,9 @@ namespace AlturaNFT
         /// Initialize creates a gameobject and assings this script as a component. This must be called if you are not refrencing the script any other way and it doesn't already exists in the scene.
         /// </summary>
         /// <param name="destroyAtEnd"> Optional bool parameter can set to false to avoid Spawned GameObject being destroyed after the Api process is complete. </param>
-        public static Users_Details Initialize(bool destroyAtEnd = true)
+        public static GetUsers Initialize(bool destroyAtEnd = true)
             {
-                var _this = new GameObject(AlturaConstants.FeatureName_Users_Details).AddComponent<Users_Details>();
+                var _this = new GameObject(AlturaConstants.FeatureName_GetUsers).AddComponent<GetUsers>();
                 _this.destroyAtEnd = destroyAtEnd;
                 _this.onEnable = false;
                 _this.debugErrorLog = false;
@@ -91,7 +91,7 @@ namespace AlturaNFT
         /// <param name="page"> page to query</param>
         /// <param name="sortBy"> sort by field</param>
         /// <param name="sortDir"> sort direction</param>
-        public Users_Details SetParameters(string perPage = "20", string page = "1", string sortBy = "name", string sortDir = "asc")
+        public GetUsers SetParameters(string perPage = "20", string page = "1", string sortBy = "name", string sortDir = "asc")
             {
 
                 if(perPage!=null)
@@ -105,7 +105,7 @@ namespace AlturaNFT
                 return this;
             }
 
-            public Users_Details OnComplete(UnityAction<User_model> action)
+            public GetUsers OnComplete(UnityAction<User_model> action)
             {
                 this.OnCompleteAction = action;
                 return this;
@@ -115,7 +115,7 @@ namespace AlturaNFT
             /// </summary>
             /// <param name="UnityAction action"> string.</param>
             /// <returns> Information on Error as string text.</returns>
-            public Users_Details OnError(UnityAction<string> action)
+            public GetUsers OnError(UnityAction<string> action)
             {
                 this.OnErrorAction = action;
                 return this;

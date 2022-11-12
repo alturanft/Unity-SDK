@@ -12,10 +12,10 @@ namespace AlturaNFT
     /// <summary>
     /// Details of particular User
     /// </summary>
-    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_User_Details)]
+    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_GetUser)]
     [ExecuteAlways]
-    [HelpURL(AlturaConstants.Docs_UserDetails)]
-    public class User_Details : MonoBehaviour
+    [HelpURL(AlturaConstants.Docs_GetUser)]
+    public class GetUser : MonoBehaviour
     {
         #region Parameter Defines
 
@@ -68,9 +68,9 @@ namespace AlturaNFT
         #region SetParams and Chain Functions
 
      
-        public static User_Details Initialize(bool destroyAtEnd = true)
+        public static GetUser Initialize(bool destroyAtEnd = true)
             {
-                var _this = new GameObject(AlturaConstants.FeatureName_User_Details).AddComponent<User_Details>();
+                var _this = new GameObject(AlturaConstants.FeatureName_GetUser).AddComponent<GetUser>();
                 _this.destroyAtEnd = destroyAtEnd;
                 _this.onEnable = false;
                 _this.debugErrorLog = false;
@@ -81,7 +81,7 @@ namespace AlturaNFT
         /// Set Parameters to retrieve User From
         /// </summary>
         /// <param name="_address"> as string - EVM</param>
-        public User_Details SetParameters(string _addresss = null)
+        public GetUser SetParameters(string _addresss = null)
             {
                 if(_addresss!=null)
                     this._address = _addresss;
@@ -91,7 +91,7 @@ namespace AlturaNFT
             }
             
 
-            public User_Details OnComplete(UnityAction<User_model> action)
+            public GetUser OnComplete(UnityAction<User_model> action)
             {
                 this.OnCompleteAction = action;
                 return this;
@@ -102,7 +102,7 @@ namespace AlturaNFT
             /// </summary>
             /// <param name="UnityAction action"> string.</param>
             /// <returns> Information on Error as string text.</returns>
-            public User_Details OnError(UnityAction<string> action)
+            public GetUser OnError(UnityAction<string> action)
             {
                 this.OnErrorAction = action;
                 return this;

@@ -12,7 +12,7 @@ namespace AlturaNFT
     /// </summary>
     [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_Txn_Collection)]
     [ExecuteAlways]
-    [HelpURL(AlturaConstants.Txn_Collection)]
+    [HelpURL(AlturaConstants.Docs_GetCollection)]
     public class Txn_Collection : MonoBehaviour
     {
         #region Parameter Defines

@@ -16,17 +16,19 @@ namespace AlturaNFT.Editor
         {
             Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_GetItem).AddComponent<GetItem>().gameObject;
         }
-        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_User_Details)]
-        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_User_Details)]
-        static void Spawn_User()
+        
+        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_GetUser)]
+        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_GetUser)]
+        static void Spawn_GetUser()
         {
-            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_User_Details).AddComponent<User_Details>().gameObject;
+            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_GetUser).AddComponent<GetUser>().gameObject;
         }
-        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_Users_Details)]
-        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_Users_Details)]
-        static void Spawn_Users()
+
+        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_GetUsers)]
+        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_GetUsers)]
+        static void Spawn_GetUsers()
         {
-            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_Users_Details).AddComponent<Users_Details>().gameObject;
+            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_GetUsers).AddComponent<GetUsers>().gameObject;
         }
         
         [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_NFTs_OfAccount)]
