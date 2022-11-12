@@ -5,13 +5,13 @@ namespace AlturaNFT.Editor
     using UnityEditor;
     using Internal;
 
-    [CustomEditor(typeof(NFT_Details))]
+    [CustomEditor(typeof(GetItem))]
     public class NFTs_Details_Editor : Editor
     {
         public override void OnInspectorGUI()
         {
             
-            NFT_Details myScript = (NFT_Details)target;
+            GetItem myScript = (GetItem)target;
             
             
             Texture banner = Resources.Load<Texture>("c_nftdata_details");

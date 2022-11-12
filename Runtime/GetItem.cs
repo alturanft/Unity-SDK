@@ -10,10 +10,10 @@ namespace AlturaNFT
     /// <summary>
     /// Details of particular NFT
     /// </summary>
-    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_NFT_Details)]
+    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_GetItem)]
     [ExecuteAlways]
     [HelpURL(AlturaConstants.Docs_NFTDetails)]
-    public class NFT_Details : MonoBehaviour
+    public class GetItem : MonoBehaviour
     {
 
         #region Parameter Defines
@@ -74,9 +74,9 @@ namespace AlturaNFT
         /// Initialize creates a gameobject and assings this script as a component. This must be called if you are not refrencing the script any other way and it doesn't already exists in the scene.
         /// </summary>
         /// <param name="destroyAtEnd"> Optional bool parameter can set to false to avoid Spawned GameObject being destroyed after the Api process is complete. </param>
-        public static NFT_Details Initialize(bool destroyAtEnd = true)
+        public static GetItem Initialize(bool destroyAtEnd = true)
             {
-                var _this = new GameObject(AlturaConstants.FeatureName_NFT_Details).AddComponent<NFT_Details>();
+                var _this = new GameObject(AlturaConstants.FeatureName_GetItem).AddComponent<GetItem>();
                 _this.destroyAtEnd = destroyAtEnd;
                 _this.onEnable = false;
                 _this.debugErrorLog = false;
@@ -88,7 +88,7 @@ namespace AlturaNFT
         /// </summary>
         /// <param name="collection_address"> as string - EVM</param>
         /// <param name="token_id"> as int - EVM.</param>
-        public NFT_Details SetParameters(string collection_address = null, int token_id = -1)
+        public GetItem SetParameters(string collection_address = null, int token_id = -1)
             {
                 if(collection_address!=null)
                     this._collection_address = collection_address;
@@ -99,7 +99,7 @@ namespace AlturaNFT
                 return this;
             }
 
-            public NFT_Details OnComplete(UnityAction<Items_model> action)
+            public GetItem OnComplete(UnityAction<Items_model> action)
             {
                 this.OnCompleteAction = action;
                 return this;
@@ -110,7 +110,7 @@ namespace AlturaNFT
             /// </summary>
             /// <param name="UnityAction action"> string.</param>
             /// <returns> Information on Error as string text.</returns>
-            public NFT_Details OnError(UnityAction<string> action)
+            public GetItem OnError(UnityAction<string> action)
             {
                 this.OnErrorAction = action;
                 return this;
@@ -185,7 +185,7 @@ namespace AlturaNFT
                             afterSuccess.Invoke();
                         
                         if(debugErrorLog)
-                            Debug.Log("Success , view NFT under NFTs model" );
+                            Debug.Log("Success , view Item under Item model" );
                     }
                 }
                 request.Dispose();

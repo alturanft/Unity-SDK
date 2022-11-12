@@ -46,7 +46,7 @@ namespace AlturaNFT.Internal
 
         public const string FeatureName_Users_Details = "Get Many Users | GetUsers";
         public const string FeatureName_NFTs_OfAccount = "Get A Users Item | GetUserItems";
-        public const string FeatureName_NFT_Details =  "Get Item | GetItem";
+        public const string FeatureName_GetItem =  "Get Item | GetItem";
         public const string FeatureName_Txn_NFT = "Get Many Items | GetItems";
         public const string FeatureName_Txn_Account = "Get Many Collections | GetCollections";
         public const string FeatureName_Txn_Collection = "Get 1 Collection | GetCollection";

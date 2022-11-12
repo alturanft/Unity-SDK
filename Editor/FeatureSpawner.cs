@@ -10,11 +10,11 @@ namespace AlturaNFT.Editor
         
         private const string GameObjMenu = "GameObject/AlturaNFT/";
         
-        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_NFT_Details)]
-        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_NFT_Details)]
-        static void Spawn_NFTDetails()
+        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_GetItem)]
+        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_GetItem)]
+        static void Spawn_GetItem()
         {
-            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_NFT_Details).AddComponent<NFT_Details>().gameObject;
+            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_GetItem).AddComponent<GetItem>().gameObject;
         }
         [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_User_Details)]
         [MenuItem(GameObjMenu + AlturaConstants.FeatureName_User_Details)]
