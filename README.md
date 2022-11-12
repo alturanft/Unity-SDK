@@ -26,9 +26,6 @@
 <br />
 <br />
 
-### Introduction
-NFTPort's Unity extension provides tools and features to fast-track development and create cross-chain compatible NFT games and products in Unity with fast and reliable onchain data.
-
 # **Installation**
 Using Altua NFT Unity SDK, you are able to interact with Altura services such as authenticating users using [Altura Guard](https://docs.alturanft.com/altura-developer-api/getting-started/altura-guard), get Users information and items, get items and collection information and transfer or mint new items.
 
@@ -61,10 +58,9 @@ To import some samples made by Altura Team do:
 
 # Methods
  
-| Method     | Description    |
-| AuthenticateUser(address, code)     | Use this method to authenticate user with Altura Guard. 
-
-On success, `true` is returned.    |
+| Method                              | Description    |
+| ------------- | ----------- |
+| AuthenticateUser(address, code)     | Use this method to authenticate user with Altura Guard. On success, `true` is returned.                                              |
 | GetUser(address)     | Description    |
 | GetUsers(perPage, page, sortBy, sortDir)     | Description    |
 | GetItem(collecttionAddress, tokenId)     | Description    |
@@ -75,7 +71,6 @@ On success, `true` is returned.    |
 | TransferItems()     | Description    |
 | MintAdditionalSupply()     | Description    |
 | GetUserItems()     | Use this method to get items of specific user.
-
 On success, the data is returned as JSON.    |
 | GetHolders()     | Description    |
 | GetHistory()     | Description    |
