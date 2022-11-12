@@ -16,7 +16,7 @@ namespace AlturaNFT.Internal
         public const string Docs_Mint= "https://docs.v2.alturanft.com/api-reference/getting-startede";
 
         public const string Docs_NFTDetails = "https://docs.v2.alturanft.com/api-reference/items";
-        public const string NFTs_OfAccount = "https://docs.v2.alturanft.com/api-reference/users";
+        public const string GetUsersItems = "https://docs.v2.alturanft.com/api-reference/users";
         public const string AuthenticateUser = "https://docs.v2.alturanft.com/api-reference/items";
         public const string Docs_Mint_URL = "https://docs.v2.alturanft.com/api-reference/items";
         public const string Docs_Mint_File = "https://docs.v2.alturanft.com/api-reference/items";
@@ -24,7 +24,7 @@ namespace AlturaNFT.Internal
         public const string Docs_ConnectUserWallet = "https://docs.v2.alturanft.com/api-reference/items";
         public const string Docs_DeployContract = "https://docs.v2.alturanft.com/api-reference/items";
         public const string Docs_PlayerWalletConnect = "https://docs.v2.alturanft.com/api-reference/items";
-        public const string Docs_Txns_Account = "https://docs.v2.alturanft.com/api-reference/users";
+        public const string Docs_GetCollections = "https://docs.v2.alturanft.com/api-reference/users";
         public const string Docs_Txns_NFT = "https://docs.v2.alturanft.com/api-reference/items";
         public const string Docs_GetCollection = "https://docs.v2.alturanft.com/api-reference/items";
 
@@ -45,11 +45,11 @@ namespace AlturaNFT.Internal
         public const string FeatureName_GetUser = "Get User | GetUser";
 
         public const string FeatureName_GetUsers = "Get Many Users | GetUsers";
-        public const string FeatureName_NFTs_OfAccount = "Get A Users Item | GetUserItems";
+        public const string FeatureName_GetUsersItems = "Get A Users Item | GetUserItems";
         public const string FeatureName_GetItem =  "Get Item | GetItem";
         public const string FeatureName_Txn_NFT = "Get Many Items | GetItems";
-        public const string FeatureName_Txn_Account = "Get Many Collections | GetCollections";
-        public const string FeatureName_Txn_Collection = "Get 1 Collection | GetCollection";
+        public const string FeatureName_GetCollections = "Get Many Collections | GetCollections";
+        public const string FeatureName_GetCollection = "Get 1 Collection | GetCollection";
         public const string FeatureName_Transfer = "Transfer | TransferItem";
         public const string FeatureName_TransferItems = "Transfers | TransferItems";
         public const string FeatureName_MintAdditionalNFT = "Mint | MintAdditionalNFT";

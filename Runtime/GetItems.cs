@@ -8,7 +8,7 @@ namespace AlturaNFT
 { using Internal;
     
     /// <summary>
-    /// Get Transactions of an NFT
+    /// Get Many Items
     /// </summary>
     [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_Txn_NFT)]
     [ExecuteAlways]

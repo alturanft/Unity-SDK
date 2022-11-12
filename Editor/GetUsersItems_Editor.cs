@@ -5,13 +5,13 @@ namespace AlturaNFT.Editor
     using UnityEditor;
     using Internal;
 
-    [CustomEditor(typeof(NFTs_OwnedByAnAccount))]
-    public class NFTs_OfAccount_Editor : Editor
+    [CustomEditor(typeof(GetUsersItems))]
+    public class GetUsersItems_Editor : Editor
     {
         public override void OnInspectorGUI()
         {
             
-            NFTs_OwnedByAnAccount myScript = (NFTs_OwnedByAnAccount)target;
+            GetUsersItems myScript = (GetUsersItems)target;
             
             
             Texture banner = Resources.Load<Texture>("c_nftdata_details");

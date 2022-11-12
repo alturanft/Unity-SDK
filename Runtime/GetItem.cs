@@ -8,7 +8,7 @@ namespace AlturaNFT
 { using Internal;
     
     /// <summary>
-    /// Details of particular NFT
+    /// Get an Item
     /// </summary>
     [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_GetItem)]
     [ExecuteAlways]

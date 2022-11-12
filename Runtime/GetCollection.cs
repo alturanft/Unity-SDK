@@ -8,12 +8,12 @@ namespace AlturaNFT
 { using Internal;
     
     /// <summary>
-    /// Get Transactions of an NFT
+    /// Get a Collection
     /// </summary>
-    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_Txn_Collection)]
+    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_GetCollection)]
     [ExecuteAlways]
     [HelpURL(AlturaConstants.Docs_GetCollection)]
-    public class Txn_Collection : MonoBehaviour
+    public class GetCollection : MonoBehaviour
     {
         #region Parameter Defines
 
@@ -70,9 +70,9 @@ namespace AlturaNFT
         /// Initialize creates a gameobject and assings this script as a component. This must be called if you are not refrencing the script any other way and it doesn't already exists in the scene.
         /// </summary>
         /// <param name="destroyAtEnd"> Optional bool parameter can set to false to avoid Spawned GameObject being destroyed after the Api process is complete. </param>
-        public static Txn_Collection Initialize(bool destroyAtEnd = true)
+        public static GetCollection Initialize(bool destroyAtEnd = true)
             {
-                var _this = new GameObject(AlturaConstants.FeatureName_Txn_Collection).AddComponent<Txn_Collection>();
+                var _this = new GameObject(AlturaConstants.FeatureName_GetCollection).AddComponent<GetCollection>();
                 _this.destroyAtEnd = destroyAtEnd;
                 _this.onEnable = false;
                 _this.debugErrorLog = false;
@@ -80,14 +80,14 @@ namespace AlturaNFT
             }
 
 
-        public Txn_Collection SetParameters(string collection_address = null)
+        public GetCollection SetParameters(string collection_address = null)
         {
             if(collection_address!=null)
                 this._collection_address = collection_address;
             return this;
         }
 
-        public Txn_Collection OnComplete(UnityAction<Collection_model> action)
+        public GetCollection OnComplete(UnityAction<Collection_model> action)
         {
             this.OnCompleteAction = action;
             return this;
@@ -97,7 +97,7 @@ namespace AlturaNFT
         /// </summary>
         /// <param name="UnityAction action"> string.</param>
         /// <returns> Information on Error as string text.</returns>
-        public Txn_Collection OnError(UnityAction<string> action)
+        public GetCollection OnError(UnityAction<string> action)
         {
             this.OnErrorAction = action;
             return this;
