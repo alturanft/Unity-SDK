@@ -16,7 +16,7 @@ namespace AlturaNFT.Internal
         public const string Docs_Mint= "https://docs.v2.alturanft.com/api-reference/getting-startede";
 
         public const string Docs_NFTDetails = "https://docs.v2.alturanft.com/api-reference/items";
-        public const string GetUsersItems = "https://docs.v2.alturanft.com/api-reference/users";
+        public const string Docs_GetUsersItems = "https://docs.v2.alturanft.com/api-reference/users";
         public const string AuthenticateUser = "https://docs.v2.alturanft.com/api-reference/items";
         public const string Docs_Mint_URL = "https://docs.v2.alturanft.com/api-reference/items";
         public const string Docs_Mint_File = "https://docs.v2.alturanft.com/api-reference/items";

@@ -26,7 +26,7 @@ namespace AlturaNFT.Editor
             }
 
             if(GUILayout.Button("View Documentation", GUILayout.Height(25)))
-                Application.OpenURL(AlturaConstants.NFTs_OfAccount);
+                Application.OpenURL(AlturaConstants.Docs_GetUsersItems);
             DrawDefaultInspector();
         }
     }

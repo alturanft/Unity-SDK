@@ -13,7 +13,7 @@ namespace AlturaNFT
 
     [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_GetUsersItems)]
     [ExecuteAlways]
-    [HelpURL(AlturaConstants.GetUsersItems)]
+    [HelpURL(AlturaConstants.Docs_GetUsersItems)]
     public class GetUsersItems : MonoBehaviour
     {
 
