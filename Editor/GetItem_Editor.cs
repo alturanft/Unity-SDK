@@ -5,13 +5,13 @@ namespace AlturaNFT.Editor
     using UnityEditor;
     using Internal;
 
-    [CustomEditor(typeof(Txn_Collection))]
-    public class Txn_Collection_Editor : Editor
+    [CustomEditor(typeof(GetItem))]
+    public class NFTs_Details_Editor : Editor
     {
         public override void OnInspectorGUI()
         {
             
-            Txn_Collection myScript = (Txn_Collection)target;
+            GetItem myScript = (GetItem)target;
             
             
             Texture banner = Resources.Load<Texture>("c_nftdata_details");
@@ -19,14 +19,14 @@ namespace AlturaNFT.Editor
             GUILayout.Box(banner);
             GUILayout.EndHorizontal();
 
-            if (GUILayout.Button("GET Contract/Collection Transactions", GUILayout.Height(45)))
+            if (GUILayout.Button("GET Item", GUILayout.Height(45)))
             {
                 AlturaUser.SetFromEditorWin();
                 myScript.Run();
             }
 
             if(GUILayout.Button("View Documentation", GUILayout.Height(25)))
-                Application.OpenURL(AlturaConstants.AuthenticateUser);
+                Application.OpenURL(AlturaConstants.Docs_NFTDetails);
             DrawDefaultInspector();
         }
     }

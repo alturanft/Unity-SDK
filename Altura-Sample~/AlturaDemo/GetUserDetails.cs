@@ -11,7 +11,7 @@ namespace AlturaNFT.Samples.AlturaDemo{
     public class GetUserDetails : MonoBehaviour
     {
         [SerializeField]
-        Users_Details usersDetails;
+        GetUsers usersDetails;
 
         [SerializeField] 
         private Dropdown chainDropdown;
@@ -28,20 +28,20 @@ namespace AlturaNFT.Samples.AlturaDemo{
 
         #region Chain Dropdown Address
     
-        Users_Details.Chains GetChainFromDropDownSelection()
+        GetUsers.Chains GetChainFromDropDownSelection()
         {
             if (chainDropdown.value == 0)
-                return Users_Details.Chains.ethereum;
+                return GetUsers.Chains.ethereum;
             else if(chainDropdown.value == 1)
-                return Users_Details.Chains.bsctest;
+                return GetUsers.Chains.bsctest;
             else 
-                return Users_Details.Chains.binance;
+                return GetUsers.Chains.binance;
         }
 
         void PopulateChainDropDownList()
         {
             chainDropdown.options.Clear();
-            string[] enumChains = Enum.GetNames(typeof(Users_Details.Chains));
+            string[] enumChains = Enum.GetNames(typeof(GetUsers.Chains));
             List<string> chainNames = new List<string>(enumChains);
             chainDropdown.AddOptions(chainNames);
         }

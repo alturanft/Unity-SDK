@@ -5,13 +5,13 @@ namespace AlturaNFT.Editor
     using UnityEditor;
     using Internal;
 
-    [CustomEditor(typeof(User_Details))]
-    public class User_Details_Editor : Editor
+    [CustomEditor(typeof(GetUsers))]
+    public class GetUsers_Editor : Editor
     {
         public override void OnInspectorGUI()
         {
             
-            User_Details myScript = (User_Details)target;
+            GetUsers myScript = (GetUsers)target;
             
             
             Texture banner = Resources.Load<Texture>("c_nftdata_details");
@@ -26,7 +26,7 @@ namespace AlturaNFT.Editor
             }
 
             if(GUILayout.Button("View Documentation", GUILayout.Height(25)))
-                Application.OpenURL(AlturaConstants.Docs_UserDetails);
+                Application.OpenURL(AlturaConstants.Docs_GetUsers);
             DrawDefaultInspector();
         }
     }

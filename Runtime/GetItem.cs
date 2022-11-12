@@ -8,38 +8,32 @@ namespace AlturaNFT
 { using Internal;
     
     /// <summary>
-    /// Get NFT Transactions of an account
+    /// Get an Item
     /// </summary>
-    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_Txn_Account)]
+    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_GetItem)]
     [ExecuteAlways]
-    [HelpURL(AlturaConstants.Docs_Txns_Account)]
-     public class Txn_Account : MonoBehaviour
+    [HelpURL(AlturaConstants.Docs_NFTDetails)]
+    public class GetItem : MonoBehaviour
     {
 
         #region Parameter Defines
-              
+  
             [SerializeField]
-            private string _perPage = "Input How much pqges you want to get";
+            private string _collection_address = "Input Collection Address of the Item";
+            
             [SerializeField]
-            private string _page = "Input Which page you want to get";
-            [SerializeField]
-            private string _sortBy = "Input Sort By = name";
-            [SerializeField]
-            private string _sortDir = "Input Asc or Desc";
+            [Tooltip("Token ID of the Item")]
+            private int _token_id = 1;
+            
 
-            [Header("Optional: Filter and fetch items with specified property")]
-
-            [SerializeField]
-            [Tooltip("Filter from a documents by any properties")]
-            string _isVerified;
-            private string RequestUriInit = "https://api.alturanft.com/api/v2/collection";
+            private string RequestUriInit = "https://api.alturanft.com/api/v2/item/";
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
 
 
             private UnityAction<string> OnErrorAction;
-            private UnityAction<Collection_model> OnCompleteAction;
+            private UnityAction<Items_model> OnCompleteAction;
             
             [Space(20)]
             //[Header("Called After Successful API call")]
@@ -53,8 +47,7 @@ namespace AlturaNFT
             public bool debugLogRawApiResponse = true;
             
             [Header("Gets filled with data and can be referenced:")]
-            public Collection_model collectionModel;
-
+            public Items_model item;
 
         #endregion
 
@@ -81,9 +74,9 @@ namespace AlturaNFT
         /// Initialize creates a gameobject and assings this script as a component. This must be called if you are not refrencing the script any other way and it doesn't already exists in the scene.
         /// </summary>
         /// <param name="destroyAtEnd"> Optional bool parameter can set to false to avoid Spawned GameObject being destroyed after the Api process is complete. </param>
-        public static Txn_Account Initialize(bool destroyAtEnd = true)
+        public static GetItem Initialize(bool destroyAtEnd = true)
             {
-                var _this = new GameObject(AlturaConstants.FeatureName_Txn_Account).AddComponent<Txn_Account>();
+                var _this = new GameObject(AlturaConstants.FeatureName_GetItem).AddComponent<GetItem>();
                 _this.destroyAtEnd = destroyAtEnd;
                 _this.onEnable = false;
                 _this.debugErrorLog = false;
@@ -91,51 +84,33 @@ namespace AlturaNFT
             }
 
         /// <summary>
-        /// Set Parameters to retrieve User From .
+        /// Set Parameters to retrieve Item Details
         /// </summary>
-        /// <param name="perPage"> amount of pages to query</param>
-        /// <param name="page"> page to query</param>
-        /// <param name="sortBy"> sort by field</param>
-        /// <param name="sortDir"> sort direction</param>
-        public Txn_Account SetParameters(string perPage = "20", string page = "1", string sortBy = "name", string sortDir = "asc")
+        /// <param name="collection_address"> as string - EVM</param>
+        /// <param name="token_id"> as int - EVM.</param>
+        public GetItem SetParameters(string collection_address = null, int token_id = -1)
             {
+                if(collection_address!=null)
+                    this._collection_address = collection_address;
+                if (token_id != -1)
+                    _token_id = token_id;
 
-                if(perPage!=null)
-                    this._perPage = perPage;
-                if(page!=null)
-                    this._page = page;
-                if(sortBy!=null)
-                    this._sortBy = sortBy;
-                if(sortDir!=null)
-                    this._sortDir = sortDir;
-     
 
                 return this;
             }
 
-            /// <summary>
-            /// Set Filter by to return NFTs only from the given contract address/collection. 
-            /// </summary>
-            ///<param name="name"> as string.</param>
-            public Txn_Account AlturaOptions(string isVerified)
-            {
-                this._isVerified = isVerified;
-                return this;
-            }
-
-
-            public Txn_Account OnComplete(UnityAction<Collection_model> action)
+            public GetItem OnComplete(UnityAction<Items_model> action)
             {
                 this.OnCompleteAction = action;
                 return this;
             }
             
             /// <summary>
-            /// Action on Error
+            /// Action on Error (⊙.◎)
             /// </summary>
             /// <param name="UnityAction action"> string.</param>
             /// <returns> Information on Error as string text.</returns>
-            public Txn_Account OnError(UnityAction<string> action)
+            public GetItem OnError(UnityAction<string> action)
             {
                 this.OnErrorAction = action;
                 return this;
@@ -148,21 +123,20 @@ namespace AlturaNFT
             /// <summary>
             /// Runs the Api call and fills the corresponding model in the component on success.
             /// </summary>
-            public Collection_model Run()
+            public Items_model Run()
             {
                 WEB_URL = BuildUrl();
                 StopAllCoroutines();
                 StartCoroutine(CallAPIProcess());
-                return collectionModel;
+                return item;
             }
 
             string BuildUrl()
             {
 
-                    WEB_URL = RequestUriInit + "?perPage=" + _perPage + "&page=" + _page + "&sortBy=" + _sortBy + "&sortDir=" + _sortDir + "&isVerified=" + _isVerified;
+                    WEB_URL = RequestUriInit + _collection_address + "/" + _token_id.ToString();
                     if(debugErrorLog)
-                        Debug.Log("Querying Details of User: " );
-
+                        Debug.Log("Querying Single Item by address and tokenId: " + _collection_address + " on " );
                 return WEB_URL;
             }
             
@@ -184,18 +158,19 @@ namespace AlturaNFT
 
                     if (request.error != null)
                     {
+                        item = null;
                         if(OnErrorAction!=null)
                             OnErrorAction($"Null data. Response code: {request.responseCode}. Result {jsonResult}");
                         if(debugErrorLog)
-                            Debug.Log($"Null data. Response code: {request.responseCode}. Result {jsonResult}");
+                            Debug.Log($" Null data. Response code: {request.responseCode}. Result {jsonResult}");
                         if(afterError!=null)
                             afterError.Invoke();
-                        collectionModel = null;
                         //yield break;
                     }
                     else
                     {
-                        collectionModel = JsonConvert.DeserializeObject<Collection_model>(
+                        //Fill Data Model from recieved class
+                        item = JsonConvert.DeserializeObject<Items_model>(
                             jsonResult,
                             new JsonSerializerSettings
                             {
@@ -204,12 +179,13 @@ namespace AlturaNFT
                             });
                         
                         if(OnCompleteAction!=null)
-                            OnCompleteAction.Invoke(collectionModel);
+                            OnCompleteAction.Invoke(item);
                         
                         if(afterSuccess!=null)
                             afterSuccess.Invoke();
                         
-                            Debug.Log($"Get Many Collection Models" );
+                        if(debugErrorLog)
+                            Debug.Log("Success , view Item under Item model" );
                     }
                 }
                 request.Dispose();
