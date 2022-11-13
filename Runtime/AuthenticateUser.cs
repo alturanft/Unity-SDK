@@ -80,7 +80,7 @@ namespace AlturaNFT
                 return _this;
             }
             
-            public AuthenticateUser SetParams(string wallet_address, string altura_gaurd)
+            public AuthenticateUser SetParameters(string wallet_address, string altura_gaurd)
             {
                 this.wallet_address = wallet_address;
                 this.altura_gaurd = altura_gaurd;
