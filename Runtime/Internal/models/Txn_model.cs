@@ -48,14 +48,14 @@ namespace AlturaNFT
     {
         public string address;
         public string tokenId;
-        public string property_name;
-        public string property_value;
+        public string propertyName;
+        public string propertyValue;
     }
 
     [Serializable]
     public class UpdatePrimaryImageReq
     {
-        public string collectionAddress;
+        public string address;
         public string tokenId;
         public string imageIndex;
     }

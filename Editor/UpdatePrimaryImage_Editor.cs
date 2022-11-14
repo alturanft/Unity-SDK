@@ -19,7 +19,7 @@ namespace AlturaNFT.Editor
             GUILayout.Box(banner);
             GUILayout.EndHorizontal();
 
-            if (GUILayout.Button("GET User Details", GUILayout.Height(45)))
+            if (GUILayout.Button("Update Primary Image", GUILayout.Height(45)))
             {
                 AlturaUser.SetFromEditorWin();
                 myScript.Run();

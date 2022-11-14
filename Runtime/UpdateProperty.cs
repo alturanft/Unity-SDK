@@ -27,9 +27,9 @@ namespace AlturaNFT
             [SerializeField]
             private string _tokenId;
             [SerializeField]
-            private string _property_name = "The name (key) of the property you want to change";
+            private string _propertyName = "The name (key) of the property you want to change";
             [SerializeField]
-            private string _property_value = "The new value you want to set the property to";
+            private string _propertyValue = "The new value you want to set the property to";
 
 
             private string WEB_URL;
@@ -89,16 +89,16 @@ namespace AlturaNFT
                 return _this;
             }
 
-        public UpdateProperty SetParameters(string address, string tokenId, string property_name, string property_value)
+        public UpdateProperty SetParameters(string address, string tokenId, string propertyName, string propertyValue)
             {
                 if(address!=null) 
                     this._address = address;
                 if(tokenId!=null)
                     this._tokenId = tokenId;
-                if(property_name!=null)
-                    this._property_name = property_name;
-                if(property_value!=null)
-                    this._property_value = property_value;
+                if(propertyName!=null)
+                    this._propertyName = propertyName;
+                if(propertyValue!=null)
+                    this._propertyValue = propertyValue;
 
                 return this;
             }
@@ -127,8 +127,8 @@ namespace AlturaNFT
                 UpdatePropertyReq tx = new UpdatePropertyReq();
                 tx.address = _address;
                 tx.tokenId = _tokenId;
-                tx.property_name = _property_name;
-                tx.property_value = _property_value;
+                tx.propertyName = _propertyName;
+                tx.propertyValue = _propertyValue;
                 var  jsonString = JsonUtility.ToJson(tx);
 
                 StartCoroutine(Post("https://api.alturanft.com/api/v2/item/update_property?apiKey=" + apiKey, jsonString));

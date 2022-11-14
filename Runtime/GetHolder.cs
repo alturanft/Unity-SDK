@@ -26,7 +26,7 @@ namespace AlturaNFT
             private int _token_id = 1;
             
 
-            private string RequestUriInit = "https://api.alturanft.com/api/v2/Holders_model/";
+            private string RequestUriInit = "https://api.alturanft.com/api/v2/item/holders";
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;

@@ -24,7 +24,7 @@ namespace AlturaNFT
 
   
             [SerializeField]
-            private string _collection_address;
+            private string _address;
             [SerializeField]
             private string _token_id = "Token Id";
             [SerializeField]
@@ -89,12 +89,12 @@ namespace AlturaNFT
                 return _this;
             }
 
-        public UpdatePrimaryImage SetParameters(string collection_addr, string token_id, string imageIdex)
+        public UpdatePrimaryImage SetParameters(string address, string token_id, string imageIdex)
 
             {
 
-                if(collection_addr!=null)
-                    this._collection_address = collection_addr;
+                if(address!=null)
+                    this._address = address;
                 if(token_id!=null)
                     this._token_id = token_id;
                 if(imageIdex!=null)
@@ -126,12 +126,12 @@ namespace AlturaNFT
             {
                 StopAllCoroutines();
                 UpdatePrimaryImageReq tx = new UpdatePrimaryImageReq();
-                tx.collectionAddress = _collection_address;
+                tx.address = _address;
                 tx.tokenId = _token_id;
                 tx.imageIndex = _image_index;
                 var  jsonString = JsonUtility.ToJson(tx);
 
-                StartCoroutine(Post("https://api.alturanft.com/api/v2/item_update_primary_image?apiKey=" + apiKey, jsonString));
+                StartCoroutine(Post("https://api.alturanft.com/api/v2/item/update_primary_image?apiKey=" + apiKey, jsonString));
 
                 return txHash;
             }

@@ -26,7 +26,7 @@ namespace AlturaNFT
             private int _token_id = 1;
             
 
-            private string RequestUriInit = "https://api.alturanft.com/api/v2/History_model/";
+            private string RequestUriInit = "https://api.alturanft.com/api/v2/item/events";
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
