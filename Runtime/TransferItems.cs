@@ -153,6 +153,8 @@ namespace AlturaNFT
         request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("Authorization", AlturaUser.GetUserApiKey());
+
         yield return request.SendWebRequest();
         {
             string jsonResult = System.Text.Encoding.UTF8.GetString(request.downloadHandler.data);
