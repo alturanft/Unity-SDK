@@ -20,7 +20,9 @@ namespace AlturaNFT
     {
 
         #region Parameter Defines
-  
+            [SerializeField]
+            private string _apiKey;
+
             [SerializeField]
             private string _image;
             [SerializeField]
@@ -89,9 +91,10 @@ namespace AlturaNFT
                 return _this;
             }
 
-        public UpdateCollection SetParameters( string image, string image_url, string description, string website, string genre)
+        public UpdateCollection SetParameters(string apiKey, string image, string image_url, string description, string website, string genre)
             {
-
+                if(apiKey != null) 
+                    this._apiKey = apiKey;
                 if(image!=null)
                     this._image = image;
                 if(image_url!=null)
@@ -134,7 +137,7 @@ namespace AlturaNFT
                 tx.genre = _genre;
                 var  jsonString = JsonUtility.ToJson(tx);
 
-                StartCoroutine(Post("https://api.alturanft.com/api/v2/collection/update", jsonString));
+                StartCoroutine(Post("https://api.alturanft.com/api/v2/collection/update?apiKey=" + _apiKey, jsonString));
                 return txHash;
             }
 
@@ -180,7 +183,7 @@ namespace AlturaNFT
                         if(afterSuccess!=null)
                             afterSuccess.Invoke();
                         
-                            Debug.Log($" view User under User model" );
+                            Debug.Log($" view Updated Collections" );
                                 }
 
                                 

@@ -21,6 +21,8 @@ namespace AlturaNFT
 
         #region Parameter Defines
             [SerializeField]
+            private string _apiKey;
+            [SerializeField]
             private string _property_name = "The name (key) of the property you want to change";
             [SerializeField]
             private string _property_value = "The new value you want to set the property to";
@@ -82,9 +84,10 @@ namespace AlturaNFT
                 return _this;
             }
 
-        public UpdateProperty SetParameters( string property_name, string property_value)
+        public UpdateProperty SetParameters(string apiKey, string property_name, string property_value)
             {
-
+                if(apiKey != null) 
+                    this._apiKey = apiKey;
                 if(property_name!=null)
                     this._property_name = property_name;
                 if(property_value!=null)
@@ -165,7 +168,7 @@ namespace AlturaNFT
                         if(afterSuccess!=null)
                             afterSuccess.Invoke();
                         
-                            Debug.Log($" view User under User model" );
+                            Debug.Log($" view Update Property" );
                                 }
 
                                 

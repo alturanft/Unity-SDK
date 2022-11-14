@@ -17,8 +17,9 @@ namespace AlturaNFT
     public class MintAdditionalNFT : MonoBehaviour
     {
         #region Parameter Defines
-
-       
+            [SerializeField]
+            private string _apiKey;
+            
             [SerializeField]
             private string chainId;
   
@@ -88,9 +89,10 @@ namespace AlturaNFT
                 return _this;
             }
 
-        public MintAdditionalNFT SetParameters( string collection_addr, string token_id, string amount, string to_addr)
+        public MintAdditionalNFT SetParameters(string apiKey, string collection_addr, string token_id, string amount, string to_addr)
             {
-
+                if(apiKey != null) 
+                    this._apiKey = apiKey;
                 if(collection_addr!=null)
                     this.address = collection_addr;
                 if(token_id!=null)
@@ -133,7 +135,7 @@ namespace AlturaNFT
                 tx.to = _to_addr;
                 var  jsonString = JsonUtility.ToJson(tx);
 
-                StartCoroutine(Post("https://api.alturanft.com/api/v2/item/transfer", jsonString));
+                StartCoroutine(Post("https://api.alturanft.com/api/v2/item/mint?apiKey=" + _apiKey, jsonString));
                 return txHash;
             }
 
@@ -179,7 +181,7 @@ namespace AlturaNFT
                         if(afterSuccess!=null)
                             afterSuccess.Invoke();
                         
-                            Debug.Log($" view User under User model" );
+                            Debug.Log($" view Tx Hash for Minting" );
                                 }
 
                                 

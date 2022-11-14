@@ -21,6 +21,8 @@ namespace AlturaNFT
 
         #region Parameter Defines
             [SerializeField]
+            private string _apiKey;
+            [SerializeField]
             private string chainId;
   
             [SerializeField]
@@ -88,9 +90,10 @@ namespace AlturaNFT
                 return _this;
             }
 
-        public UpdatePrimaryImage SetParameters( string collection_addr, string token_id, string imageIdex)
+        public UpdatePrimaryImage SetParameters(string apiKey, string collection_addr, string token_id, string imageIdex)
             {
-
+                if(apiKey != null) 
+                    this._apiKey = apiKey;
                 if(collection_addr!=null)
                     this._collection_address = collection_addr;
                 if(token_id!=null)
@@ -129,7 +132,7 @@ namespace AlturaNFT
                 tx.imageIndex = _image_index;
                 var  jsonString = JsonUtility.ToJson(tx);
 
-                StartCoroutine(Post("https://api.alturanft.com/api/v2/item_update_primary_image", jsonString));
+                StartCoroutine(Post("https://api.alturanft.com/api/v2/item_update_primary_image?apiKey=" + _apiKey, jsonString));
                 return txHash;
             }
 
@@ -175,7 +178,7 @@ namespace AlturaNFT
                         if(afterSuccess!=null)
                             afterSuccess.Invoke();
                         
-                            Debug.Log($" view User under User model" );
+                            Debug.Log($" view Updated Primary Image" );
                                 }
 
                                 

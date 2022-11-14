@@ -17,9 +17,13 @@ namespace AlturaNFT
     [ExecuteAlways]
     [HelpURL(AlturaConstants.Docs_Transfer)]
     public class TransferItem : MonoBehaviour
-    {
+    {      
 
         #region Parameter Defines
+
+            [SerializeField]
+            private string _apiKey;
+
             [SerializeField]
             private string chainId;
   
@@ -61,7 +65,7 @@ namespace AlturaNFT
         private void Awake()
         {
             AlturaUser.Initialise();
-           // _apiKey = AlturaUser.GetUserApiKey();
+            //apiKey = AlturaUser.GetUserApiKey();
             
         }
 
@@ -89,9 +93,12 @@ namespace AlturaNFT
                 return _this;
             }
 
-        public TransferItem SetParameters( string collection_addr, string token_id, string amount, string to_addr)
+        public TransferItem SetParameters(
+            string apiKey, 
+            string collection_addr, string token_id, string amount, string to_addr)
             {
-
+                if(apiKey != null) 
+                    this._apiKey = apiKey;
                 if(collection_addr!=null)
                     this.address = collection_addr;
                 if(token_id!=null)
@@ -134,7 +141,7 @@ namespace AlturaNFT
                 tx.to = _to_addr;
                 var  jsonString = JsonUtility.ToJson(tx);
 
-                StartCoroutine(Post("https://api.alturanft.com/api/v2/item/transfer", jsonString));
+                StartCoroutine(Post("https://api.alturanft.com/api/v2/item/transfer?apiKey=" + _apiKey, jsonString));
                 return txHash;
             }
 
@@ -145,7 +152,7 @@ namespace AlturaNFT
         request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
-        request.SetRequestHeader("Authorization", AlturaUser.GetUserApiKey());
+       // request.SetRequestHeader("ALTURA_API_KEY", apiKey);
         yield return request.SendWebRequest();
         {
             string jsonResult = System.Text.Encoding.UTF8.GetString(request.downloadHandler.data);
@@ -179,7 +186,7 @@ namespace AlturaNFT
                         if(afterSuccess!=null)
                             afterSuccess.Invoke();
                         
-                            Debug.Log($" view User under User model" );
+                            Debug.Log($" view Tx Hash" );
                                 }
 
                                 
