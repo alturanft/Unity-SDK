@@ -122,7 +122,7 @@ namespace AlturaNFT
                 tx.property_value = _property_value;
                 var  jsonString = JsonUtility.ToJson(tx);
 
-                StartCoroutine(Post("https://api.alturanft.com/api/v2/item/update_property", jsonString));
+                StartCoroutine(Post("https://api.alturanft.com/api/v2/item/update_property?apiKey=" + _apiKey, jsonString));
                 return txHash;
             }
 
