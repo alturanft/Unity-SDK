@@ -92,7 +92,7 @@ namespace AlturaNFT
             }
 
         public UpdateCollection SetParameters(string image, string image_url, string description, string website, string genre)
-
+        {
                 if(image!=null)
                     this._image = image;
                 if(image_url!=null)
@@ -185,7 +185,7 @@ namespace AlturaNFT
                             Debug.Log($" view Updated Collections" );
 
                                 }
-
+        
                                 
 
             
@@ -196,7 +196,5 @@ namespace AlturaNFT
     }   
         #endregion
     }
-
 }
-
 
