@@ -63,6 +63,7 @@ namespace AlturaNFT
     [Serializable]
     public class UpdateCollectionReq
     {
+        public string address;
         public string image;
         public string image_url;
         public string description;

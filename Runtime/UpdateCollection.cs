@@ -23,6 +23,10 @@ namespace AlturaNFT
         #region Parameter Defines
 
             [SerializeField]
+            private string _address;
+
+
+            [SerializeField]
             private string _image;
             [SerializeField]
             private string _image_url = "Input image URL";
@@ -91,8 +95,10 @@ namespace AlturaNFT
                 return _this;
             }
 
-        public UpdateCollection SetParameters(string image, string image_url, string description, string website, string genre)
+        public UpdateCollection SetParameters(string address, string image, string image_url, string description, string website, string genre)
         {
+                if(address != null) 
+                    this._address = address;
                 if(image!=null)
                     this._image = image;
                 if(image_url!=null)
@@ -128,6 +134,7 @@ namespace AlturaNFT
             {
                 StopAllCoroutines();
                 UpdateCollectionReq tx = new UpdateCollectionReq();
+                tx.address = _address;
                 tx.image = _image;
                 tx.image_url = _image_url;
                 tx.description = _description;
