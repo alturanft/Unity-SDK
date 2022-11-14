@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AlturaNFT
 {
-        [Serializable]
+    [Serializable]
     public class Auth_model
     {
         public string authenticated;
@@ -31,18 +31,42 @@ namespace AlturaNFT
         public string amounts;
     }
 
-        [Serializable]
+    [Serializable]
     public class Transfer_model
     {
         public string txHash;
     }
 
-        [Serializable]
+    [Serializable]
     public class Transfers_model
     {
         public List<Transfer_model> txHashes;
     }
 
+    [Serializable]
+    public class UpdatePropertyReq
+    {
+        public string property_name;
+        public string property_value;
+    }
+
+    [Serializable]
+    public class UpdatePrimaryImageReq
+    {
+        public string collectionAddress;
+        public string tokenId;
+        public string imageIndex;
+    }
+
+    [Serializable]
+    public class UpdateCollectionReq
+    {
+        public string image;
+        public string image_url;
+        public string description;
+        public string website;
+        public string genre;
+    }
 
     [Serializable]
     public class Collection_model

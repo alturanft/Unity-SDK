@@ -58,6 +58,20 @@ namespace AlturaNFT.Editor
         {
             Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_GetCollections).AddComponent<GetCollections>().gameObject;
         }
+
+        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_GetHolder)]
+        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_GetHolder)]
+        static void Spawn_GetHolder()
+        {
+            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_GetHolder).AddComponent<GetHolder>().gameObject;
+        }
+
+        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_GetHistory)]
+        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_GetHistory)]
+        static void Spawn_GetHistory()
+        {
+            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_GetHistory).AddComponent<GetHistory>().gameObject;
+        }
         
         [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_Txn_NFT)]
         [MenuItem(GameObjMenu + AlturaConstants.FeatureName_Txn_NFT)]
@@ -92,6 +106,27 @@ namespace AlturaNFT.Editor
         static void Spawn_MintAdditionalNFT()
         {
             Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_MintAdditionalNFT).AddComponent<MintAdditionalNFT>().gameObject;
+        }
+
+        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_UpdateCollection)]
+        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_UpdateCollection)]
+        static void Spawn_UpdateCollection()
+        {
+            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_UpdateCollection).AddComponent<UpdateCollection>().gameObject;
+        }
+
+        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_UpdatePrimaryImage)]
+        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_UpdatePrimaryImage)]
+        static void Spawn_UpdatePrimaryImage()
+        {
+            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_UpdatePrimaryImage).AddComponent<UpdatePrimaryImage>().gameObject;
+        }
+
+        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_UpdateProperty)]
+        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_UpdateProperty)]
+        static void Spawn_UpdateProperty()
+        {
+            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_UpdateProperty).AddComponent<UpdateProperty>().gameObject;
         }
     }
 

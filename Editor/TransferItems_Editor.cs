@@ -14,7 +14,7 @@ namespace AlturaNFT.Editor
         {
             myScript = (TransferItems)target;
             
-            Texture banner = Resources.Load<Texture>("c_nftdata_details");
+            Texture banner = Resources.Load<Texture>("AlturaFrame");
             GUILayout.Box(banner);
             
             if (GUILayout.Button("Transfer Items", GUILayout.Height(45)))

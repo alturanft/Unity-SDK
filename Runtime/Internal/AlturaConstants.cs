@@ -27,6 +27,12 @@ namespace AlturaNFT.Internal
         public const string Docs_GetCollections = "https://docs.v2.alturanft.com/api-reference/users";
         public const string Docs_Txns_NFT = "https://docs.v2.alturanft.com/api-reference/items";
         public const string Docs_GetCollection = "https://docs.v2.alturanft.com/api-reference/items";
+        public const string Docs_GetHolder = "https://docs.v2.alturanft.com/api-reference/items";
+        public const string Docs_GetHistory = "https://docs.v2.alturanft.com/api-reference/items";
+        public const string Docs_UpdateCollection = "https://docs.v2.alturanft.com/api-reference/items";
+        public const string Docs_UpdateProperty = "https://docs.v2.alturanft.com/api-reference/items";
+        public const string Docs_UpdatePrimaryImage = "https://docs.v2.alturanft.com/api-reference/items";
+
 
 
         public const string DiscordInvite = "https://discord.gg/rGYZ4mb8";
@@ -41,7 +47,7 @@ namespace AlturaNFT.Internal
         public const string BaseComponentMenu = "AlturaNFT/";
         public const string BaseFeatureSpawnerMenu = "AlturaNFT/API/";
         public const string FeatureName_AuthenticateUser = "Verify Auth Code | Verify";
-        public const string FeatureName_ConnectUserWallet = "Connect Player Wallet";
+        public const string FeatureName_ConnectUserWallet = " Connect Player Wallet";
         public const string FeatureName_GetUser = "Get User | GetUser";
 
         public const string FeatureName_GetUsers = "Get Many Users | GetUsers";
@@ -53,10 +59,11 @@ namespace AlturaNFT.Internal
         public const string FeatureName_Transfer = "Transfer | TransferItem";
         public const string FeatureName_TransferItems = "Transfers | TransferItems";
         public const string FeatureName_MintAdditionalNFT = "Mint | MintAdditionalNFT";
-        public const string FeatureName_Mint_Custom = "Mint | Customizable minting";
-        public const string FeatureName_Mint_URL = "Mint | Easy mint using URL";
-        public const string FeatureName_Mint_File = "Mint | Easy mint using File Upload";
-        public const string FeatureName_Deploy = "Deploy Contract";
 
+        public const string FeatureName_GetHolder = "Get Holder | Get Holder";
+        public const string FeatureName_GetHistory = "History | Get History";
+        public const string FeatureName_UpdateCollection = "Update Collection | Update Collection";
+        public const string FeatureName_UpdateProperty = "Update Property | Update Property";
+        public const string FeatureName_UpdatePrimaryImage = "Update Primary Image | Update Primary Image";
     }
 }

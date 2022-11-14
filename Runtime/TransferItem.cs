@@ -134,7 +134,7 @@ namespace AlturaNFT
                 tx.to = _to_addr;
                 var  jsonString = JsonUtility.ToJson(tx);
 
-                StartCoroutine(Post("https://api.alturanft.com/api/v2/item/transfer?apiKey=JFBZD43-V1R4CZ2-PP4MF9D-7AGG7W2", jsonString));
+                StartCoroutine(Post("https://api.alturanft.com/api/v2/item/transfer", jsonString));
                 return txHash;
             }
 
@@ -145,6 +145,7 @@ namespace AlturaNFT
         request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("Authorization", AlturaUser.GetUserApiKey());
         yield return request.SendWebRequest();
         {
             string jsonResult = System.Text.Encoding.UTF8.GetString(request.downloadHandler.data);
