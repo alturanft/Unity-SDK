@@ -321,7 +321,6 @@ namespace AlturaNFT.Editor
             {
                 _userPrefs = JsonConvert.DeserializeObject<AlturaUser.UserPrefs>(targetFile.text);
                 myAPIString = _userPrefs.API_KEY;
-                AlturaUser.SetVersion(PkgInfo.GetInstalledPackageVer());
                 AlturaUser.SaveNewApi(myAPIString);
                 AlturaUser.Initialise();
                 UserStats();
@@ -337,7 +336,6 @@ namespace AlturaNFT.Editor
         }
         void WriteToUserPrefs()
         {
-            AlturaUser.SetVersion(PkgInfo.GetInstalledPackageVer());
             AlturaUser.SaveNewApi(myAPIString);
             base.SaveChanges();
         }

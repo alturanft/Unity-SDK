@@ -80,9 +80,9 @@ namespace AlturaNFT
     [Serializable] 
     public class Collection
     {
-        public int holders;
-        public int volume_1d;
-        public int volume_1w;
+        public string holders;
+        public string volume_1d;
+        public string volume_1w;
         public string volume_30d;
         public string volume_all;
         public int chainId;

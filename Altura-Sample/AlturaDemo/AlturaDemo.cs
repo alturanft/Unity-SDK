@@ -26,31 +26,11 @@ namespace AlturaNFT.Samples.AlturaDemo{
                 .Run();
         }
 
-        #region Chain Dropdown Address
 
-        GetUsers.Chains GetChainFromDropDownSelection()
-        {
-            if (chainDropdown.value == 0)
-                return GetUsers.Chains.ethereum;
-            else if(chainDropdown.value == 1)
-                return GetUsers.Chains.bsctest;
-            else 
-                return GetUsers.Chains.binance;
-        }
 
-        void PopulateChainDropDownList()
-        {
-            chainDropdown.options.Clear();
-            string[] enumChains = Enum.GetNames(typeof(GetUsers.Chains));
-            List<string> chainNames = new List<string>(enumChains);
-            chainDropdown.AddOptions(chainNames);
-        }
-
-        #endregion
 
         private void Start()
         {
-            PopulateChainDropDownList();
         }
     }
 

@@ -19,9 +19,9 @@ namespace AlturaNFT
     public class UpdatePrimaryImage : MonoBehaviour
     {
 
+        private string apiKey;
         #region Parameter Defines
-            [SerializeField]
-            private string chainId;
+
   
             [SerializeField]
             private string _collection_address;
@@ -60,7 +60,8 @@ namespace AlturaNFT
         private void Awake()
         {
             AlturaUser.Initialise();
-           // _apiKey = AlturaUser.GetUserApiKey();
+            apiKey = AlturaUser.GetUserApiKey();
+
             
         }
 
@@ -88,7 +89,8 @@ namespace AlturaNFT
                 return _this;
             }
 
-        public UpdatePrimaryImage SetParameters( string collection_addr, string token_id, string imageIdex)
+        public UpdatePrimaryImage SetParameters(string collection_addr, string token_id, string imageIdex)
+
             {
 
                 if(collection_addr!=null)
@@ -129,7 +131,8 @@ namespace AlturaNFT
                 tx.imageIndex = _image_index;
                 var  jsonString = JsonUtility.ToJson(tx);
 
-                StartCoroutine(Post("https://api.alturanft.com/api/v2/item_update_primary_image", jsonString));
+                StartCoroutine(Post("https://api.alturanft.com/api/v2/item_update_primary_image?apiKey=" + apiKey, jsonString));
+
                 return txHash;
             }
 
@@ -140,7 +143,7 @@ namespace AlturaNFT
         request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
-        request.SetRequestHeader("Authorization", AlturaUser.GetUserApiKey());
+
 
         yield return request.SendWebRequest();
         {
@@ -175,7 +178,8 @@ namespace AlturaNFT
                         if(afterSuccess!=null)
                             afterSuccess.Invoke();
                         
-                            Debug.Log($" view User under User model" );
+                            Debug.Log($" view Updated Primary Image" );
+
                                 }
 
                                 
