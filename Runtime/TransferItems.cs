@@ -132,6 +132,7 @@ namespace AlturaNFT
                 var  jsonString = JsonUtility.ToJson(tx);
 
                 StartCoroutine(Post("https://api.alturanft.com/api/v2/item/transfer?apiKey=" + apiKey, jsonString));
+
                 return txHash;
             }
 
@@ -142,6 +143,7 @@ namespace AlturaNFT
         request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
+
 
         yield return request.SendWebRequest();
         {

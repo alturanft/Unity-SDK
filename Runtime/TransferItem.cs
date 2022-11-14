@@ -92,11 +92,8 @@ namespace AlturaNFT
             }
 
         public TransferItem SetParameters(
-           // string apiKey, 
             string collection_addr, string token_id, string amount, string to_addr)
             {
-             //   if(apiKey != null) 
-               //     this._apiKey = apiKey;
                 if(collection_addr!=null)
                     this.address = collection_addr;
                 if(token_id!=null)
@@ -139,7 +136,7 @@ namespace AlturaNFT
                 tx.to = _to_addr;
                 var  jsonString = JsonUtility.ToJson(tx);
                 StartCoroutine(Post("https://api.alturanft.com/api/v2/item/transfer?apiKey=" + apiKey, jsonString));
-                
+
                 return txHash;
             }
 

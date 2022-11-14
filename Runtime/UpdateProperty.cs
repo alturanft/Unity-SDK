@@ -20,6 +20,7 @@ namespace AlturaNFT
     {
 
         private string apiKey;
+
         #region Parameter Defines
             [SerializeField]
             private string _property_name = "The name (key) of the property you want to change";
@@ -56,6 +57,7 @@ namespace AlturaNFT
         {
             AlturaUser.Initialise();
             apiKey = AlturaUser.GetUserApiKey();
+
             
         }
 
@@ -85,6 +87,7 @@ namespace AlturaNFT
 
         public UpdateProperty SetParameters(string property_name, string property_value)
             {
+
                 if(property_name!=null)
                     this._property_name = property_name;
                 if(property_value!=null)
@@ -120,6 +123,7 @@ namespace AlturaNFT
                 var  jsonString = JsonUtility.ToJson(tx);
 
                 StartCoroutine(Post("https://api.alturanft.com/api/v2/item/update_property?apiKey=" + apiKey, jsonString));
+
                 return txHash;
             }
 
@@ -130,6 +134,7 @@ namespace AlturaNFT
         request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
+
 
         yield return request.SendWebRequest();
         {
@@ -165,6 +170,7 @@ namespace AlturaNFT
                             afterSuccess.Invoke();
                         
                             Debug.Log($" view Update Property" );
+
                                 }
 
                                 

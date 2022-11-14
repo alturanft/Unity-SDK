@@ -63,6 +63,7 @@ namespace AlturaNFT
         {
             AlturaUser.Initialise();
             apiKey = AlturaUser.GetUserApiKey();
+
             
         }
 
@@ -91,7 +92,7 @@ namespace AlturaNFT
             }
 
         public UpdateCollection SetParameters(string image, string image_url, string description, string website, string genre)
-            {
+
                 if(image!=null)
                     this._image = image;
                 if(image_url!=null)
@@ -135,6 +136,7 @@ namespace AlturaNFT
                 var  jsonString = JsonUtility.ToJson(tx);
 
                 StartCoroutine(Post("https://api.alturanft.com/api/v2/collection/update?apiKey=" + apiKey, jsonString));
+
                 return txHash;
             }
 
@@ -145,6 +147,7 @@ namespace AlturaNFT
         request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
+
 
         yield return request.SendWebRequest();
         {
@@ -180,6 +183,7 @@ namespace AlturaNFT
                             afterSuccess.Invoke();
                         
                             Debug.Log($" view Updated Collections" );
+
                                 }
 
                                 
