@@ -143,7 +143,6 @@ namespace AlturaNFT
             request.SetRequestHeader("source",  AlturaUser.GetSource());
             request.SetRequestHeader("Authorization", _apiKey);
 
-            
             //Make request
             if(OnRequestStarted!=null)
                 OnRequestStarted.Invoke();

@@ -146,8 +146,6 @@ namespace AlturaNFT
                 //Make request
                 UnityWebRequest request = UnityWebRequest.Get(WEB_URL);
                 request.SetRequestHeader("Content-Type", "application/json");
-                request.SetRequestHeader("Authorization", _apiKey);
-                request.SetRequestHeader("source", AlturaUser.GetSource());
 
                 {
                     yield return request.SendWebRequest();

@@ -46,6 +46,8 @@ namespace AlturaNFT
     [Serializable]
     public class UpdatePropertyReq
     {
+        public string address;
+        public string tokenId;
         public string property_name;
         public string property_value;
     }
@@ -99,5 +101,31 @@ namespace AlturaNFT
         public string genre;
         public string mintDate;
     } 
+
+    [Serializable]
+    public class Events 
+    {
+        public string amount;
+        public string blockNumber;
+        public string chainId;
+        public string eventz;
+        public string from;
+        public string itemCollection;
+        public string itemRef;
+        public string timestamp;
+        public string to;
+        public string tokenId;
+        public string transactionHash;
+    }
+
+    [Serializable]
+    public class Holders 
+    {
+        public string address;
+        public string balance;
+        public string name;
+        public string profilePic;
+        public string profilePicUrl;
+    }
    
 }
