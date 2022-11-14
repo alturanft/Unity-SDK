@@ -23,6 +23,10 @@ namespace AlturaNFT
 
         #region Parameter Defines
             [SerializeField]
+            private string _address;
+            [SerializeField]
+            private string _tokenId;
+            [SerializeField]
             private string _property_name = "The name (key) of the property you want to change";
             [SerializeField]
             private string _property_value = "The new value you want to set the property to";
@@ -85,9 +89,12 @@ namespace AlturaNFT
                 return _this;
             }
 
-        public UpdateProperty SetParameters(string property_name, string property_value)
+        public UpdateProperty SetParameters(string address, string tokenId, string property_name, string property_value)
             {
-
+                if(address!=null) 
+                    this._address = address;
+                if(tokenId!=null)
+                    this._tokenId = tokenId;
                 if(property_name!=null)
                     this._property_name = property_name;
                 if(property_value!=null)
@@ -118,6 +125,8 @@ namespace AlturaNFT
             {
                 StopAllCoroutines();
                 UpdatePropertyReq tx = new UpdatePropertyReq();
+                tx.address = _address;
+                tx.tokenId = _tokenId;
                 tx.property_name = _property_name;
                 tx.property_value = _property_value;
                 var  jsonString = JsonUtility.ToJson(tx);

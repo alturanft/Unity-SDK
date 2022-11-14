@@ -33,7 +33,7 @@ namespace AlturaNFT
 
 
             private UnityAction<string> OnErrorAction;
-            private UnityAction<Items_model> OnCompleteAction;
+            private UnityAction<Events> OnCompleteAction;
             
             [Space(20)]
             //[Header("Called After Successful API call")]
@@ -47,7 +47,7 @@ namespace AlturaNFT
             public bool debugLogRawApiResponse = true;
             
             [Header("Gets filled with data and can be referenced:")]
-            public Items_model item;
+            public Events item;
 
         #endregion
 
@@ -99,7 +99,7 @@ namespace AlturaNFT
                 return this;
             }
 
-            public GetHistory OnComplete(UnityAction<Items_model> action)
+            public GetHistory OnComplete(UnityAction<Events> action)
             {
                 this.OnCompleteAction = action;
                 return this;
@@ -123,7 +123,7 @@ namespace AlturaNFT
             /// <summary>
             /// Runs the Api call and fills the corresponding model in the component on success.
             /// </summary>
-            public Items_model Run()
+            public Events Run()
             {
                 WEB_URL = BuildUrl();
                 StopAllCoroutines();
@@ -146,7 +146,6 @@ namespace AlturaNFT
                 UnityWebRequest request = UnityWebRequest.Get(WEB_URL);
                 request.SetRequestHeader("Content-Type", "application/json");
                 request.SetRequestHeader("source", AlturaUser.GetSource());
-                request.SetRequestHeader("Authorization", _apiKey);
                 
 
                 {
@@ -170,7 +169,7 @@ namespace AlturaNFT
                     else
                     {
                         //Fill Data Model from recieved class
-                        item = JsonConvert.DeserializeObject<Items_model>(
+                        item = JsonConvert.DeserializeObject<Events>(
                             jsonResult,
                             new JsonSerializerSettings
                             {
