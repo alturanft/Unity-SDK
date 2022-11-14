@@ -10,7 +10,6 @@ namespace AlturaNFT
 
     }
 
-
     [Serializable]
     public class TransferOneReq
     {
@@ -103,8 +102,9 @@ namespace AlturaNFT
     } 
 
     [Serializable]
-    public class Events 
+    public class History_Schema
     {
+    
         public string amount;
         public string blockNumber;
         public string chainId;

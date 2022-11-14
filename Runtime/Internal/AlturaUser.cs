@@ -172,16 +172,13 @@ namespace AlturaNFT.Internal
 
         public static string GetUserApiKey()
         {
-            Debug.Log("BEFORE AlturaNFT: User API Key: " + _userPrefs.API_KEY);
 
             if (_initialised)
             {
-                Debug.Log(" DURING AlturaNFT: User API Key: " + _userPrefs.API_KEY);
                 return _userPrefs.API_KEY;
             }
             else if(targetFile==null)
             {
-          Debug.Log(" AFTER AlturaNFT: User API Key: " + _userPrefs.API_KEY);
 
                 return String.Empty;
             }

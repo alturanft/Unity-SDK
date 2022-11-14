@@ -8,7 +8,7 @@ namespace AlturaNFT
 { using Internal;
     
     /// <summary>
-    /// Get all Items Events
+    /// Get all Items History_Schema
     /// </summary>
     [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_GetHistory)]
     [ExecuteAlways]
@@ -23,7 +23,7 @@ namespace AlturaNFT
             
             [SerializeField]
             [Tooltip("Token ID of the Item")]
-            private int _token_id = 1;
+            private int _token_id;
             
 
             private string RequestUriInit = "https://api.alturanft.com/api/v2/events/";
@@ -33,7 +33,7 @@ namespace AlturaNFT
 
 
             private UnityAction<string> OnErrorAction;
-            private UnityAction<Events> OnCompleteAction;
+            private UnityAction<History_Schema> OnCompleteAction;
             
             [Space(20)]
             //[Header("Called After Successful API call")]
@@ -47,7 +47,7 @@ namespace AlturaNFT
             public bool debugLogRawApiResponse = true;
             
             [Header("Gets filled with data and can be referenced:")]
-            public Events item;
+            public History_Schema item;
 
         #endregion
 
@@ -99,7 +99,7 @@ namespace AlturaNFT
                 return this;
             }
 
-            public GetHistory OnComplete(UnityAction<Events> action)
+            public GetHistory OnComplete(UnityAction<History_Schema> action)
             {
                 this.OnCompleteAction = action;
                 return this;
@@ -123,7 +123,7 @@ namespace AlturaNFT
             /// <summary>
             /// Runs the Api call and fills the corresponding model in the component on success.
             /// </summary>
-            public Events Run()
+            public History_Schema Run()
             {
                 WEB_URL = BuildUrl();
                 StopAllCoroutines();
@@ -136,7 +136,7 @@ namespace AlturaNFT
 
                     WEB_URL = RequestUriInit + _address + "/" + _token_id.ToString();
                     if(debugErrorLog)
-                        Debug.Log("Querying Single Holders Items by address and tokenId: " + _address + " on " );
+                        Debug.Log("Querying Single History_Schema Items by address and tokenId: " + _address + " on " );
                 return WEB_URL;
             }
             
@@ -169,7 +169,7 @@ namespace AlturaNFT
                     else
                     {
                         //Fill Data Model from recieved class
-                        item = JsonConvert.DeserializeObject<Events>(
+                        item = JsonConvert.DeserializeObject<History_Schema>(
                             jsonResult,
                             new JsonSerializerSettings
                             {
