@@ -14,7 +14,7 @@ namespace AlturaNFT.Editor
             GetItems myScript = (GetItems)target;
             
             
-            Texture banner = Resources.Load<Texture>("c_nftdata_details");
+            Texture banner = Resources.Load<Texture>("AlturaFrame");
             GUILayout.BeginHorizontal();
             GUILayout.Box(banner);
             GUILayout.EndHorizontal();
