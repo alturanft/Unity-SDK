@@ -26,14 +26,14 @@ namespace AlturaNFT
             private int _token_id = 1;
             
 
-            private string RequestUriInit = "https://api.alturanft.com/api/v2/History_Schema/";
+            private string RequestUriInit = "https://api.alturanft.com/api/v2/History_model/";
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
 
 
             private UnityAction<string> OnErrorAction;
-            private UnityAction<History_Schema> OnCompleteAction;
+            private UnityAction<History_model> OnCompleteAction;
             
             [Space(20)]
             //[Header("Called After Successful API call")]
@@ -47,7 +47,7 @@ namespace AlturaNFT
             public bool debugLogRawApiResponse = true;
             
             [Header("Gets filled with data and can be referenced:")]
-            public History_Schema item;
+            public History_model item;
 
         #endregion
 
@@ -99,7 +99,7 @@ namespace AlturaNFT
                 return this;
             }
 
-            public GetHistory OnComplete(UnityAction<History_Schema> action)
+            public GetHistory OnComplete(UnityAction<History_model> action)
             {
                 this.OnCompleteAction = action;
                 return this;
@@ -123,7 +123,7 @@ namespace AlturaNFT
             /// <summary>
             /// Runs the Api call and fills the corresponding model in the component on success.
             /// </summary>
-            public History_Schema Run()
+            public History_model Run()
             {
                 WEB_URL = BuildUrl();
                 StopAllCoroutines();
@@ -169,7 +169,7 @@ namespace AlturaNFT
                     else
                     {
                         //Fill Data Model from recieved class
-                        item = JsonConvert.DeserializeObject<History_Schema>(
+                        item = JsonConvert.DeserializeObject<History_model>(
                             jsonResult,
                             new JsonSerializerSettings
                             {

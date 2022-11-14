@@ -101,6 +101,13 @@ namespace AlturaNFT
         public string genre;
         public string mintDate;
     } 
+    [Serializable]
+    public class History_model
+    {
+        public string response;
+        public History_Schema history;
+        public List<History_Schema> histories;
+    }
 
     [Serializable]
     public class History_Schema 
@@ -116,6 +123,14 @@ namespace AlturaNFT
         public string to;
         public string tokenId;
         public string transactionHash;
+    }
+
+    [Serializable]
+    public class Holders_model
+    {
+        public string response;
+        public Holders holder;
+        public List<Holders> holders;
     }
 
     [Serializable]

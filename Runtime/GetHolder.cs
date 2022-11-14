@@ -26,14 +26,14 @@ namespace AlturaNFT
             private int _token_id = 1;
             
 
-            private string RequestUriInit = "https://api.alturanft.com/api/v2/holders/";
+            private string RequestUriInit = "https://api.alturanft.com/api/v2/Holders_model/";
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
 
 
             private UnityAction<string> OnErrorAction;
-            private UnityAction<Holders> OnCompleteAction;
+            private UnityAction<Holders_model> OnCompleteAction;
             
             [Space(20)]
             //[Header("Called After Successful API call")]
@@ -47,7 +47,7 @@ namespace AlturaNFT
             public bool debugLogRawApiResponse = true;
             
             [Header("Gets filled with data and can be referenced:")]
-            public Holders item;
+            public Holders_model item;
 
         #endregion
 
@@ -99,7 +99,7 @@ namespace AlturaNFT
                 return this;
             }
 
-            public GetHolder OnComplete(UnityAction<Holders> action)
+            public GetHolder OnComplete(UnityAction<Holders_model> action)
             {
                 this.OnCompleteAction = action;
                 return this;
@@ -123,7 +123,7 @@ namespace AlturaNFT
             /// <summary>
             /// Runs the Api call and fills the corresponding model in the component on success.
             /// </summary>
-            public Holders Run()
+            public Holders_model Run()
             {
                 WEB_URL = BuildUrl();
                 StopAllCoroutines();
@@ -136,7 +136,7 @@ namespace AlturaNFT
 
                     WEB_URL = RequestUriInit + _address + "/" + _token_id.ToString();
                     if(debugErrorLog)
-                        Debug.Log("Querying Single Holders Items by address and tokenId: " + _address + " on " );
+                        Debug.Log("Querying Single Holders_model Items by address and tokenId: " + _address + " on " );
                 return WEB_URL;
             }
             
@@ -168,7 +168,7 @@ namespace AlturaNFT
                     else
                     {
                         //Fill Data Model from recieved class
-                        item = JsonConvert.DeserializeObject<Holders>(
+                        item = JsonConvert.DeserializeObject<Holders_model>(
                             jsonResult,
                             new JsonSerializerSettings
                             {
