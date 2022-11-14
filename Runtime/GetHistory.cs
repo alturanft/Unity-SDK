@@ -26,14 +26,14 @@ namespace AlturaNFT
             private int _token_id = 1;
             
 
-            private string RequestUriInit = "https://api.alturanft.com/api/v2/events/";
+            private string RequestUriInit = "https://api.alturanft.com/api/v2/History_Schema/";
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
 
 
             private UnityAction<string> OnErrorAction;
-            private UnityAction<Events> OnCompleteAction;
+            private UnityAction<History_Schema> OnCompleteAction;
             
             [Space(20)]
             //[Header("Called After Successful API call")]
@@ -47,7 +47,7 @@ namespace AlturaNFT
             public bool debugLogRawApiResponse = true;
             
             [Header("Gets filled with data and can be referenced:")]
-            public Events item;
+            public History_Schema item;
 
         #endregion
 
@@ -99,7 +99,7 @@ namespace AlturaNFT
                 return this;
             }
 
-            public GetHistory OnComplete(UnityAction<Events> action)
+            public GetHistory OnComplete(UnityAction<History_Schema> action)
             {
                 this.OnCompleteAction = action;
                 return this;
@@ -123,7 +123,7 @@ namespace AlturaNFT
             /// <summary>
             /// Runs the Api call and fills the corresponding model in the component on success.
             /// </summary>
-            public Events Run()
+            public History_Schema Run()
             {
                 WEB_URL = BuildUrl();
                 StopAllCoroutines();
@@ -169,7 +169,7 @@ namespace AlturaNFT
                     else
                     {
                         //Fill Data Model from recieved class
-                        item = JsonConvert.DeserializeObject<Events>(
+                        item = JsonConvert.DeserializeObject<History_Schema>(
                             jsonResult,
                             new JsonSerializerSettings
                             {
