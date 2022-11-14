@@ -20,7 +20,6 @@ namespace AlturaNFT.Internal
         [System.Serializable]
         public class UserPrefs {
             public string API_KEY;
-            public string version = "x";
         }
 
     public static bool _initialised = false;
@@ -112,15 +111,10 @@ namespace AlturaNFT.Internal
 
         #region Get Set Gos
 
-        public static void SetVersion(string pkgVersion)
-        {
-            _userPrefs.version = pkgVersion;
-        }
-
+   
         class Source
         {
             public string from = "AlturaNFT-Unity";
-            public string version = _userPrefs.version;
             public string isEditor = "";
             public string UnityVersion = "";
             public string ToolWin = "";
@@ -159,7 +153,6 @@ namespace AlturaNFT.Internal
         {
             if (!_initialised)
                 return "";
-            src.version = _userPrefs.version;
             src.isEditor = Application.isEditor.ToString();
             src.UnityVersion = Application.unityVersion;
             src.ToolWin = _toolWin.ToString();
@@ -179,12 +172,17 @@ namespace AlturaNFT.Internal
 
         public static string GetUserApiKey()
         {
+            Debug.Log("BEFORE AlturaNFT: User API Key: " + _userPrefs.API_KEY);
+
             if (_initialised)
             {
+                Debug.Log(" DURING AlturaNFT: User API Key: " + _userPrefs.API_KEY);
                 return _userPrefs.API_KEY;
             }
             else if(targetFile==null)
             {
+          Debug.Log(" AFTER AlturaNFT: User API Key: " + _userPrefs.API_KEY);
+
                 return String.Empty;
             }
             else

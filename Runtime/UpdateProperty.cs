@@ -19,9 +19,8 @@ namespace AlturaNFT
     public class UpdateProperty : MonoBehaviour
     {
 
+        private string apiKey;
         #region Parameter Defines
-            [SerializeField]
-            private string _apiKey;
             [SerializeField]
             private string _property_name = "The name (key) of the property you want to change";
             [SerializeField]
@@ -56,7 +55,7 @@ namespace AlturaNFT
         private void Awake()
         {
             AlturaUser.Initialise();
-           // _apiKey = AlturaUser.GetUserApiKey();
+            apiKey = AlturaUser.GetUserApiKey();
             
         }
 
@@ -84,10 +83,8 @@ namespace AlturaNFT
                 return _this;
             }
 
-        public UpdateProperty SetParameters(string apiKey, string property_name, string property_value)
+        public UpdateProperty SetParameters(string property_name, string property_value)
             {
-                if(apiKey != null) 
-                    this._apiKey = apiKey;
                 if(property_name!=null)
                     this._property_name = property_name;
                 if(property_value!=null)
@@ -122,7 +119,7 @@ namespace AlturaNFT
                 tx.property_value = _property_value;
                 var  jsonString = JsonUtility.ToJson(tx);
 
-                StartCoroutine(Post("https://api.alturanft.com/api/v2/item/update_property?apiKey=" + _apiKey, jsonString));
+                StartCoroutine(Post("https://api.alturanft.com/api/v2/item/update_property?apiKey=" + apiKey, jsonString));
                 return txHash;
             }
 
@@ -133,7 +130,6 @@ namespace AlturaNFT
         request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
-        request.SetRequestHeader("Authorization", AlturaUser.GetUserApiKey());
 
         yield return request.SendWebRequest();
         {
