@@ -16,7 +16,7 @@ namespace AlturaNFT
     [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_Transfer)]
     [ExecuteAlways]
     [HelpURL(AlturaConstants.Docs_Transfer)]
-    public class TransferItem : MonoBehaviour
+    public class TransferErc721 : MonoBehaviour
     {      
         private string apiKey;
 
@@ -27,9 +27,6 @@ namespace AlturaNFT
   
             [SerializeField]
             private string address;
-            [SerializeField]
-            private string _amount = "Input the amount of tokens";
-            [SerializeField]
             [SerializeField]
             private string _token_id = "input the token id";
             [SerializeField]
@@ -83,24 +80,22 @@ namespace AlturaNFT
         /// Initialize creates a gameobject and assings this script as a component. This must be called if you are not refrencing the script any other way and it doesn't already exists in the scene.
         /// </summary>
         /// <param name="destroyAtEnd"> Optional bool parameter can set to false to avoid Spawned GameObject being destroyed after the Api process is complete. </param>
-        public static TransferItem Initialize(bool destroyAtEnd = true)
+        public static TransferErc721 Initialize(bool destroyAtEnd = true)
             {
-                var _this = new GameObject(AlturaConstants.FeatureName_Transfer).AddComponent<TransferItem>();
+                var _this = new GameObject(AlturaConstants.FeatureName_Transfer).AddComponent<TransferErc721>();
                 _this.destroyAtEnd = destroyAtEnd;
                 _this.onEnable = true;
                 _this.debugErrorLog = true;
                 return _this;
             }
 
-        public TransferItem SetParameters(
-            string collection_addr, string token_id, string amount, string to_addr)
+        public TransferErc721 SetParameters(
+            string collection_addr, string token_id, string to_addr)
             {
                 if(collection_addr!=null)
                     this.address = collection_addr;
                 if(token_id!=null)
                     this._token_id = token_id;
-                if(amount!=null)
-                    this._amount = amount;
                 if(to_addr!=null)
                     this._to_addr = to_addr;
      
@@ -109,13 +104,13 @@ namespace AlturaNFT
             }
 
 
-            public TransferItem OnComplete(UnityAction<Transfer_model> action)
+            public TransferErc721 OnComplete(UnityAction<Transfer_model> action)
             {
                 this.OnCompleteAction = action;
                 return this;
             }
 
-            public TransferItem OnError(UnityAction<string> action)
+            public TransferErc721 OnError(UnityAction<string> action)
             {
                 this.OnErrorAction = action;
                 return this;
@@ -130,13 +125,11 @@ namespace AlturaNFT
             {
                 StopAllCoroutines();
                 TransferOneReq tx = new TransferOneReq();
-                tx.chainId = chainId;
                 tx.address = address;
                 tx.tokenId = _token_id;
-                tx.amount = _amount;
                 tx.to = _to_addr;
                 var  jsonString = JsonUtility.ToJson(tx);
-                StartCoroutine(Post("https://api.alturanft.com/api/v2/item/transfer?apiKey=" + apiKey, jsonString));
+                StartCoroutine(Post("https://api.alturanft.com/api/v2/erc721/transfer?apiKey=" + apiKey, jsonString));
 
                 return txHash;
             }
