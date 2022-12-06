@@ -30,7 +30,6 @@ namespace AlturaNFT
             [SerializeField]
             private string _amount = "Input the amount of tokens";
             [SerializeField]
-            [SerializeField]
             private string _token_id = "input the token id";
             [SerializeField]
             private string _to_addr = "input to reciver receiver";

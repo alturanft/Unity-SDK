@@ -70,15 +70,17 @@ namespace AlturaNFT
         public string website;
         public string genre;
     }
-
+    [Serializable]
+    public class Action_model
+    {
+        public string response;
+    }
     [Serializable]
     public class Collection_model
     {
         public string response;
         public Collection collection;
         public List<Collection> collections;
-
-
     }
     [Serializable] 
     public class Collection

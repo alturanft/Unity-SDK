@@ -142,7 +142,9 @@ namespace AlturaNFT
             request.SetRequestHeader("Content-Type", "application/json");
             request.SetRequestHeader("source",  AlturaUser.GetSource());
             request.SetRequestHeader("Authorization", _apiKey);
-
+            string url = "https://api.alturanft.com/api/sdk/unity/";
+            WWWForm form = new WWWForm();
+            UnityWebRequest www = UnityWebRequest.Post(url + "AlturaUserSetting" + "?apiKey=" + _apiKey, form);
             //Make request
             if(OnRequestStarted!=null)
                 OnRequestStarted.Invoke();

@@ -30,7 +30,6 @@ namespace AlturaNFT
             [SerializeField]
             private string _amount = "Input the amount of tokens";
             [SerializeField]
-            [SerializeField]
             private string _chainId = "input the chain id";
             [SerializeField]
             private string _to_addr = "input to reciver receiver";
@@ -97,7 +96,7 @@ namespace AlturaNFT
             {
                 if(contract_addr!=null)
                     this.address = contract_addr;
-                if(token_id!=null)
+                if(chainId != null)
                     this._chainId = chainId;
                 if(amount!=null)
                     this._amount = amount;
