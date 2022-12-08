@@ -26,7 +26,8 @@ namespace AlturaNFT
             private string _sortBy = "Input Sort By = name";
             [SerializeField]
             private string _sortDir = "Input Asc or Desc";
-
+            [SerializeField]
+            private string jsonString = "Filters";
             private string RequestUriInit = "https://api.alturanft.com/api/v2/user";
             private string WEB_URL;
             private string _apiKey;
@@ -93,18 +94,36 @@ namespace AlturaNFT
         /// <param name="sortDir"> sort direction</param>
         public GetUsers SetParameters(string perPage = "20", string page = "1", string sortBy = "name", string sortDir = "asc")
             {
-
-                if(perPage!=null)
+            if (perPage!=null)
+                    this.jsonString = "&perPage=" + perPage;
                     this._perPage = perPage;
                 if(page!=null)
-                    this._page = page;
-                if(sortBy!=null)
-                    this._sortBy = sortBy;
-                if(sortDir!=null)
-                    this._sortDir = sortDir;
+                this.jsonString =  "&page=" + page;
+                this._page = page;
+            if (sortBy!=null)
+                this.jsonString = "&sortBy=" + sortBy;
+                this._sortBy = sortBy;
+            if (sortDir != null)
+                this.jsonString = "&sortDir=" + sortDir;
+                this._sortDir = sortDir;
                 return this;
             }
-
+            /// <summary>
+            /// Set Filter. 
+            /// </summary>        
+            /// <param name="address"> address of the user</param>
+        /// <param name="name"> user name</param>
+        /// <param name="bio"> user bio</param>
+            public GetUsers filter(string address = null, string name= null, string bio = null)
+            {
+            if (address != null)
+                this.jsonString = "&address=" + address;
+            if (name != null)
+                this.jsonString = "&name=" + name;
+            if (bio != null)
+                this.jsonString = "&bio=" + bio;
+            return this;
+        }
             public GetUsers OnComplete(UnityAction<User_model> action)
             {
                 this.OnCompleteAction = action;
@@ -138,7 +157,7 @@ namespace AlturaNFT
 
             string BuildUrl()
             {
-                    WEB_URL = RequestUriInit + "?perPage=" + _perPage + "&page=" + _page + "&sortBy=" + _sortBy + "&sortDir=" + _sortDir;
+                    WEB_URL = RequestUriInit + "?" +jsonString;
                     if(debugErrorLog)
                         Debug.Log("Querying Details of User: " );
 

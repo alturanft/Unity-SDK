@@ -42,6 +42,8 @@ namespace AlturaNFT
             [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string _sortDir = "Input Asc or Desc";
             [SerializeField]
+            private string jsonString = "Filters";
+            [SerializeField]
             [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string _slim = "false";
 
@@ -107,16 +109,6 @@ namespace AlturaNFT
                 return _this;
             }
 
-            /// <summary>
-            /// Set Filter by to return NFTs only from the given contract address/collection. 
-            /// </summary>
-            ///<param name="collection_address"> as string.</param>
-            public GetItems AlturaOptions(string collection_address)
-            {
-                this.collection_address = collection_address;
-                return this;
-            }
-
         /// <summary>
         /// Set Parameters to retrieve User From.
         /// </summary>
@@ -127,20 +119,56 @@ namespace AlturaNFT
         /// <param name="slim"> bool</param>
         public GetItems SetParameters(string perPage = "20", string page = "1", string sortBy = "name", string sortDir = "asc", string slim = "true")
             {
-                if(perPage!=null)
+            if (perPage!=null)
+                    this.jsonString = "&perPage=" + perPage;
                     this._perPage = perPage;
                 if(page!=null)
-                    this._page = page;
-                if(sortBy!=null)
-                    this._sortBy = sortBy;
-                if(sortDir!=null)
-                    this._sortDir = sortDir;
+                this.jsonString =  "&page=" + page;
+                this._page = page;
+            if (sortBy!=null)
+                this.jsonString = "&sortBy=" + sortBy;
+                this._sortBy = sortBy;
+            if (sortDir != null)
+                this.jsonString = "&sortDir=" + sortDir;
+                this._sortDir = sortDir;
                 if(slim!=null)
+                this.jsonString = "&slim=" + slim;
                     this._slim = slim;
      
 
                 return this;
             }
+            /// <summary>
+            /// Set Filter. 
+            /// </summary>        
+            /// <param name="name"> name of collection</param>
+            /// <param name="collectionAddress"> collection Address</param>
+            /// <param name="chainId"> chainId</param>
+            /// <param name="creatorAddress"> creator Address</param>
+            /// <param name="holders"> amount of holders</param>
+            /// <param name="isVerified"> is Verified</param>
+            /// <param name="supply"> supply</param>
+            public GetItems filter(string name = null,string collection_address = null, string chainId= null, string creatorAddress = null,
+            string holders = null, string isVerified= null, string supply = null)
+            {
+            if (name != null)
+                this.jsonString = "&name=" + name;
+            if (collection_address != null)
+                this.jsonString = "&collection_address=" + collection_address;
+            if (chainId != null)
+                this.jsonString = "&chainId=" + chainId;
+            if (creatorAddress != null)
+                this.jsonString = "&creatorAddress=" + creatorAddress;
+
+            if (holders != null)
+                this.jsonString = "&holders=" + holders;
+            if (isVerified != null)
+                this.jsonString = "&isVerified=" + isVerified;
+            if (supply != null)
+                this.jsonString = "&supply=" + supply;
+
+            return this;
+        }
 
         public GetItems OnComplete(UnityAction<Items_model> action)
         {
@@ -176,7 +204,7 @@ namespace AlturaNFT
             string BuildUrl()
             {
 
-                    WEB_URL = "https://api.alturanft.com/api/v2/item" + "?perPage=" + _perPage + "&page=" + _page + "&sortBy=" + _sortBy + "&sortDir=" + _sortDir + "&slim=" + _slim + "&collectionAddress=" + collection_address;
+                    WEB_URL = "https://api.alturanft.com/api/v2/item?" + jsonString;
 
                     
                     if(debugErrorLog)

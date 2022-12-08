@@ -26,8 +26,10 @@ namespace AlturaNFT
             private string _sortBy = "Input Sort By = name";
             [SerializeField]
             private string _sortDir = "Input Asc or Desc";
+            [SerializeField]
+            private string jsonString = "Filters";
 
-            [Header("Optional: Filter and fetch items with specified property")]
+        [Header("Optional: Filter and fetch items with specified property")]
 
             [SerializeField]
             [Tooltip("Filter from a documents by any properties")]
@@ -99,29 +101,40 @@ namespace AlturaNFT
         /// <param name="sortDir"> sort direction</param>
         public GetCollections SetParameters(string perPage = "20", string page = "1", string sortBy = "name", string sortDir = "asc")
             {
-
-                if(perPage!=null)
+            if (perPage!=null)
+                    this.jsonString = "?perPage=" + perPage;
                     this._perPage = perPage;
                 if(page!=null)
-                    this._page = page;
-                if(sortBy!=null)
-                    this._sortBy = sortBy;
-                if(sortDir!=null)
-                    this._sortDir = sortDir;
-     
+                this.jsonString =  "&page=" + page;
+                this._page = page;
+            if (sortBy!=null)
+                this.jsonString = "&sortBy=" + sortBy;
+                this._sortBy = sortBy;
+            if (sortDir != null)
+                this.jsonString = "&sortDir=" + sortDir;
+                this._sortDir = sortDir;
 
-                return this;
+            return this;
             }
-
             /// <summary>
-            /// Set Filter by to return NFTs only from the given contract address/collection. 
+            /// Set Filter. 
             /// </summary>
-            ///<param name="name"> as string.</param>
-            public GetCollections AlturaOptions(string isVerified)
+            public GetCollections filter(string isVerified = null, string holders= null, string chainId = null, string name = null, string address = null, string website = null)
             {
-                this._isVerified = isVerified;
-                return this;
-            }
+            if (isVerified != null)
+                this.jsonString = "&isVerified=" + isVerified;
+            if (holders != null)
+                this.jsonString = "&holders=" + holders;
+            if (chainId != null)
+                this.jsonString = "&chainId=" + chainId;
+            if (name != null)
+                this.jsonString = "&name=" + name;
+            if (address != null)
+                this.jsonString = "&address=" + address;
+            if (website != null)
+                this.jsonString = "&website=" + website;
+            return this;
+        }
 
 
             public GetCollections OnComplete(UnityAction<Collection_model> action)
@@ -158,8 +171,8 @@ namespace AlturaNFT
 
             string BuildUrl()
             {
-
-                    WEB_URL = RequestUriInit + "?perPage=" + _perPage + "&page=" + _page + "&sortBy=" + _sortBy + "&sortDir=" + _sortDir + "&isVerified=" + _isVerified;
+                    
+                    WEB_URL = RequestUriInit + "?" + jsonString;
                     if(debugErrorLog)
                         Debug.Log("Querying Details of User: " );
 
@@ -170,7 +183,7 @@ namespace AlturaNFT
             {
                 //Make request
                 UnityWebRequest request = UnityWebRequest.Get(WEB_URL);
-                request.SetRequestHeader("Content-Type", "application/json");
+            request.SetRequestHeader("Content-Type", "application/json");
                 request.SetRequestHeader("source", AlturaUser.GetSource());
             string url = "https://api.alturanft.com/api/sdk/unity/";
             WWWForm form = new WWWForm();

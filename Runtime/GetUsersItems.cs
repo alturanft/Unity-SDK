@@ -22,7 +22,8 @@ namespace AlturaNFT
             
             [SerializeField]
             private string address = "Input Account Address To Fetch NFT's from";
-            
+            [SerializeField]
+            private string jsonString = "Filters";
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
@@ -88,7 +89,31 @@ namespace AlturaNFT
                 this.address = account_address;
                 return this;
             }
-  
+            /// <summary>
+            /// Set Filter. 
+            /// </summary>        
+            /// <param name="name"> name of collection</param>
+            /// <param name="collectionAddress"> collection Address</param>
+            /// <param name="chainId"> chainId</param>
+            /// <param name="creatorAddress"> creator Address</param>
+            /// <param name="fileType"> file Type</param>
+            /// <param name="isVerified"> is Verified</param>
+            public GetUsersItems filter(string name = null,string collectionAddress = null, string chainId= null, string creatorAddress = null,string fileType= null,string isVerified = null)
+            {
+            if (name != null)
+                this.jsonString = "&name=" + name;
+            if (collectionAddress != null)
+                this.jsonString = "&collectionAddress=" + collectionAddress;
+            if (chainId != null)
+                this.jsonString = "&chainId=" + chainId;
+            if (creatorAddress != null)
+                this.jsonString = "&creatorAddress=" + creatorAddress;
+            if (fileType != null)
+                this.jsonString = "&fileType=" + fileType;
+            if (isVerified != null)
+                this.jsonString = "&isVerified=" + isVerified;
+            return this;
+        }
 
 
             public GetUsersItems OnComplete(UnityAction<Items_model> action)
@@ -126,7 +151,7 @@ namespace AlturaNFT
             string BuildUrl()
             {
 
-                    WEB_URL = "https://api.alturanft.com/api/v2/user/items/" + address;
+                    WEB_URL = "https://api.alturanft.com/api/v2/user/items/" + address +"?" +jsonString;
            
                 
                 if (debugErrorLog)
