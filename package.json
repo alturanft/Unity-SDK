@@ -1,6 +1,6 @@
 {
     "name": "com.alturaweb3.sdk",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "displayName": "Altura Web3",
     "description": "This Web3 Package connects to the Altura APIs to help you authenticate and communicate with the Blockchain from Unity",
     "dependencies": {
