@@ -148,13 +148,13 @@ namespace AlturaNFT
             /// <param name="holders"> amount of holders</param>
             /// <param name="isVerified"> is Verified</param>
             /// <param name="supply"> supply</param>
-            public GetItems filter(string name = null,string collection_address = null, string chainId= null, string creatorAddress = null,
+            public GetItems filter(string name = null,string collectionAddress = null, string chainId= null, string creatorAddress = null,
             string holders = null, string isVerified= null, string supply = null)
             {
             if (name != null)
                 this.jsonString = "&name=" + name;
-            if (collection_address != null)
-                this.jsonString = "&collection_address=" + collection_address;
+            if (collectionAddress != null)
+                this.jsonString = "&collectionAddress=" + collectionAddress;
             if (chainId != null)
                 this.jsonString = "&chainId=" + chainId;
             if (creatorAddress != null)
