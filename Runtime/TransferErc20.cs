@@ -181,9 +181,6 @@ namespace AlturaNFT
                         
                             Debug.Log($" view Tx Hash" );
                                 }
-
-                                
-
             
         }
                  request.Dispose();
