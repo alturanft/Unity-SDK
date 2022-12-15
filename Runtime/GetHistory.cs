@@ -19,7 +19,7 @@ namespace AlturaNFT
         #region Parameter Defines
   
             [SerializeField]
-            private string _address = "Input Address of the Holder";
+            private string _address = "Input the item's collection address";
             
             [SerializeField]
             [Tooltip("Token ID of the Item")]
@@ -134,7 +134,7 @@ namespace AlturaNFT
             string BuildUrl()
             {
 
-                    WEB_URL = RequestUriInit + _address + "/" + _token_id.ToString();
+                    WEB_URL = RequestUriInit + "/" + _address + "/" + _token_id.ToString();
                     if(debugErrorLog)
                         Debug.Log("Querying Single Holders Items by address and tokenId: " + _address + " on " );
                 return WEB_URL;

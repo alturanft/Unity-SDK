@@ -12,7 +12,7 @@ namespace AlturaNFT
     /// </summary>
     [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_Txn_NFT)]
     [ExecuteAlways]
-    [HelpURL(AlturaConstants.Docs_Txns_NFT)]
+    [HelpURL(AlturaConstants.Docs_GetItems)]
     public class GetItems : MonoBehaviour
     {
         /// <summary>
@@ -42,21 +42,25 @@ namespace AlturaNFT
             [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string _sortDir = "Input Asc or Desc";
             [SerializeField]
-            private string jsonString = "Filters";
-            [SerializeField]
             [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string _slim = "false";
 
-            [Header("Optional: Filter and fetch items with specified collection address")]
 
             [SerializeField]
             [Tooltip("Filter from a documents by any properties")]
             [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
-            string collection_address;
+            private string jsonString;
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
-
+            private string _collectionAddress;
+            private string _creatorAddress;
+            private string _chainId;
+            private string _name;
+            private string _address;
+            private string _holders;
+            private string _isVerified;
+            private string _supply;
 
             private UnityAction<string> OnErrorAction;
             private UnityAction<Items_model> OnCompleteAction;
@@ -120,19 +124,14 @@ namespace AlturaNFT
         public GetItems SetParameters(string perPage = "20", string page = "1", string sortBy = "name", string sortDir = "asc", string slim = "true")
             {
             if (perPage!=null)
-                    this.jsonString = "&perPage=" + perPage;
                     this._perPage = perPage;
                 if(page!=null)
-                this.jsonString =  "&page=" + page;
                 this._page = page;
             if (sortBy!=null)
-                this.jsonString = "&sortBy=" + sortBy;
                 this._sortBy = sortBy;
             if (sortDir != null)
-                this.jsonString = "&sortDir=" + sortDir;
                 this._sortDir = sortDir;
                 if(slim!=null)
-                this.jsonString = "&slim=" + slim;
                     this._slim = slim;
      
 
@@ -152,20 +151,19 @@ namespace AlturaNFT
             string holders = null, string isVerified= null, string supply = null)
             {
             if (name != null)
-                this.jsonString = "&name=" + name;
+                    this._name = name;
             if (collectionAddress != null)
-                this.jsonString = "&collectionAddress=" + collectionAddress;
+                    this._collectionAddress = collectionAddress;
             if (chainId != null)
-                this.jsonString = "&chainId=" + chainId;
+                    this._chainId = chainId;
             if (creatorAddress != null)
-                this.jsonString = "&creatorAddress=" + creatorAddress;
-
+                    this._creatorAddress = creatorAddress;
             if (holders != null)
-                this.jsonString = "&holders=" + holders;
+                    this._holders = holders;
             if (isVerified != null)
-                this.jsonString = "&isVerified=" + isVerified;
+                    this._isVerified = isVerified;
             if (supply != null)
-                this.jsonString = "&supply=" + supply;
+                    this._supply = supply;
 
             return this;
         }
@@ -202,7 +200,32 @@ namespace AlturaNFT
             }
 
             string BuildUrl()
-            {
+            {                
+                this.jsonString = "";
+                if (this._perPage!=null)
+                this.jsonString += "&perPage=" + this._perPage;
+                if(this._page!=null)
+                this.jsonString +=  "&page=" + this._page;
+                if (this._sortBy!=null)
+                this.jsonString += "&sortBy=" + this._sortBy;
+                if (this._sortDir != null)
+                this.jsonString += "&sortDir=" + this._sortDir;
+                if(this._slim!=null)
+                this.jsonString = "&slim=" + this._slim;
+                if (this._name != null)
+                this.jsonString += "&name=" + this._name;
+                if (this._collectionAddress != null)
+                this.jsonString += "&collectionAddress=" + this._collectionAddress;
+                if (this._chainId != null)
+                this.jsonString += "&chainId=" + this._chainId;
+                if (this._creatorAddress != null)
+                this.jsonString += "&creatorAddress=" + this._creatorAddress;
+                if (this._holders != null)
+                this.jsonString += "&holders=" + this._holders;
+                if (this._isVerified != null)
+                this.jsonString += "&isVerified=" + this._isVerified;
+                if (this._supply != null)
+                this.jsonString += "&supply=" + this._supply;
 
                     WEB_URL = "https://api.alturanft.com/api/v2/item?" + jsonString;
 

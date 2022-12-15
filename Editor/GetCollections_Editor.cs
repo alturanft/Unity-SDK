@@ -19,7 +19,7 @@ namespace AlturaNFT.Editor
             GUILayout.Box(banner);
             GUILayout.EndHorizontal();
 
-            if (GUILayout.Button("Get Account NFT Transactions", GUILayout.Height(45)))
+            if (GUILayout.Button("Get Collections", GUILayout.Height(45)))
             {
                 AlturaUser.SetFromEditorWin();
                 myScript.Run();

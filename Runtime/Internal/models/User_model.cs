@@ -6,7 +6,7 @@ namespace AlturaNFT.Internal
         [Serializable]
         public class User_model
         {
-            public string response;
+            
             public Users user;
             public List<Users> users;
 

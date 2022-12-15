@@ -89,56 +89,11 @@ namespace AlturaNFT.Internal {
             GUILayout.BeginHorizontal("box");
             if (GUILayout.Button("Install Now", GUILayout.Height(25)))
                 Add();
-            
-            //if (GUILayout.Button("Remove Dependency", GUILayout.Height(25)))
-             //   Remove();
+
             GUILayout.EndHorizontal();
-            
             GUILayout.Label("");
-            
-            GUILayout.BeginHorizontal("box");
-            GUILayout.Label("gltFast| Used by AlturaNFT Playground Sample");
-            if (GLTFInstalled)
-            {
-                GUI.contentColor = Color.green;
-                GUILayout.Label(": installed");
-                GUI.contentColor = defaultcol;
-            }
-            else
-            {
-                GUILayout.Label(": Not Installed in UPM");
-            }
-            GUILayout.EndHorizontal();
-            GUILayout.BeginHorizontal("box");
-            if (GUILayout.Button("Install Now", GUILayout.Height(25)))
-                AddGLTF();
-            
-            if (GUILayout.Button("Remove Dependency", GUILayout.Height(25)))
-               RemoveGLTF();
-            GUILayout.EndHorizontal();
-            
-            GUILayout.BeginHorizontal("box");
-            GUILayout.Label("Unity Input System | Used by AlturaNFT Playground Sample");
-            if (InputsysInstalled)
-            {
-                GUI.contentColor = Color.green;
-                GUILayout.Label(": installed");
-                GUI.contentColor = defaultcol;
-            }
-            else
-            {
-                GUILayout.Label(": Not Installed in UPM");
-            }
-            GUILayout.EndHorizontal();
-            GUILayout.BeginHorizontal("box");
-            if (GUILayout.Button("Install Now", GUILayout.Height(25)))
-                AddInputSys();
-            
-            if (GUILayout.Button("Remove Dependency", GUILayout.Height(25)))
-                RemoveInputSys();
-            GUILayout.EndHorizontal();
-            
-            
+
+          
             GUI.contentColor = Color.yellow;
             if(refreshing)
                 GUILayout.Label("refreshing...");
@@ -146,8 +101,8 @@ namespace AlturaNFT.Internal {
         
         static void SetSize(InstallAlturaDependencies win) 
         {
-            win.minSize = new Vector2(330*2, 290);
-            win.maxSize =  new Vector2(330*2, 290);
+            win.minSize = new Vector2(330*2, 150);
+            win.maxSize =  new Vector2(330*2, 150);
         }
 
         private void OnEnable()

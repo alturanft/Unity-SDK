@@ -20,7 +20,14 @@ namespace AlturaNFT
         public string tokenId;
         public string amount;
     }
-
+    [Serializable]
+    public class MintReq
+    {
+        public string address;
+        public string to;
+        public string tokenId;
+        public string amounts;
+    }
     [Serializable]
     public class TransferReq
     {
@@ -73,12 +80,12 @@ namespace AlturaNFT
     [Serializable]
     public class Action_model
     {
-        public string response;
+        
     }
     [Serializable]
     public class Collection_model
     {
-        public string response;
+        
         public Collection collection;
         public List<Collection> collections;
     }
@@ -107,9 +114,7 @@ namespace AlturaNFT
     [Serializable]
     public class History_model
     {
-        public string response;
-        public History_Schema history;
-        public List<History_Schema> histories;
+        public List<History_Schema> events;
     }
 
     [Serializable]
@@ -131,7 +136,7 @@ namespace AlturaNFT
     [Serializable]
     public class Holders_model
     {
-        public string response;
+        
         public Holders holder;
         public List<Holders> holders;
     }

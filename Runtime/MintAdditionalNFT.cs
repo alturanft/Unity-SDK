@@ -18,19 +18,15 @@ namespace AlturaNFT
     {
         private string apiKey;
         #region Parameter Defines
-
-            
-            [SerializeField]
-            private string chainId;
   
             [SerializeField]
-            private string address;
+            private string address= "The item's collection address";
             [SerializeField]
-            private string _token_id = "Input Which page you want to get";
+            private string _token_id = "Input the item's tokenId";
             [SerializeField]
-            private string _amount = "Input Sort By = name";
+            private string _amount = "Input the amount of additional supply you want to mint";
             [SerializeField]
-            private string _to_addr = "Input Asc or Desc";
+            private string _to_addr = "Input the address you want to mint the additional supply to";
 
 
             private string WEB_URL;
@@ -125,10 +121,9 @@ namespace AlturaNFT
             public Transfer_model Run()
             {
                 StopAllCoroutines();
-                TransferReq tx = new TransferReq();
-                tx.chainId = chainId;
+                MintReq tx = new MintReq();
                 tx.address = address;
-                tx.tokenIds = _token_id;
+                tx.tokenId = _token_id;
                 tx.amounts = _amount;
                 tx.to = _to_addr;
                 var jsonString = JsonUtility.ToJson(tx);

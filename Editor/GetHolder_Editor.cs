@@ -19,7 +19,7 @@ namespace AlturaNFT.Editor
             GUILayout.Box(banner);
             GUILayout.EndHorizontal();
 
-            if (GUILayout.Button("GET Item", GUILayout.Height(45)))
+            if (GUILayout.Button("GET Holder of Item", GUILayout.Height(45)))
             {
                 AlturaUser.SetFromEditorWin();
                 myScript.Run();

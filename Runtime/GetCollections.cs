@@ -26,19 +26,18 @@ namespace AlturaNFT
             private string _sortBy = "Input Sort By = name";
             [SerializeField]
             private string _sortDir = "Input Asc or Desc";
-            [SerializeField]
-            private string jsonString = "Filters";
+            private string jsonString;
 
-        [Header("Optional: Filter and fetch items with specified property")]
-
-            [SerializeField]
-            [Tooltip("Filter from a documents by any properties")]
-            string _isVerified;
             private string RequestUriInit = "https://api.alturanft.com/api/v2/collection";
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
-
+            private string _isVerified;
+            private string _holders;
+            private string _chainId;
+            private string _name;
+            private string _address;
+            private string _website;
 
             private UnityAction<string> OnErrorAction;
             private UnityAction<Collection_model> OnCompleteAction;
@@ -102,16 +101,12 @@ namespace AlturaNFT
         public GetCollections SetParameters(string perPage = "20", string page = "1", string sortBy = "name", string sortDir = "asc")
             {
             if (perPage!=null)
-                    this.jsonString = "?perPage=" + perPage;
                     this._perPage = perPage;
                 if(page!=null)
-                this.jsonString =  "&page=" + page;
                 this._page = page;
             if (sortBy!=null)
-                this.jsonString = "&sortBy=" + sortBy;
                 this._sortBy = sortBy;
             if (sortDir != null)
-                this.jsonString = "&sortDir=" + sortDir;
                 this._sortDir = sortDir;
 
             return this;
@@ -121,18 +116,19 @@ namespace AlturaNFT
             /// </summary>
             public GetCollections filter(string isVerified = null, string holders= null, string chainId = null, string name = null, string address = null, string website = null)
             {
+
             if (isVerified != null)
-                this.jsonString = "&isVerified=" + isVerified;
+                this._isVerified = isVerified;
             if (holders != null)
-                this.jsonString = "&holders=" + holders;
+                this._holders = holders;
             if (chainId != null)
-                this.jsonString = "&chainId=" + chainId;
+                this._chainId = chainId;
             if (name != null)
-                this.jsonString = "&name=" + name;
+                this._name = name;
             if (address != null)
-                this.jsonString = "&address=" + address;
+                this._address = address;
             if (website != null)
-                this.jsonString = "&website=" + website;
+                this._website = website;
             return this;
         }
 
@@ -170,8 +166,30 @@ namespace AlturaNFT
             }
 
             string BuildUrl()
-            {
-                    
+            {                
+                this.jsonString = "";
+                if (this._perPage!=null)
+                this.jsonString += "&perPage=" + this._perPage;
+                if(this._page!=null)
+                this.jsonString +=  "&page=" + this._page;
+                if (this._sortBy!=null)
+                this.jsonString += "&sortBy=" + this._sortBy;
+                if (this._sortDir != null)
+                this.jsonString += "&sortDir=" + this._sortDir;
+                if (this._isVerified != null)
+                this.jsonString += "&isVerified=" + this._isVerified;
+                if (this._holders != null)
+                this.jsonString += "&holders=" + this._holders;
+                if (this._chainId != null)
+                this.jsonString += "&chainId=" + this._chainId;
+                if (this._name != null)
+                this.jsonString += "&name=" + this._name;
+                if (this._address != null)
+                this.jsonString += "&address=" + this._address;
+                if (this._website != null)
+                this.jsonString += "&website=" + this._website;
+
+
                     WEB_URL = RequestUriInit + "?" + jsonString;
                     if(debugErrorLog)
                         Debug.Log("Querying Details of User: " );

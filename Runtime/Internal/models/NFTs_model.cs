@@ -11,7 +11,6 @@ namespace AlturaNFT
     [Serializable]
     public class Items_model
     {
-        public string response;
         public Items item;
         public List<Items> items;
     }
@@ -29,7 +28,7 @@ namespace AlturaNFT
         public string mintDate;
         public bool stackable;
         public int supply;
-        public int maxSupply;
+        public string maxSupply;
         public string image;
         public string imageHash;
         public string imageUrl;
