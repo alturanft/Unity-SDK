@@ -20,15 +20,13 @@ namespace AlturaNFT
 
         #region Parameter Defines
             [SerializeField]
-            private string chainId;
-            [SerializeField]
             private string address;
             [SerializeField]
-            private string _token_id = "Input Which page you want to get";
+            private string[] _token_id;
             [SerializeField]
-            private string _amount = "Input Sort By = name";
+            private string[] _amount;
             [SerializeField]
-            private string _to_addr = "Input Asc or Desc";
+            private string _to_addr;
 
 
             private string WEB_URL;
@@ -36,7 +34,7 @@ namespace AlturaNFT
 
 
             private UnityAction<string> OnErrorAction;
-            private UnityAction<Transfers_model> OnCompleteAction;
+            private UnityAction<Transfer_model> OnCompleteAction;
             
             [Space(20)]
             [Header("Called After Successful API call")]
@@ -50,7 +48,7 @@ namespace AlturaNFT
             public bool debugLogRawApiResponse = true;
             
             [Header("Gets filled with data and can be referenced:")]
-            public Transfers_model txHash;
+            public Transfer_model txHash;
 
 
         #endregion
@@ -87,7 +85,7 @@ namespace AlturaNFT
                 return _this;
             }
 
-        public TransferItems SetParameters(string collection_addr, string token_id, string amount, string to_addr)
+        public TransferItems SetParameters(string collection_addr, string[] token_id, string[] amount, string to_addr)
             {
                 if(collection_addr!=null)
                     this.address = collection_addr;
@@ -103,7 +101,7 @@ namespace AlturaNFT
             }
 
 
-            public TransferItems OnComplete(UnityAction<Transfers_model> action)
+            public TransferItems OnComplete(UnityAction<Transfer_model> action)
             {
                 this.OnCompleteAction = action;
                 return this;
@@ -120,11 +118,10 @@ namespace AlturaNFT
         
         #region Run - API
 
-            public Transfers_model Run()
+            public Transfer_model Run()
             {
                 StopAllCoroutines();
-                TransferReq tx = new TransferReq();
-                tx.chainId = chainId;
+                TransferReqBulk tx = new TransferReqBulk();
                 tx.address = address;
                 tx.tokenIds = _token_id;
                 tx.amounts = _amount;
@@ -164,7 +161,7 @@ namespace AlturaNFT
                                 }
                                 else
                                 {
-                                    txHash = JsonConvert.DeserializeObject<Transfers_model>(
+                                    txHash = JsonConvert.DeserializeObject<Transfer_model>(
                             jsonResult,
                             new JsonSerializerSettings
                             {
@@ -187,7 +184,7 @@ namespace AlturaNFT
         }
                  request.Dispose();
                 if(destroyAtEnd)
-                    Destroy (this.gameObject);
+                    DestroyImmediate(this.gameObject);
     }   
         #endregion
     }

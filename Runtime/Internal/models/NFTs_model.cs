@@ -27,7 +27,7 @@ namespace AlturaNFT
         public string creatorAddress;
         public string mintDate;
         public bool stackable;
-        public int supply;
+        public string supply;
         public string maxSupply;
         public string image;
         public string imageHash;

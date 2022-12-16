@@ -37,7 +37,13 @@ namespace AlturaNFT
         public string tokenIds;
         public string amounts;
     }
-
+    public class TransferReqBulk
+    {
+        public string address;
+        public string to;
+        public string[] tokenIds;
+        public string[] amounts;
+    }
     [Serializable]
     public class Transfer_model
     {

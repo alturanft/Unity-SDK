@@ -22,7 +22,7 @@ namespace AlturaNFT
             [SerializeField]
             private string wallet_address = "Input Wallet Address to verify";
             [SerializeField]
-            private string altura_gaurd = "Input Altura Gaurd code to verify";
+            private string altura_guard = "Input Altura Guard code to verify";
             
             private string WEB_URL;
             private string _apiKey;
@@ -44,7 +44,7 @@ namespace AlturaNFT
             public bool debugLogRawApiResponse = true;
             
             [Header("Gets filled with data and can be referenced:")]
-            public Auth_model gaurd;
+            public Auth_model guard;
 
         #endregion
 
@@ -80,10 +80,10 @@ namespace AlturaNFT
                 return _this;
             }
             
-            public AuthenticateUser SetParameters(string wallet_address, string altura_gaurd)
+            public AuthenticateUser SetParameters(string wallet_address, string altura_guard)
             {
                 this.wallet_address = wallet_address;
-                this.altura_gaurd = altura_gaurd;
+                this.altura_guard = altura_guard;
                 return this;
             }
 
@@ -119,12 +119,12 @@ namespace AlturaNFT
                 WEB_URL = BuildUrl();
                 StopAllCoroutines();
                 StartCoroutine(CallAPIProcess());
-                return gaurd;
+                return guard;
             }
 
             string BuildUrl()
             {
-                WEB_URL = "https://api.alturanft.com/api/v2/user/verify_auth_code/" + wallet_address + "/" + altura_gaurd;
+                WEB_URL = "https://api.alturanft.com/api/v2/user/verify_auth_code/" + wallet_address + "/" + altura_guard;
 
                 return WEB_URL;
             }
@@ -157,7 +157,7 @@ namespace AlturaNFT
                     else
                     {
                         //Fill Data Model from recieved class
-                        gaurd = JsonConvert.DeserializeObject<Auth_model>(
+                        guard = JsonConvert.DeserializeObject<Auth_model>(
                             jsonResult,
                             new JsonSerializerSettings
                             {
@@ -166,7 +166,7 @@ namespace AlturaNFT
                             });
                         
                         if(OnCompleteAction!=null)
-                            OnCompleteAction.Invoke(gaurd);
+                            OnCompleteAction.Invoke(guard);
                         
                         if(afterSuccess!=null)
                             afterSuccess.Invoke();
@@ -177,7 +177,7 @@ namespace AlturaNFT
                 }
                 request.Dispose();
                 if(destroyAtEnd)
-                    Destroy (this.gameObject);
+                    DestroyImmediate(this.gameObject);
             }
             
         #endregion

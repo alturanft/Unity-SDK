@@ -180,7 +180,7 @@ namespace AlturaNFT
                 }
                 request.Dispose();
                 if(destroyAtEnd)
-                    Destroy (this.gameObject);
+                    DestroyImmediate(this.gameObject);
             }
             
         #endregion

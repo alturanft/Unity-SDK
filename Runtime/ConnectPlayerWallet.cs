@@ -8,9 +8,10 @@ namespace AlturaNFT
     using UnityEngine.Events;
     using Internal;
 
-    [AddComponentMenu(AlturaConstants.BaseComponentMenu + AlturaConstants.FeatureName_ConnectUserWallet)]
-    [HelpURL(AlturaConstants.Docs_ConnectUserWallet)]
+    //[AddComponentMenu(AlturaConstants.BaseComponentMenu + AlturaConstants.FeatureName_ConnectUserWallet)]
+    //[HelpURL(AlturaConstants.Docs_ConnectUserWallet)]
     public class ConnectPlayerWallet : MonoBehaviour
+    
     {
         public string MockconnectedWalletAddress = "0xfb7C2D5c65e00d05C48AfF5c02C6D4682156DF33";
         public string MockconnectedNetworkID = "1";

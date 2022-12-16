@@ -39,7 +39,10 @@ namespace AlturaNFT.Internal
         public const string BaseComponentMenu = "AlturaNFT/";
         public const string BaseFeatureSpawnerMenu = "AlturaNFT/API/";
         public const string FeatureName_AuthenticateUser = "Verify Auth Code | Verify";
-        public const string FeatureName_ConnectUserWallet = " Connect Player Wallet";
+       /**
+       *THIS FUNCITON WILL COME WITH NEXT UPDATE
+       // public const string FeatureName_ConnectUserWallet = " Connect Player Wallet";
+       */
         public const string FeatureName_GetUser = "Get User | GetUser";
         public const string FeatureName_GetUsers = "Get Many Users | GetUsers";
         public const string FeatureName_GetUsersItems = "Get A Users Item | GetUserItems";
