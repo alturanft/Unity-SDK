@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
+using UnityEditor.VSAttribution.AlturaNFT;
 
 namespace AlturaNFT  
 { using Internal;
@@ -19,7 +20,7 @@ namespace AlturaNFT
         #region Parameter Defines
   
             [SerializeField]
-            private string _address = "Input Address of the Holder";
+            private string _address = "Input the item's collection address";
             
             [SerializeField]
             [Tooltip("Token ID of the Item")]
@@ -134,7 +135,7 @@ namespace AlturaNFT
             string BuildUrl()
             {
 
-                    WEB_URL = RequestUriInit + _address + "/" + _token_id.ToString();
+                    WEB_URL = RequestUriInit + "/" + _address + "/" + _token_id.ToString();
                     if(debugErrorLog)
                         Debug.Log("Querying Single Holders_model Items by address and tokenId: " + _address + " on " );
                 return WEB_URL;
@@ -145,6 +146,7 @@ namespace AlturaNFT
                 //Make request
                 UnityWebRequest request = UnityWebRequest.Get(WEB_URL);
                 request.SetRequestHeader("Content-Type", "application/json");
+                VSAttribution.SendAttributionEvent("GetHolder","AlturaNFT", _apiKey);
                 
             string url = "https://api.alturanft.com/api/sdk/unity/";
             WWWForm form = new WWWForm();
@@ -190,7 +192,7 @@ namespace AlturaNFT
                 }
                 request.Dispose();
                 if(destroyAtEnd)
-                    Destroy (this.gameObject);
+                    DestroyImmediate(this.gameObject);
             }
             
         #endregion

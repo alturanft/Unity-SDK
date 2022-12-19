@@ -45,12 +45,12 @@ namespace AlturaNFT.Editor
             Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_AuthenticateUser).AddComponent<AuthenticateUser>().gameObject;
         }
 
-        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_ConnectUserWallet)]
+        /*[MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_ConnectUserWallet)]
         [MenuItem(GameObjMenu + AlturaConstants.FeatureName_ConnectUserWallet)]
         static void Spawn_ConnectWallet()
         {
             Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_ConnectUserWallet).AddComponent<ConnectPlayerWallet>().gameObject;
-        }
+        }*/
         
         [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_GetCollections)]
         [MenuItem(GameObjMenu + AlturaConstants.FeatureName_GetCollections)]

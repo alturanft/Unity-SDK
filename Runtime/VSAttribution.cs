@@ -1,47 +1,68 @@
-using System.Collections;
-using Newtonsoft.Json;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Networking;
+using System;
+using UnityEngine.Analytics;
 
-namespace AlturaNFT
+namespace UnityEditor.VSAttribution.AlturaNFT
 {
-    using Internal;
+	public static class VSAttribution
+	{
+		const int k_VersionId = 4;
+		const int k_MaxEventsPerHour = 10;
+		const int k_MaxNumberOfElements = 1000;
 
-    public class VSAttributaion : MonoBehaviour
-    {
-        // URL for the API
-        string url = "https://api.alturanft.com/api/sdk/unity/";
+		const string k_VendorKey = "unity.vsp-attribution";
+		const string k_EventName = "vspAttribution";
 
-        public void CallAction()
-        {
-            Debug.Log("lol");
+		static bool RegisterEvent()
+		{
+			AnalyticsResult result = EditorAnalytics.RegisterEventWithLimit(k_EventName, k_MaxEventsPerHour,
+				k_MaxNumberOfElements, k_VendorKey, k_VersionId);
 
-            // Start a coroutine to make the API call
-            StartCoroutine(PostData());
-        }
+			var isResultOk = result == AnalyticsResult.Ok;
+			return isResultOk;
+		}
 
-        IEnumerator PostData()
-        {
-            // Create a new form to send data to the API
-            WWWForm form = new WWWForm();
+		[Serializable]
+		struct VSAttributionData
+		{
+			public string actionName;
+			public string partnerName;
+			public string customerUid;
+			public string extra;
+		}
 
-            // Add any data you need to send to the API here
-            // For example, form.AddField("key", "value");
-            // Create a UnityWebRequest and set its url and method
-            UnityWebRequest www = UnityWebRequest.Post(url + "lol", form);
+		/// <summary>
+		/// Registers and attempts to send a Verified Solutions Attribution event.
+		/// </summary>
+		/// <param name="actionName">Name of the action, identifying a place this event was called from.</param>
+		/// <param name="partnerName">Identifiable Verified Solutions Partner's name.</param>
+		/// <param name="customerUid">Unique identifier of the customer using Partner's Verified Solution.</param>
+		public static AnalyticsResult SendAttributionEvent(string actionName, string partnerName, string customerUid)
+		{
+			try
+			{
+				// Are Editor Analytics enabled ? (Preferences)
+				if (!EditorAnalytics.enabled)
+					return AnalyticsResult.AnalyticsDisabled;
 
-            // Send the request and wait for a response
-            yield return www.SendWebRequest();
+				if (!RegisterEvent())
+					return AnalyticsResult.InvalidData;
 
-            if (www.isNetworkError || www.isHttpError)
-            {
-                Debug.Log(www.error);
-            }
-            else
-            {
-                Debug.Log(www.downloadHandler.text);
-            }
-        }
+				// Create an expected data object
+				var eventData = new VSAttributionData
+				{
+					actionName = actionName,
+					partnerName = partnerName,
+					customerUid = customerUid,
+					extra = "{}"
+				};
+
+				return EditorAnalytics.SendEventWithLimit(k_EventName, eventData, k_VersionId);
+			}
+			catch
+			{
+				// Fail silently
+				return AnalyticsResult.AnalyticsDisabled;
+			}
+		}
     }
 }

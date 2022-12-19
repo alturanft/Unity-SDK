@@ -19,7 +19,7 @@ namespace AlturaNFT.Editor
             GUILayout.Box(banner);
             GUILayout.EndHorizontal();
 
-            if (GUILayout.Button("Get NFT Transactions", GUILayout.Height(45)))
+            if (GUILayout.Button("Get Bulk Items", GUILayout.Height(45)))
             {
                 AlturaUser.SetFromEditorWin();
                 myScript.Run();
@@ -27,7 +27,7 @@ namespace AlturaNFT.Editor
         
 
             if(GUILayout.Button("View Documentation", GUILayout.Height(25)))
-                Application.OpenURL(AlturaConstants.Docs_Txns_NFT);
+                Application.OpenURL(AlturaConstants.Docs_GetItems);
             DrawDefaultInspector();
         }
     }

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
-
+using UnityEditor.VSAttribution.AlturaNFT;
 namespace AlturaNFT  
 { using Internal;
     
@@ -26,8 +26,11 @@ namespace AlturaNFT
             private string _sortBy = "Input Sort By = name";
             [SerializeField]
             private string _sortDir = "Input Asc or Desc";
-            [SerializeField]
-            private string jsonString = "Filters";
+
+            private string jsonString;
+            private string _address;
+            private string _name;
+            private string _bio;
             private string RequestUriInit = "https://api.alturanft.com/api/v2/user";
             private string WEB_URL;
             private string _apiKey;
@@ -95,16 +98,12 @@ namespace AlturaNFT
         public GetUsers SetParameters(string perPage = "20", string page = "1", string sortBy = "name", string sortDir = "asc")
             {
             if (perPage!=null)
-                    this.jsonString = "&perPage=" + perPage;
-                    this._perPage = perPage;
+                this._perPage = perPage;
                 if(page!=null)
-                this.jsonString =  "&page=" + page;
                 this._page = page;
             if (sortBy!=null)
-                this.jsonString = "&sortBy=" + sortBy;
                 this._sortBy = sortBy;
             if (sortDir != null)
-                this.jsonString = "&sortDir=" + sortDir;
                 this._sortDir = sortDir;
                 return this;
             }
@@ -117,11 +116,11 @@ namespace AlturaNFT
             public GetUsers filter(string address = null, string name= null, string bio = null)
             {
             if (address != null)
-                this.jsonString = "&address=" + address;
+                this._address = address;
             if (name != null)
-                this.jsonString = "&name=" + name;
+                this._name = name;
             if (bio != null)
-                this.jsonString = "&bio=" + bio;
+                this._bio = bio;
             return this;
         }
             public GetUsers OnComplete(UnityAction<User_model> action)
@@ -157,7 +156,25 @@ namespace AlturaNFT
 
             string BuildUrl()
             {
-                    WEB_URL = RequestUriInit + "?" +jsonString;
+                this.jsonString = "";
+                if (this._perPage!=null)
+                this.jsonString += "&perPage=" + this._perPage;
+                if(this._page!=null)
+                this.jsonString +=  "&page=" + this._page;
+                if (this._sortBy!=null)
+                this.jsonString += "&sortBy=" + this._sortBy;
+                if (this._sortDir != null)
+                this.jsonString += "&sortDir=" + this._sortDir;
+                if (this._address != null)
+                this.jsonString += "&address=" + this._address;
+                if (this._name != null)
+                this.jsonString += "&name=" + this._name;
+                if (this._bio != null)
+                this.jsonString += "&bio=" + this._bio;
+
+
+                    WEB_URL = RequestUriInit + "?" + jsonString;
+                        Debug.Log("Abol: " + WEB_URL);
                     if(debugErrorLog)
                         Debug.Log("Querying Details of User: " );
 
@@ -168,7 +185,8 @@ namespace AlturaNFT
             {
                 //Make request
                 UnityWebRequest request = UnityWebRequest.Get(WEB_URL);
-                request.SetRequestHeader("Content-Type", "application/json");                
+                request.SetRequestHeader("Content-Type", "application/json");    
+                VSAttribution.SendAttributionEvent("GetUsers","AlturaNFT", _apiKey);            
             string url = "https://api.alturanft.com/api/sdk/unity/";
             WWWForm form = new WWWForm();
             UnityWebRequest www = UnityWebRequest.Post(url + "GetUsers" + "?apiKey=" + _apiKey, form);
@@ -211,7 +229,7 @@ namespace AlturaNFT
                 }
                 request.Dispose();
                 if(destroyAtEnd)
-                    Destroy (this.gameObject);
+                    DestroyImmediate(this.gameObject);
             }
             
         #endregion

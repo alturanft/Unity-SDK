@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 using UnityEngine.Serialization;
+using UnityEditor.VSAttribution.AlturaNFT;
 
 namespace AlturaNFT  
 { using Internal;
@@ -22,13 +23,17 @@ namespace AlturaNFT
             
             [SerializeField]
             private string address = "Input Account Address To Fetch NFT's from";
-            [SerializeField]
-            private string jsonString = "Filters";
+            private string jsonString;
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
-
-
+            private string _collectionAddress;
+            private string _creatorAddress;
+            private string _chainId;
+            private string _name;
+            private string _fileType;
+            private string _holders;
+            private string _isVerified;
             private UnityAction<string> OnErrorAction;
             private UnityAction<Items_model> OnCompleteAction;
             
@@ -100,18 +105,19 @@ namespace AlturaNFT
             /// <param name="isVerified"> is Verified</param>
             public GetUsersItems filter(string name = null,string collectionAddress = null, string chainId= null, string creatorAddress = null,string fileType= null,string isVerified = null)
             {
+
             if (name != null)
-                this.jsonString = "&name=" + name;
+                this._name = name;
             if (collectionAddress != null)
-                this.jsonString = "&collectionAddress=" + collectionAddress;
+                this._collectionAddress = collectionAddress;
             if (chainId != null)
-                this.jsonString = "&chainId=" + chainId;
+                this._chainId = chainId;
             if (creatorAddress != null)
-                this.jsonString = "&creatorAddress=" + creatorAddress;
+                this._creatorAddress = creatorAddress;
             if (fileType != null)
-                this.jsonString = "&fileType=" + fileType;
+                this._fileType = fileType;
             if (isVerified != null)
-                this.jsonString = "&isVerified=" + isVerified;
+                this._isVerified = isVerified;
             return this;
         }
 
@@ -150,6 +156,19 @@ namespace AlturaNFT
 
             string BuildUrl()
             {
+                this.jsonString = "";
+            if (this._name != null)
+                this.jsonString += "&name=" + this._name;
+            if (this._collectionAddress != null)
+                this.jsonString += "&collectionAddress=" + this._collectionAddress;
+            if (this._chainId != null)
+                this.jsonString += "&chainId=" + this._chainId;
+            if (this._creatorAddress != null)
+                this.jsonString += "&creatorAddress=" + this._creatorAddress;
+            if (this._fileType != null)
+                this.jsonString += "&fileType=" + this._fileType;
+            if (this._isVerified != null)
+                this.jsonString += "&isVerified=" + this._isVerified;
 
                     WEB_URL = "https://api.alturanft.com/api/v2/user/items/" + address +"?" +jsonString;
            
@@ -171,6 +190,7 @@ namespace AlturaNFT
                 //Make request
                 UnityWebRequest request = UnityWebRequest.Get(WEB_URL);
                 request.SetRequestHeader("Content-Type", "application/json");
+                VSAttribution.SendAttributionEvent("GetUsersItems","AlturaNFT", _apiKey);
             string url = "https://api.alturanft.com/api/sdk/unity/";
             WWWForm form = new WWWForm();
             UnityWebRequest www = UnityWebRequest.Post(url + "GetUsersItems" + "?apiKey=" + _apiKey, form);
@@ -215,7 +235,7 @@ namespace AlturaNFT
                 }
                 request.Dispose();
                 if(destroyAtEnd)
-                    Destroy (this.gameObject);
+                    DestroyImmediate(this.gameObject);
             }
             
         #endregion

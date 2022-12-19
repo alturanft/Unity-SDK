@@ -9,7 +9,7 @@ namespace AlturaNFT.Editor
     {
         public static string GetInstalledPackageVer()
         {
-            string path = "Packages/com.alturaft.alturanft/package.json";
+            string path = "Packages/com.alturaweb3.sdk/package.json";
             if (File.Exists(path))
             {
                 var targetFile = File.ReadAllText(path);

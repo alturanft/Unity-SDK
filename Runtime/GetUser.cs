@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
+using UnityEditor.VSAttribution.AlturaNFT;
 
 namespace AlturaNFT  
 
@@ -136,7 +137,8 @@ namespace AlturaNFT
             {
                 //Make request
                 UnityWebRequest request = UnityWebRequest.Get(WEB_URL);
-                request.SetRequestHeader("Content-Type", "application/json");                
+                request.SetRequestHeader("Content-Type", "application/json");
+                VSAttribution.SendAttributionEvent("GetUser","AlturaNFT", _apiKey);                
             string url = "https://api.alturanft.com/api/sdk/unity/";
             WWWForm form = new WWWForm();
             UnityWebRequest www = UnityWebRequest.Post(url + "GetUser" + "?apiKey=" + _apiKey, form);
@@ -180,7 +182,7 @@ namespace AlturaNFT
                 }
                 request.Dispose();
                 if(destroyAtEnd)
-                    Destroy (this.gameObject);
+                    DestroyImmediate(this.gameObject);
             }
             
         #endregion

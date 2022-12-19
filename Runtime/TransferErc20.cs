@@ -21,9 +21,6 @@ namespace AlturaNFT
         private string apiKey;
 
         #region Parameter Defines
-
-            [SerializeField]
-            private string chainId;
   
             [SerializeField]
             private string address;
@@ -165,7 +162,7 @@ namespace AlturaNFT
                                 }
                                 else
                                 {
-                                    txHash = JsonConvert.DeserializeObject<Transfer_model>(
+                            txHash = JsonConvert.DeserializeObject<Transfer_model>(
                             jsonResult,
                             new JsonSerializerSettings
                             {
@@ -180,15 +177,12 @@ namespace AlturaNFT
                             afterSuccess.Invoke();
                         
                             Debug.Log($" view Tx Hash" );
-                                }
-
-                                
-
+                        }
             
         }
                  request.Dispose();
                 if(destroyAtEnd)
-                    Destroy (this.gameObject);
+                    DestroyImmediate(this.gameObject);
     }   
         #endregion
     }

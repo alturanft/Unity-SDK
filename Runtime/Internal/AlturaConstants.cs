@@ -4,38 +4,30 @@ namespace AlturaNFT.Internal
     {
 
         public const string HomeWindowName = "AlturaNFT Home";
-        public const string DefaultAPIKey = "Enter your Altura Altura Gaurd KEY here";
-
-        public const string Docs_GettingStarted = "https://docs.v2.alturanft.com/api-reference/getting-started"; 
-        public const string Docs_GetUser = "https://docs.v2.alturanft.com/api-reference/getting-started"; 
-        public const string Docs_GetUsers = "https://docs.v2.alturanft.com/api-reference/getting-started"; 
-
-        public const string Docs_Transfer = "https://docs.v2.alturanft.com/api-reference/getting-startede";
-        public const string Docs_Transfers = "https://docs.v2.alturanft.com/api-reference/getting-startede";
-
-        public const string Docs_Mint= "https://docs.v2.alturanft.com/api-reference/getting-startede";
-
-        public const string Docs_NFTDetails = "https://docs.v2.alturanft.com/api-reference/items";
-        public const string Docs_GetUsersItems = "https://docs.v2.alturanft.com/api-reference/users";
-        public const string AuthenticateUser = "https://docs.v2.alturanft.com/api-reference/items";
-        public const string Docs_Mint_URL = "https://docs.v2.alturanft.com/api-reference/items";
-        public const string Docs_Mint_File = "https://docs.v2.alturanft.com/api-reference/items";
-        public const string Docs_Mint_Custom = "https://docs.v2.alturanft.com/api-reference/items";
-        public const string Docs_ConnectUserWallet = "https://docs.v2.alturanft.com/api-reference/items";
-        public const string Docs_DeployContract = "https://docs.v2.alturanft.com/api-reference/items";
-        public const string Docs_PlayerWalletConnect = "https://docs.v2.alturanft.com/api-reference/items";
-        public const string Docs_GetCollections = "https://docs.v2.alturanft.com/api-reference/users";
-        public const string Docs_Txns_NFT = "https://docs.v2.alturanft.com/api-reference/items";
-        public const string Docs_GetCollection = "https://docs.v2.alturanft.com/api-reference/items";
-        public const string Docs_GetHolder = "https://docs.v2.alturanft.com/api-reference/items";
-        public const string Docs_GetHistory = "https://docs.v2.alturanft.com/api-reference/items";
-        public const string Docs_UpdateCollection = "https://docs.v2.alturanft.com/api-reference/items";
-        public const string Docs_UpdateProperty = "https://docs.v2.alturanft.com/api-reference/items";
-        public const string Docs_UpdatePrimaryImage = "https://docs.v2.alturanft.com/api-reference/items";
+        public const string DefaultAPIKey = "Enter your Altura API KEY here";
+        public const string Docs_GettingStarted = "https://docs.alturanft.com/altura-developer-api/unity-sdk/installation"; 
+        public const string Docs_GetUser = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-user"; 
+        public const string Docs_GetUsers = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-users"; 
+        public const string Docs_Transfer = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/transfer-erc1155";
+        public const string Docs_Transfers = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/bulk-transfer-erc1155";
+        public const string Docs_Mint= "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/mint-additional-supply";
+        public const string Docs_NFTDetails = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-item";
+        public const string Docs_GetUsersItems = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-users-items";
+        public const string AuthenticateUser = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/authenticate-user";
+        public const string Docs_ConnectUserWallet = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/authenticate-user";
+        public const string Docs_PlayerWalletConnect = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/authenticate-user";
+        public const string Docs_GetCollections = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-collections";
+        public const string Docs_GetItems = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-items";
+        public const string Docs_GetCollection = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-collection";
+        public const string Docs_GetHolder = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-item-holders";
+        public const string Docs_GetHistory = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-items-history";
+        public const string Docs_UpdateCollection = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/update-collection";
+        public const string Docs_UpdateProperty = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/update-property";
+        public const string Docs_UpdatePrimaryImage = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/update-primary-image";
 
 
 
-        public const string DiscordInvite = "https://discord.gg/rGYZ4mb8";
+        public const string DiscordInvite = "https://discord.com/invite/cHW6SDMsEZ";
         public const string Github = "https://github.com/alturanft/unity-sdk.git";
         public const string Dashboard = "https://app.alturanft.com/";
         public const string FeatureList = "https://docs.alturanft.com/";
@@ -47,9 +39,11 @@ namespace AlturaNFT.Internal
         public const string BaseComponentMenu = "AlturaNFT/";
         public const string BaseFeatureSpawnerMenu = "AlturaNFT/API/";
         public const string FeatureName_AuthenticateUser = "Verify Auth Code | Verify";
-        public const string FeatureName_ConnectUserWallet = " Connect Player Wallet";
+       /**
+       *THIS FUNCITON WILL COME WITH NEXT UPDATE
+       // public const string FeatureName_ConnectUserWallet = " Connect Player Wallet";
+       */
         public const string FeatureName_GetUser = "Get User | GetUser";
-
         public const string FeatureName_GetUsers = "Get Many Users | GetUsers";
         public const string FeatureName_GetUsersItems = "Get A Users Item | GetUserItems";
         public const string FeatureName_GetItem =  "Get Item | GetItem";
@@ -59,7 +53,6 @@ namespace AlturaNFT.Internal
         public const string FeatureName_Transfer = "Transfer | TransferItem";
         public const string FeatureName_TransferItems = "Transfers | TransferItems";
         public const string FeatureName_MintAdditionalNFT = "Mint | MintAdditionalNFT";
-
         public const string FeatureName_GetHolder = "Get Holder | Get Holder";
         public const string FeatureName_GetHistory = "History | Get History";
         public const string FeatureName_UpdateCollection = "Update Collection | Update Collection";
