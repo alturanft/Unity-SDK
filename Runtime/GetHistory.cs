@@ -137,7 +137,7 @@ namespace AlturaNFT
 
                     WEB_URL = RequestUriInit + "/" + _address + "/" + _token_id.ToString();
                     if(debugErrorLog)
-                        Debug.Log("Querying Single Holders Items by address and tokenId: " + _address + " on " );
+                        Debug.Log("Querying History Items by address and tokenId: " + _address + " on " );
                 return WEB_URL;
             }
             

@@ -193,7 +193,7 @@ namespace AlturaNFT
 
                     WEB_URL = RequestUriInit + "?" + jsonString;
                     if(debugErrorLog)
-                        Debug.Log("Querying Details of User: " );
+                        Debug.Log("Querying Details of Collections: " );
 
                 return WEB_URL;
             }

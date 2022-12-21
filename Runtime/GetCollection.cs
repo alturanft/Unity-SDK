@@ -123,7 +123,7 @@ namespace AlturaNFT
                 WEB_URL = RequestUriInit + _collection_address;
                 
                 if(debugErrorLog)
-                    Debug.Log("Querying Transactions of Collection: " + _collection_address );
+                    Debug.Log("Querying information of Collection: " + _collection_address );
                 
                 return WEB_URL;
             }
