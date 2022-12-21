@@ -187,7 +187,6 @@ namespace AlturaNFT.Editor
             if (GUILayout.Button("Save Altura API Key", GUILayout.Height(25)))
             {
                 SaveChanges();
-                VSAttribution.SendAttributionEvent("GetUsersItems","AlturaNFT", _apiKey);
                 apiIsPass = true;
             }
 
@@ -280,7 +279,8 @@ namespace AlturaNFT.Editor
         public override void SaveChanges()
         {
             WriteToUserPrefs();
-            UserStats(); 
+            UserStats();
+            VSAttribution.SendAttributionEvent("SavingApiKey","AlturaNFT", myAPIString); 
         }
         
         static void ShowHomeWindow()
