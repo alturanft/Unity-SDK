@@ -124,7 +124,7 @@ namespace AlturaNFT
                 MintReq tx = new MintReq();
                 tx.address = address;
                 tx.tokenId = _token_id;
-                tx.amounts = _amount;
+                tx.amount = _amount;
                 tx.to = _to_addr;
                 var jsonString = JsonUtility.ToJson(tx);
 
