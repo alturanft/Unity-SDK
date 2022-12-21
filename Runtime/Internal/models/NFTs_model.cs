@@ -19,7 +19,7 @@ namespace AlturaNFT
     {
         public string name;
         public string description;
-        //public Properties properties;
+        public Properties[] properties;
         public int tokenId;
         public string collectionAddress;
         public int chainId;
@@ -67,10 +67,9 @@ namespace AlturaNFT
     [Serializable]
     public class Properties
     {
-        public string _id;
         public string name;
         public string value;
-        public string staatic;
+       // public string static;
 
     }
   
