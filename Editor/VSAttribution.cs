@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.Analytics;
 
-namespace UnityEditor.VSAttribution.AlturaNFT
+namespace UnityEditor.VSAttribution.AlturaNFT.Editor
 {
 	public static class VSAttribution
 	{
