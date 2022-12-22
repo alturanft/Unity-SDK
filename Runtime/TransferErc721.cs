@@ -13,7 +13,7 @@ namespace AlturaNFT
 
     
     
-    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_Transfer)]
+    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_TransferErc721)]
     [ExecuteAlways]
     [HelpURL(AlturaConstants.Docs_Transfer)]
     public class TransferErc721 : MonoBehaviour

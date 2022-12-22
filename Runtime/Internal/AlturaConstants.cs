@@ -51,6 +51,8 @@ namespace AlturaNFT.Internal
         public const string FeatureName_GetCollections = "Get Many Collections | GetCollections";
         public const string FeatureName_GetCollection = "Get 1 Collection | GetCollection";
         public const string FeatureName_Transfer = "Transfer | TransferItem";
+        public const string FeatureName_TransferErc721 = "Transfer ERC721";
+        public const string FeatureName_TransferErc20 = "Transfer ERC20";
         public const string FeatureName_TransferItems = "Transfers | TransferItems";
         public const string FeatureName_MintAdditionalNFT = "Mint | MintAdditionalNFT";
         public const string FeatureName_GetHolder = "Get Holder | Get Holder";
