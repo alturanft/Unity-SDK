@@ -26,7 +26,7 @@ namespace AlturaNFT
         public string address;
         public string to;
         public string tokenId;
-        public string amounts;
+        public string amount;
     }
     [Serializable]
     public class TransferReq

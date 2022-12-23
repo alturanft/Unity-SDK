@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEditor;
 using Newtonsoft.Json; 
 using UnityEditor.PackageManager;
+using UnityEditor.VSAttribution.AlturaNFT.Editor;
 
 namespace AlturaNFT.Editor 
 {
@@ -278,7 +279,8 @@ namespace AlturaNFT.Editor
         public override void SaveChanges()
         {
             WriteToUserPrefs();
-            UserStats(); 
+            UserStats();
+            VSAttribution.SendAttributionEvent("SavingApiKey","AlturaNFT", myAPIString); 
         }
         
         static void ShowHomeWindow()

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
-using UnityEditor.VSAttribution.AlturaNFT;
+
 
 namespace AlturaNFT  
 { using Internal;
@@ -47,7 +47,6 @@ namespace AlturaNFT
             private string _slim = "false";
 
 
-            [SerializeField]
             [Tooltip("Filter from a documents by any properties")]
             [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string jsonString;
@@ -212,7 +211,7 @@ namespace AlturaNFT
                 if (this._sortDir != null)
                 this.jsonString += "&sortDir=" + this._sortDir;
                 if(this._slim!=null)
-                this.jsonString = "&slim=" + this._slim;
+                this.jsonString += "&slim=" + this._slim;
                 if (this._name != null)
                 this.jsonString += "&name=" + this._name;
                 if (this._collectionAddress != null)
@@ -240,8 +239,7 @@ namespace AlturaNFT
             {
                 //Make request
                 UnityWebRequest request = UnityWebRequest.Get(WEB_URL);
-                request.SetRequestHeader("Content-Type", "application/json");
-                VSAttribution.SendAttributionEvent("GetItems","AlturaNFT", _apiKey);                
+                request.SetRequestHeader("Content-Type", "application/json");    
             string url = "https://api.alturanft.com/api/sdk/unity/";
             WWWForm form = new WWWForm();
             UnityWebRequest www = UnityWebRequest.Post(url + "GetItems" + "?apiKey=" + _apiKey, form);

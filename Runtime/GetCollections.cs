@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
-using UnityEditor.VSAttribution.AlturaNFT;
+
 
 namespace AlturaNFT  
 { using Internal;
@@ -193,7 +193,7 @@ namespace AlturaNFT
 
                     WEB_URL = RequestUriInit + "?" + jsonString;
                     if(debugErrorLog)
-                        Debug.Log("Querying Details of User: " );
+                        Debug.Log("Querying Details of Collections: " );
 
                 return WEB_URL;
             }
@@ -204,7 +204,6 @@ namespace AlturaNFT
                 UnityWebRequest request = UnityWebRequest.Get(WEB_URL);
             request.SetRequestHeader("Content-Type", "application/json");
                 request.SetRequestHeader("source", AlturaUser.GetSource());
-                VSAttribution.SendAttributionEvent("GetCollections","AlturaNFT", _apiKey);
             string url = "https://api.alturanft.com/api/sdk/unity/";
             WWWForm form = new WWWForm();
             UnityWebRequest www = UnityWebRequest.Post(url + "GetCollections" + "?apiKey=" + _apiKey, form);

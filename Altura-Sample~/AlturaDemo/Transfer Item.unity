@@ -206,19 +206,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 15798128}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1913506717}
-        m_TargetAssemblyTypeName: AlturaNFT.Samples.AlturaDemo.GetUserDetails, AlturaNFT.Samples.AlturaDemo
-        m_MethodName: TransferItem_Run
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &15798128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1731,7 +1719,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 989618425}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
