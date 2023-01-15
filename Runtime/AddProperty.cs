@@ -25,6 +25,8 @@ namespace AlturaNFT
             [SerializeField]
             private string _address;
             [SerializeField]
+            private string _chainId;
+            [SerializeField]
             private string _tokenId;
             [SerializeField]
             private string _propertyName = "The name (key) of the property you want to change";
@@ -33,7 +35,7 @@ namespace AlturaNFT
 
 
             private string WEB_URL;
-            private bool destroyAtEnd = true;
+            private bool destroyAtEnd = false;
 
 
             private UnityAction<string> OnErrorAction;
@@ -51,7 +53,7 @@ namespace AlturaNFT
             public bool debugLogRawApiResponse = true;
             
             [Header("Gets filled with data and can be referenced:")]
-            public Items_model txHash;
+            public Items_model item;
 
 
         #endregion
@@ -60,9 +62,7 @@ namespace AlturaNFT
         private void Awake()
         {
             AlturaUser.Initialise();
-            apiKey = AlturaUser.GetUserApiKey();
-
-            
+            apiKey = AlturaUser.GetUserApiKey();            
         }
 
         private void OnEnable()
@@ -89,12 +89,14 @@ namespace AlturaNFT
                 return _this;
             }
 
-        public AddProperty SetParameters(string address, string tokenId, string propertyName, string propertyValue)
+        public AddProperty SetParameters(string address, string tokenId, string chainId, string propertyName, string propertyValue)
             {
                 if(address!=null) 
                     this._address = address;
                 if(tokenId!=null)
                     this._tokenId = tokenId;
+                if(chainId!=null)
+                    this._chainId = chainId;
                 if(propertyName!=null)
                     this._propertyName = propertyName;
                 if(propertyValue!=null)
@@ -125,6 +127,7 @@ namespace AlturaNFT
             {
                 StopAllCoroutines();
                 AddPropertyReq tx = new AddPropertyReq();
+                tx.chainId = _chainId;
                 tx.address = _address;
                 tx.tokenId = _tokenId;
                 tx.propertyName = _propertyName;
@@ -133,8 +136,8 @@ namespace AlturaNFT
 
               //  StartCoroutine(Post("https://api.alturanft.com/api/v2/item/update_property?apiKey=" + apiKey, jsonString));
                 StartCoroutine(Post("http://localhost:5001/api/v2/item/add/property?apiKey=" + apiKey, jsonString));
-
-                return txHash;
+           Debug.Log("test" +apiKey);
+                return item;
             }
 
             IEnumerator Post(string url, string bodyJsonString)
@@ -160,12 +163,12 @@ namespace AlturaNFT
                             Debug.Log($" Null data. Response code: {request.responseCode}. Result {jsonResult}");
                         if(afterError!=null)
                             afterError.Invoke();
-                        txHash = null;
+                        item = null;
                         yield break;
                                 }
                                 else
                                 {
-                                    txHash = JsonConvert.DeserializeObject<Items_model>(
+                                    item = JsonConvert.DeserializeObject<Items_model>(
                             jsonResult,
                             new JsonSerializerSettings
                             {
@@ -174,7 +177,7 @@ namespace AlturaNFT
                             });
                         
                         if(OnCompleteAction!=null)
-                            OnCompleteAction.Invoke(txHash);
+                            OnCompleteAction.Invoke(item);
                         
                         if(afterSuccess!=null)
                             afterSuccess.Invoke();
@@ -182,10 +185,6 @@ namespace AlturaNFT
                             Debug.Log($" view Update Property" );
 
                                 }
-
-                                
-
-            
         }
                  request.Dispose();
                 if(destroyAtEnd)

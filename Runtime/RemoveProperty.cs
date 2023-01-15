@@ -25,15 +25,15 @@ namespace AlturaNFT
             [SerializeField]
             private string _address;
             [SerializeField]
-            private string _tokenId;
+            private string _chainId;
+        [SerializeField]
+        private string _tokenId;
             [SerializeField]
             private string _propertyName = "The name (key) of the property you want to change";
-            [SerializeField]
-            private string _propertyValue = "The new value you want to set the property to";
 
 
             private string WEB_URL;
-            private bool destroyAtEnd = true;
+            private bool destroyAtEnd = false;
 
 
             private UnityAction<string> OnErrorAction;
@@ -51,7 +51,7 @@ namespace AlturaNFT
             public bool debugLogRawApiResponse = true;
             
             [Header("Gets filled with data and can be referenced:")]
-            public Items_model txHash;
+            public Items_model item;
 
 
         #endregion
@@ -89,16 +89,16 @@ namespace AlturaNFT
                 return _this;
             }
 
-        public RemoveProperty SetParameters(string address, string tokenId, string propertyName, string propertyValue)
+        public RemoveProperty SetParameters(string address, string tokenId, string chainId, string propertyName)
             {
                 if(address!=null) 
                     this._address = address;
+                if(chainId!=null)
+                    this._chainId = chainId;
                 if(tokenId!=null)
                     this._tokenId = tokenId;
                 if(propertyName!=null)
                     this._propertyName = propertyName;
-                if(propertyValue!=null)
-                    this._propertyValue = propertyValue;
 
                 return this;
             }
@@ -125,15 +125,15 @@ namespace AlturaNFT
             {
                 StopAllCoroutines();
                 RemovePropertyReq tx = new RemovePropertyReq();
+                tx.chainId = _chainId;
                 tx.address = _address;
                 tx.tokenId = _tokenId;
                 tx.propertyName = _propertyName;
                 var  jsonString = JsonUtility.ToJson(tx);
                 
               //  StartCoroutine(Post("https://api.alturanft.com/api/v2/item/update_property?apiKey=" + apiKey, jsonString));
-                StartCoroutine(Post("http://localhost:5001/api/v2/item/add/property?apiKey=" + apiKey, jsonString));
-
-                return txHash;
+                StartCoroutine(Post("http://localhost:5001/api/v2/item/delete/property?apiKey=" + apiKey, jsonString));
+                return item;
             }
 
             IEnumerator Post(string url, string bodyJsonString)
@@ -159,12 +159,12 @@ namespace AlturaNFT
                             Debug.Log($" Null data. Response code: {request.responseCode}. Result {jsonResult}");
                         if(afterError!=null)
                             afterError.Invoke();
-                        txHash = null;
+                        item = null;
                         yield break;
                                 }
                                 else
                                 {
-                                    txHash = JsonConvert.DeserializeObject<Items_model>(
+                                    item = JsonConvert.DeserializeObject<Items_model>(
                             jsonResult,
                             new JsonSerializerSettings
                             {
@@ -173,7 +173,7 @@ namespace AlturaNFT
                             });
                         
                         if(OnCompleteAction!=null)
-                            OnCompleteAction.Invoke(txHash);
+                            OnCompleteAction.Invoke(item);
                         
                         if(afterSuccess!=null)
                             afterSuccess.Invoke();

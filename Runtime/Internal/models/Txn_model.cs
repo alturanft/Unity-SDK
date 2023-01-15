@@ -77,6 +77,7 @@ namespace AlturaNFT
     [Serializable]
     public class AddPropertyReq
     {
+        public string chainId;
         public string address;
         public string tokenId;
         public string propertyName;
@@ -85,6 +86,7 @@ namespace AlturaNFT
     [Serializable]
     public class RemovePropertyReq
     {
+        public string chainId;
         public string address;
         public string tokenId;
         public string propertyName;
