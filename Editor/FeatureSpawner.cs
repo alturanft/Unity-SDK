@@ -149,6 +149,21 @@ namespace AlturaNFT.Editor
         {
             Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_CheckOwnership).AddComponent<CheckOwnership>().gameObject;
         }
+
+        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_AddProperty)]
+        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_AddProperty)]
+        static void Spawn_AddProperty()
+        {
+            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_AddProperty).AddComponent<AddProperty>().gameObject;
+        }
+
+        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_RemoveProperty)]
+        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_RemoveProperty)]
+        static void Spawn_RemoveProperty()
+        {
+            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_RemoveProperty).AddComponent<RemoveProperty>().gameObject;
+        }
+
     }
 
 }
