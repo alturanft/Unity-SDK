@@ -20,6 +20,10 @@ namespace AlturaNFT.Internal
         public const string Docs_GetItems = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-items";
         public const string Docs_GetCollection = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-collection";
         public const string Docs_GetHolder = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-item-holders";
+        
+        public const string Docs_GetUserBalance = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-item-holders";
+        public const string Docs_CheckOwnership = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-item-holders";
+        public const string Docs_GetUserERC20Balance = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-item-holders";
         public const string Docs_GetHistory = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-items-history";
         public const string Docs_UpdateCollection = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/update-collection";
         public const string Docs_UpdateProperty = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/update-property";
@@ -55,10 +59,13 @@ namespace AlturaNFT.Internal
         public const string FeatureName_TransferErc20 = "Transfer ERC20";
         public const string FeatureName_TransferItems = "Transfers | TransferItems";
         public const string FeatureName_MintAdditionalNFT = "Mint | MintAdditionalNFT";
-        public const string FeatureName_GetHolder = "Get Holder | Get Holder";
+        public const string FeatureName_GetHolder = "Get Holder";
+        public const string FeatureName_CheckOwnership = "Verify item Ownership";
+        public const string FeatureName_GetUserBalance = "Get User Balance";
+        public const string FeatureName_GetUserERC20Balance = "Get User ERC20 Balance";
         public const string FeatureName_GetHistory = "History | Get History";
-        public const string FeatureName_UpdateCollection = "Update Collection | Update Collection";
-        public const string FeatureName_UpdateProperty = "Update Property | Update Property";
-        public const string FeatureName_UpdatePrimaryImage = "Update Primary Image | Update Primary Image";
+        public const string FeatureName_UpdateCollection = "Update Collection";
+        public const string FeatureName_UpdateProperty = "Update Property";
+        public const string FeatureName_UpdatePrimaryImage = "Update Primary Image";
     }
 }

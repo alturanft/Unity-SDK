@@ -128,6 +128,27 @@ namespace AlturaNFT.Editor
         {
             Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_UpdateProperty).AddComponent<UpdateProperty>().gameObject;
         }
+
+        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_GetUserBalance)]
+        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_GetUserBalance)]
+        static void Spawn_GetUserBalance()
+        {
+            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_GetUserBalance).AddComponent<GetUserBalance>().gameObject;
+        }
+
+        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_GetUserERC20Balance)]
+        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_GetUserERC20Balance)]
+        static void Spawn_GetUserERC20Balance()
+        {
+            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_GetUserERC20Balance).AddComponent<GetUserERC20Balance>().gameObject;
+        }
+
+        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_CheckOwnership)]
+        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_CheckOwnership)]
+        static void Spawn_CheckOwnership()
+        {
+            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_CheckOwnership).AddComponent<CheckOwnership>().gameObject;
+        }
     }
 
 }

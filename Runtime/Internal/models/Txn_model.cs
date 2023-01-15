@@ -9,7 +9,17 @@ namespace AlturaNFT
         public string authenticated;
 
     }
+    [Serializable]
+    public class Reponse_Balance_model
+    {
+        public string balance;
 
+    }
+    [Serializable]
+    public class Reponse_owner_model
+    {
+        public string isOwner;
+    }
 
     [Serializable]
     public class TransferOneReq
