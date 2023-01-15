@@ -27,9 +27,9 @@ namespace AlturaNFT
             [SerializeField]
             private int _tokenId = 1;
 
-        private string RequestUriInit = "http://localhost:5001/api/v2/checkownership";
-
-        /// private string RequestUriInit = "https://api.alturanft.com/api/v2/checkownership";
+            [SerializeField]
+            private int _chainId = 1;
+        private string RequestUriInit = "https://api.alturanft.com/api/v2/checkownership";
         private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
@@ -86,17 +86,14 @@ namespace AlturaNFT
                 return _this;
             }
 
-        /// <summary>
-        /// Set Parameters to retrieve Item Details
-        /// </summary>
-        /// <param name="collection_address"> as string - EVM</param>
-        /// <param name="token_id"> as int - EVM.</param>
-        public CheckOwnership SetParameters(string address = null, int tokenId = -1, string collectionAddress = null)
+        public CheckOwnership SetParameters(string address, int tokenId ,int chainId, string collectionAddress)
             {
                 if(address!=null)
                     this._address = address;
                 if (tokenId != -1)
                 this._tokenId = tokenId;
+                 if (chainId != -1)
+                this._chainId = chainId;
                 if (collectionAddress != null)
                 this._collectionAddress = collectionAddress;
                 return this;
@@ -136,7 +133,7 @@ namespace AlturaNFT
 
             string BuildUrl()
             {
-                    WEB_URL = RequestUriInit + "?address=" + this._address + "&collectionAddress=" + this._collectionAddress +"&tokenId=" + this._tokenId.ToString();
+                    WEB_URL = RequestUriInit + "?address=" + this._address + "&collectionAddress=" + this._collectionAddress +"&tokenId=" + this._tokenId.ToString()+ +"&tokenId=" + this._chainId.ToString();
             if (debugErrorLog)
                         Debug.Log("Checking if: " + this._address + " is owner of item: " + this._tokenId.ToString() + " from the following collection:"  + this._collectionAddress);
                 return WEB_URL;
