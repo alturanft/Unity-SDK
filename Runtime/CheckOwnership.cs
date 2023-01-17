@@ -133,7 +133,7 @@ namespace AlturaNFT
 
             string BuildUrl()
             {
-                    WEB_URL = RequestUriInit + "?address=" + this._address + "&collectionAddress=" + this._collectionAddress +"&tokenId=" + this._tokenId.ToString()+ +"&tokenId=" + this._chainId.ToString();
+                    WEB_URL = RequestUriInit + "?address=" + this._address + "&collectionAddress=" + this._collectionAddress +"&tokenId=" + this._tokenId.ToString() +"&tokenId=" + this._chainId.ToString();
             if (debugErrorLog)
                         Debug.Log("Checking if: " + this._address + " is owner of item: " + this._tokenId.ToString() + " from the following collection:"  + this._collectionAddress);
                 return WEB_URL;
