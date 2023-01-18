@@ -27,7 +27,7 @@ namespace AlturaNFT
             private int _token_id = 1;
             
 
-            private string RequestUriInit = "https://api.alturanft.com/api/v2/item/events";
+            private string RequestUriInit = AlturaConstants.APILink  + "/v2/item/events";
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
@@ -148,7 +148,7 @@ namespace AlturaNFT
                 request.SetRequestHeader("Content-Type", "application/json");
                 request.SetRequestHeader("source", AlturaUser.GetSource());
                 
-            string url = "https://api.alturanft.com/api/sdk/unity/";
+            string url = AlturaConstants.APILink + "/sdk/unity/";
             WWWForm form = new WWWForm();
             UnityWebRequest www = UnityWebRequest.Post(url + "GetHistoty" + "?apiKey=" + _apiKey, form);
                 {

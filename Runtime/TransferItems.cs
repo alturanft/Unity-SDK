@@ -128,7 +128,7 @@ namespace AlturaNFT
                 tx.to = _to_addr;
                 var  jsonString = JsonUtility.ToJson(tx);
 
-                StartCoroutine(Post("https://api.alturanft.com/api/v2/item/transfer?apiKey=" + apiKey, jsonString));
+                StartCoroutine(Post(AlturaConstants.APILink + "/v2/item/transfer?apiKey=" + apiKey, jsonString));
 
                 return txHash;
             }

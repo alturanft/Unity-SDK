@@ -29,7 +29,7 @@ namespace AlturaNFT
 
             [SerializeField]
             private int _chainId = 1;
-        private string RequestUriInit = "https://api.alturanft.com/api/v2/checkownership";
+        private string RequestUriInit = AlturaConstants.APILink + "/v2/checkownership";
         private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;

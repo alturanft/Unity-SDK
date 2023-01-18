@@ -129,7 +129,7 @@ namespace AlturaNFT
                 tx.tokenId = _token_id;
                 tx.to = _to_addr;
                 var  jsonString = JsonUtility.ToJson(tx);
-                StartCoroutine(Post("https://api.alturanft.com/api/v2/erc721/transfer?apiKey=" + apiKey, jsonString));
+                StartCoroutine(Post(AlturaConstants.APILink + "/v2/erc721/transfer?apiKey=" + apiKey, jsonString));
 
                 return txHash;
             }

@@ -131,7 +131,7 @@ namespace AlturaNFT
                 tx.amount = _amount;
                 tx.to = _to_addr;
                 var  jsonString = JsonUtility.ToJson(tx);
-                StartCoroutine(Post("https://api.alturanft.com/api/v2/erc20/transfer?apiKey=" + apiKey, jsonString));
+                StartCoroutine(Post(AlturaConstants.APILink + "/v2/erc20/transfer?apiKey=" + apiKey, jsonString));
 
                 return txHash;
             }

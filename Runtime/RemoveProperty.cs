@@ -131,7 +131,7 @@ namespace AlturaNFT
                 tx.propertyName = _propertyName;
                 var  jsonString = JsonUtility.ToJson(tx);
                 
-              //  StartCoroutine(Post("https://api.alturanft.com/api/v2/item/update_property?apiKey=" + apiKey, jsonString));
+              //  StartCoroutine(Post(AlturaConstants.APILink + "/v2/item/update_property?apiKey=" + apiKey, jsonString));
                 StartCoroutine(Post("http://localhost:5001/api/v2/item/delete/property?apiKey=" + apiKey, jsonString));
                 return item;
             }

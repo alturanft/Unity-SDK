@@ -27,7 +27,7 @@ namespace AlturaNFT
             [Tooltip("Network ID!")]
             private int _chainID = 1;
 
-         private string RequestUriInit = "https://api.alturanft.com/api/v2/erc20/balance";
+         private string RequestUriInit = AlturaConstants.APILink + "/v2/erc20/balance";
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;

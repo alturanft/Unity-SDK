@@ -142,7 +142,7 @@ namespace AlturaNFT
                 tx.genre = _genre;
                 var  jsonString = JsonUtility.ToJson(tx);
 
-                StartCoroutine(Post("https://api.alturanft.com/api/v2/collection/update?apiKey=" + apiKey, jsonString));
+                StartCoroutine(Post(AlturaConstants.APILink + "/v2/collection/update?apiKey=" + apiKey, jsonString));
 
                 return txHash;
             }

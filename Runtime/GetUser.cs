@@ -24,7 +24,7 @@ namespace AlturaNFT
             [SerializeField]
             private string _address = "Input Address of the Altura User";
             
-            private string RequestUriInit = "https://api.alturanft.com/api/v2/user/";
+            private string RequestUriInit = AlturaConstants.APILink + "/v2/user/";
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
@@ -138,7 +138,7 @@ namespace AlturaNFT
                 //Make request
                 UnityWebRequest request = UnityWebRequest.Get(WEB_URL);
                 request.SetRequestHeader("Content-Type", "application/json");             
-            string url = "https://api.alturanft.com/api/sdk/unity/";
+            string url = AlturaConstants.APILink + "/sdk/unity/";
             WWWForm form = new WWWForm();
             UnityWebRequest www = UnityWebRequest.Post(url + "GetUser" + "?apiKey=" + _apiKey, form);
                 {

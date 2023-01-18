@@ -227,7 +227,7 @@ namespace AlturaNFT
                 if (this._supply != null)
                 this.jsonString += "&supply=" + this._supply;
 
-                    WEB_URL = "https://api.alturanft.com/api/v2/item?" + jsonString;
+                    WEB_URL = AlturaConstants.APILink + "/v2/item?" + jsonString;
 
                     
                     if(debugErrorLog)
@@ -240,7 +240,7 @@ namespace AlturaNFT
                 //Make request
                 UnityWebRequest request = UnityWebRequest.Get(WEB_URL);
                 request.SetRequestHeader("Content-Type", "application/json");    
-            string url = "https://api.alturanft.com/api/sdk/unity/";
+            string url = AlturaConstants.APILink + "/sdk/unity/";
             WWWForm form = new WWWForm();
             UnityWebRequest www = UnityWebRequest.Post(url + "GetItems" + "?apiKey=" + _apiKey, form);
                 {

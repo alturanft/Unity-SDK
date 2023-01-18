@@ -131,7 +131,7 @@ namespace AlturaNFT
                 tx.imageIndex = _image_index;
                 var  jsonString = JsonUtility.ToJson(tx);
 
-                StartCoroutine(Post("https://api.alturanft.com/api/v2/item/update_primary_image?apiKey=" + apiKey, jsonString));
+                StartCoroutine(Post(AlturaConstants.APILink + "/v2/item/update_primary_image?apiKey=" + apiKey, jsonString));
 
                 return txHash;
             }
