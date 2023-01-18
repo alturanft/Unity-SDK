@@ -13,10 +13,10 @@ namespace AlturaNFT
 
     
     
-    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_AddProperty)]
+    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_UpdateItemData)]
     [ExecuteAlways]
-    [HelpURL(AlturaConstants.Docs_AddProperty)]
-    public class AddProperty : MonoBehaviour
+    [HelpURL(AlturaConstants.Docs_UpdateItemData)]
+    public class UpdateItemData : MonoBehaviour
     {
 
         private string apiKey;
@@ -25,16 +25,14 @@ namespace AlturaNFT
             [SerializeField]
             private string _address;
             [SerializeField]
-            private int _chainId;
-            [SerializeField]
             private int _tokenId;
             [SerializeField]
-            private string _propertyName = "The name (key) of the property you want to change";
+            private string _itemName;
             [SerializeField]
-            private string _propertyValue = "The new value you want to set the property to";
+            private string _itemDesc;
 
 
-            private string WEB_URL;
+         private string WEB_URL;
             private bool destroyAtEnd = false;
 
 
@@ -62,7 +60,9 @@ namespace AlturaNFT
         private void Awake()
         {
             AlturaUser.Initialise();
-            apiKey = AlturaUser.GetUserApiKey();            
+            apiKey = AlturaUser.GetUserApiKey();
+
+            
         }
 
         private void OnEnable()
@@ -80,39 +80,37 @@ namespace AlturaNFT
         /// Initialize creates a gameobject and assings this script as a component. This must be called if you are not refrencing the script any other way and it doesn't already exists in the scene.
         /// </summary>
         /// <param name="destroyAtEnd"> Optional bool parameter can set to false to avoid Spawned GameObject being destroyed after the Api process is complete. </param>
-        public static AddProperty Initialize(bool destroyAtEnd = true)
+        public static UpdateItemData Initialize(bool destroyAtEnd = true)
             {
-                var _this = new GameObject(AlturaConstants.FeatureName_Transfer).AddComponent<AddProperty>();
+                var _this = new GameObject(AlturaConstants.FeatureName_Transfer).AddComponent<UpdateItemData>();
                 _this.destroyAtEnd = destroyAtEnd;
                 _this.onEnable = true;
                 _this.debugErrorLog = true;
                 return _this;
             }
 
-        public AddProperty SetParameters(string address, int tokenId, int chainId, string propertyName, string propertyValue)
+        public UpdateItemData SetParameters(string address, int tokenId, string itemName = null, string itemDesc=null)
             {
                 if(address!=null) 
                     this._address = address;
                 if(tokenId!=null)
                     this._tokenId = tokenId;
-                if(chainId!=null)
-                    this._chainId = chainId;
-                if(propertyName!=null)
-                    this._propertyName = propertyName;
-                if(propertyValue!=null)
-                    this._propertyValue = propertyValue;
+                if(itemName != null)
+                    this._itemName = itemName;
+                if (itemDesc != null)
+                this._itemDesc = itemDesc;
 
-                return this;
+            return this;
             }
 
 
-            public AddProperty OnComplete(UnityAction<Items_model> action)
+            public UpdateItemData OnComplete(UnityAction<Items_model> action)
             {
                 this.OnCompleteAction = action;
                 return this;
             }
 
-            public AddProperty OnError(UnityAction<string> action)
+            public UpdateItemData OnError(UnityAction<string> action)
             {
                 this.OnErrorAction = action;
                 return this;
@@ -126,16 +124,20 @@ namespace AlturaNFT
             public Items_model Run()
             {
                 StopAllCoroutines();
-                AddPropertyReq tx = new AddPropertyReq();
-                tx.chainId = _chainId.ToString();
+                UpdateItemDataReq tx = new UpdateItemDataReq();
                 tx.address = _address;
                 tx.tokenId = _tokenId.ToString();
-                tx.propertyName = _propertyName;
-                tx.propertyValue = _propertyValue;
-                var  jsonString = JsonUtility.ToJson(tx);
+            if (this._itemDesc != null)
+            {
+                tx.itemDesc = _itemDesc;
+            }
+            if (_itemName != null)
+            {
+                tx.itemName = _itemName;
+            }
 
-                StartCoroutine(Post(AlturaConstants.APILink + "/v2/item/add/property?apiKey=" + apiKey, jsonString));
-           Debug.Log("test" +apiKey);
+            var  jsonString = JsonUtility.ToJson(tx);
+                StartCoroutine(Post(AlturaConstants.APILink + "/item/updateItem?apiKey=" + apiKey, jsonString));
                 return item;
             }
 
@@ -184,6 +186,7 @@ namespace AlturaNFT
                             Debug.Log($" view Update Property" );
 
                                 }
+            
         }
                  request.Dispose();
                 if(destroyAtEnd)

@@ -32,6 +32,8 @@ namespace AlturaNFT.Internal
         public const string Docs_AddProperty = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/update-property";
         
         public const string Docs_RemoveProperty = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/update-property";
+        
+        public const string Docs_UpdateItemData = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/update-property";
         public const string Docs_UpdatePrimaryImage = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/update-primary-image";
 
 
@@ -73,6 +75,8 @@ namespace AlturaNFT.Internal
         public const string FeatureName_UpdateProperty = "Update Property";
         public const string FeatureName_AddProperty = "Add Property";
         public const string FeatureName_RemoveProperty = "Remove Property";
+        
+        public const string FeatureName_UpdateItemData = "Update Item Data";
         public const string FeatureName_UpdatePrimaryImage = "Update Primary Image";
     }
 }

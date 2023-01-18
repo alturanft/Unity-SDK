@@ -84,6 +84,14 @@ namespace AlturaNFT
         public string propertyValue;
     }
     [Serializable]
+    public class UpdateItemDataReq
+    {
+        public string address;
+        public string tokenId;
+        public string itemDesc;
+        public string itemName;
+    }
+    [Serializable]
     public class RemovePropertyReq
     {
         public string chainId;

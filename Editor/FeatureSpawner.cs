@@ -163,6 +163,13 @@ namespace AlturaNFT.Editor
         {
             Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_RemoveProperty).AddComponent<RemoveProperty>().gameObject;
         }
+        
+        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_UpdateItemData)]
+        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_UpdateItemData)]
+        static void Spawn_UpdateItemData()
+        {
+            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_UpdateItemData).AddComponent<UpdateItemData>().gameObject;
+        }
 
     }
 

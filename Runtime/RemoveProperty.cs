@@ -25,9 +25,9 @@ namespace AlturaNFT
             [SerializeField]
             private string _address;
             [SerializeField]
-            private string _chainId;
+            private int _chainId;
         [SerializeField]
-        private string _tokenId;
+        private int _tokenId;
             [SerializeField]
             private string _propertyName = "The name (key) of the property you want to change";
 
@@ -89,7 +89,7 @@ namespace AlturaNFT
                 return _this;
             }
 
-        public RemoveProperty SetParameters(string address, string tokenId, string chainId, string propertyName)
+        public RemoveProperty SetParameters(string address, int tokenId, int chainId, string propertyName)
             {
                 if(address!=null) 
                     this._address = address;
@@ -125,14 +125,13 @@ namespace AlturaNFT
             {
                 StopAllCoroutines();
                 RemovePropertyReq tx = new RemovePropertyReq();
-                tx.chainId = _chainId;
+                tx.chainId = _chainId.ToString();
                 tx.address = _address;
-                tx.tokenId = _tokenId;
+                tx.tokenId = _tokenId.ToString();
                 tx.propertyName = _propertyName;
                 var  jsonString = JsonUtility.ToJson(tx);
                 
-              //  StartCoroutine(Post(AlturaConstants.APILink + "/v2/item/update_property?apiKey=" + apiKey, jsonString));
-                StartCoroutine(Post("http://localhost:5001/api/v2/item/delete/property?apiKey=" + apiKey, jsonString));
+                StartCoroutine(Post(AlturaConstants.APILink + "/v2/item/delete/property?apiKey=" + apiKey, jsonString));
                 return item;
             }
 
