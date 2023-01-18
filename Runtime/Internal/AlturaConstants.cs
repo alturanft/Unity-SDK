@@ -3,7 +3,7 @@ namespace AlturaNFT.Internal
     public static class AlturaConstants
     {
         //public const string APILink = AlturaConstants.APILink + "";
-        public const string APILink = "http://localhost:5001/api";
+        public const string APILink = "https://api.alturanft.com/api";
         public const string HomeWindowName = "AlturaNFT Home";
         public const string DefaultAPIKey = "Enter your Altura API KEY here";
         public const string Docs_GettingStarted = "https://docs.alturanft.com/altura-developer-api/unity-sdk/installation"; 
