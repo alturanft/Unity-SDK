@@ -9,9 +9,6 @@ namespace AlturaNFT.Internal
         public const string Docs_GettingStarted = "https://docs.alturanft.com/altura-developer-api/unity-sdk/installation"; 
         public const string Docs_GetUser = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-user"; 
         public const string Docs_GetUsers = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-users"; 
-        public const string Docs_Transfer = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/transfer-erc1155";
-        public const string Docs_Transfers = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/bulk-transfer-erc1155";
-        public const string Docs_Mint= "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/mint-additional-supply";
         public const string Docs_NFTDetails = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-item";
         public const string Docs_GetUsersItems = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-users-items";
         public const string AuthenticateUser = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/authenticate-user";
@@ -26,15 +23,6 @@ namespace AlturaNFT.Internal
         public const string Docs_CheckOwnership = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-item-holders";
         public const string Docs_GetUserERC20Balance = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-item-holders";
         public const string Docs_GetHistory = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-items-history";
-        public const string Docs_UpdateCollection = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/update-collection";
-        public const string Docs_UpdateProperty = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/update-property";
-        
-        public const string Docs_AddProperty = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/update-property";
-        
-        public const string Docs_RemoveProperty = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/update-property";
-        
-        public const string Docs_UpdateItemData = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/update-property";
-        public const string Docs_UpdatePrimaryImage = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/update-primary-image";
 
 
 
@@ -61,22 +49,10 @@ namespace AlturaNFT.Internal
         public const string FeatureName_Txn_NFT = "Get Many Items | GetItems";
         public const string FeatureName_GetCollections = "Get Many Collections | GetCollections";
         public const string FeatureName_GetCollection = "Get 1 Collection | GetCollection";
-        public const string FeatureName_Transfer = "Transfer | TransferItem";
-        public const string FeatureName_TransferErc721 = "Transfer ERC721";
-        public const string FeatureName_TransferErc20 = "Transfer ERC20";
-        public const string FeatureName_TransferItems = "Transfers | TransferItems";
-        public const string FeatureName_MintAdditionalNFT = "Mint | MintAdditionalNFT";
         public const string FeatureName_GetHolder = "Get Holder";
         public const string FeatureName_CheckOwnership = "Verify item Ownership";
         public const string FeatureName_GetUserBalance = "Get User Balance";
         public const string FeatureName_GetUserERC20Balance = "Get User ERC20 Balance";
         public const string FeatureName_GetHistory = "History | Get History";
-        public const string FeatureName_UpdateCollection = "Update Collection";
-        public const string FeatureName_UpdateProperty = "Update Property";
-        public const string FeatureName_AddProperty = "Add Property";
-        public const string FeatureName_RemoveProperty = "Remove Property";
-        
-        public const string FeatureName_UpdateItemData = "Update Item Data";
-        public const string FeatureName_UpdatePrimaryImage = "Update Primary Image";
     }
 }
