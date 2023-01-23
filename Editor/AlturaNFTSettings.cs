@@ -28,7 +28,7 @@ namespace AlturaNFT.Editor
         static int _selectedSample;
 
                 
-        [MenuItem("AlturaNFT/Home")]
+        /*[MenuItem("AlturaNFT/Home")]
         public static void ShowWindow()
         {
             var win = GetWindow<AlturaNFTSettings>(AlturaConstants.HomeWindowName);
@@ -39,7 +39,7 @@ namespace AlturaNFT.Editor
         public static void InitializeOnLoadMethod()
         {
             Events.registeredPackages += RegisteredPackagesEventHandler;
-        }
+        }*/
 
         static void RegisteredPackagesEventHandler(PackageRegistrationEventArgs packageRegistrationEventArgs)
         {
