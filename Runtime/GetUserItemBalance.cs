@@ -13,8 +13,8 @@ namespace AlturaNFT
     /// </summary>
     [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_GetUserBalance)]
     [ExecuteAlways]
-    [HelpURL(AlturaConstants.Docs_CheckOwnership)]
-    public class CheckOwnership : MonoBehaviour
+    [HelpURL(AlturaConstants.Docs_GetUserItemBalance)]
+    public class GetUserItemBalance : MonoBehaviour
     {
 
         #region Parameter Defines
@@ -29,7 +29,7 @@ namespace AlturaNFT
 
             [SerializeField]
             private int _chainId = 1;
-        private string RequestUriInit = AlturaConstants.APILink + "/v2/checkownership";
+        private string RequestUriInit = AlturaConstants.APILink + "/v2/item/balance";
         private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
@@ -77,16 +77,16 @@ namespace AlturaNFT
         /// Initialize creates a gameobject and assings this script as a component. This must be called if you are not refrencing the script any other way and it doesn't already exists in the scene.
         /// </summary>
         /// <param name="destroyAtEnd"> Optional bool parameter can set to false to avoid Spawned GameObject being destroyed after the Api process is complete. </param>
-        public static CheckOwnership Initialize(bool destroyAtEnd = true)
+        public static GetUserItemBalance Initialize(bool destroyAtEnd = true)
             {
-                var _this = new GameObject(AlturaConstants.FeatureName_CheckOwnership).AddComponent<CheckOwnership>();
+                var _this = new GameObject(AlturaConstants.FeatureName_GetUserItemBalance).AddComponent<GetUserItemBalance>();
                 _this.destroyAtEnd = destroyAtEnd;
                 _this.onEnable = false;
                 _this.debugErrorLog = false;
                 return _this;
             }
 
-        public CheckOwnership SetParameters(string address, int tokenId ,int chainId, string collectionAddress)
+        public GetUserItemBalance SetParameters(string address, int tokenId ,int chainId, string collectionAddress)
             {
                 if(address!=null)
                     this._address = address;
@@ -99,7 +99,7 @@ namespace AlturaNFT
                 return this;
             }
 
-            public CheckOwnership OnComplete(UnityAction<Reponse_owner_model> action)
+            public GetUserItemBalance OnComplete(UnityAction<Reponse_owner_model> action)
             {
                 this.OnCompleteAction = action;
                 return this;
@@ -110,7 +110,7 @@ namespace AlturaNFT
             /// </summary>
             /// <param name="UnityAction action"> string.</param>
             /// <returns> Information on Error as string text.</returns>
-            public CheckOwnership OnError(UnityAction<string> action)
+            public GetUserItemBalance OnError(UnityAction<string> action)
             {
                 this.OnErrorAction = action;
                 return this;

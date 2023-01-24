@@ -20,7 +20,7 @@ namespace AlturaNFT.Internal
         public const string Docs_GetHolder = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-item-holders";
         
         public const string Docs_GetUserBalance = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-item-holders";
-        public const string Docs_CheckOwnership = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-item-holders";
+        public const string Docs_GetUserItemBalance = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-item-holders";
         public const string Docs_GetUserERC20Balance = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-item-holders";
         public const string Docs_GetHistory = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-items-history";
 
@@ -50,7 +50,7 @@ namespace AlturaNFT.Internal
         public const string FeatureName_GetCollections = "Get Many Collections | GetCollections";
         public const string FeatureName_GetCollection = "Get 1 Collection | GetCollection";
         public const string FeatureName_GetHolder = "Get Holder";
-        public const string FeatureName_CheckOwnership = "Verify item Ownership";
+        public const string FeatureName_GetUserItemBalance = "Get User Item Balance";
         public const string FeatureName_GetUserBalance = "Get User Balance";
         public const string FeatureName_GetUserERC20Balance = "Get User ERC20 Balance";
         public const string FeatureName_GetHistory = "History | Get History";

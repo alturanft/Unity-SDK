@@ -18,7 +18,7 @@ namespace AlturaNFT
     [Serializable]
     public class Reponse_owner_model
     {
-        public string isOwner;
+        public string balance;
     }
 
     [Serializable]
