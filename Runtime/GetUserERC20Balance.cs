@@ -20,7 +20,7 @@ namespace AlturaNFT
         #region Parameter Defines
   
             [SerializeField]
-            private string _address = "input users address";
+            private string _userAddress = "input users address";
             [SerializeField]
             private string _tokenAddress = "input token address";
             [SerializeField]
@@ -87,12 +87,14 @@ namespace AlturaNFT
         /// <summary>
         /// Set Parameters to retrieve Item Details
         /// </summary>
-        /// <param name="collection_address"> as string - EVM</param>
-        /// <param name="token_id"> as int - EVM.</param>
-        public GetUserERC20Balance SetParameters(string address = null, int chainId = -1, string tokenAddress=null)
+        
+        /// <param name="userAddress"> as string - EVM</param>
+        /// <param name="chainId"> as string - EVM</param>
+        /// <param name="tokenAddress"> as string - EVM</param>
+        public GetUserERC20Balance SetParameters(string userAddress , int chainId , string tokenAddress)
             {
-                if(address!=null)
-                    this._address = address;
+                if(userAddress!=null)
+                    this._userAddress = userAddress;
                 if (chainId != -1)
                 this._chainID = chainId;
                 if(tokenAddress !=null)
@@ -134,10 +136,10 @@ namespace AlturaNFT
 
             string BuildUrl()
             {
-                    WEB_URL = RequestUriInit + "?address=" + this._address + "&chainId=" + this._chainID.ToString() + "&tokenAddress=" + this._tokenAddress;
+                    WEB_URL = RequestUriInit + "?userAddress=" + this._userAddress + "&chainId=" + this._chainID.ToString() + "&tokenAddress=" + this._tokenAddress;
 
             if (debugErrorLog)
-                        Debug.Log("Getting ERC20 Balance of: " + this._address + " on chainID: " + this._chainID.ToString());
+                        Debug.Log("Getting ERC20 Balance of: " + this._userAddress + " on chainID: " + this._chainID.ToString());
                 return WEB_URL;
             }
             

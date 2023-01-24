@@ -20,7 +20,7 @@ namespace AlturaNFT
         #region Parameter Defines
   
             [SerializeField]
-            private string _address = "input users address";
+            private string _userAddress = "input users address";
             [SerializeField]
             private string _collectionAddress = "Collection contract Address";
             
@@ -86,10 +86,10 @@ namespace AlturaNFT
                 return _this;
             }
 
-        public GetUserItemBalance SetParameters(string address, int tokenId ,int chainId, string collectionAddress)
+        public GetUserItemBalance SetParameters(string userAddress, int tokenId ,int chainId, string collectionAddress)
             {
-                if(address!=null)
-                    this._address = address;
+                if(userAddress!=null)
+                    this._userAddress = userAddress;
                 if (tokenId != -1)
                 this._tokenId = tokenId;
                  if (chainId != -1)
@@ -133,9 +133,9 @@ namespace AlturaNFT
 
             string BuildUrl()
             {
-                    WEB_URL = RequestUriInit + "?address=" + this._address + "&collectionAddress=" + this._collectionAddress +"&tokenId=" + this._tokenId.ToString() +"&tokenId=" + this._chainId.ToString();
+                    WEB_URL = RequestUriInit + "?userAddress=" + this._userAddress + "&collectionAddress=" + this._collectionAddress +"&tokenId=" + this._tokenId.ToString() +"&tokenId=" + this._chainId.ToString();
             if (debugErrorLog)
-                        Debug.Log("Checking if: " + this._address + " is owner of item: " + this._tokenId.ToString() + " from the following collection:"  + this._collectionAddress);
+                        Debug.Log("Checking if: " + this._userAddress + " is owner of item: " + this._tokenId.ToString() + " from the following collection:"  + this._collectionAddress);
                 return WEB_URL;
             }
             

@@ -20,7 +20,7 @@ namespace AlturaNFT
         #region Parameter Defines
   
             [SerializeField]
-            private string _address = "input users address";
+            private string _userAddress = "input users address";
             
             [SerializeField]
             [Tooltip("Network ID!")]
@@ -85,12 +85,12 @@ namespace AlturaNFT
         /// <summary>
         /// Set Parameters to retrieve Item Details
         /// </summary>
-        /// <param name="collection_address"> as string - EVM</param>
-        /// <param name="token_id"> as int - EVM.</param>
-        public GetUserBalance SetParameters(string address = null, int chainId = -1)
+        /// <param name="userAddress"> as string - EVM</param>
+        /// <param name="chainId"> as int - EVM.</param>
+        public GetUserBalance SetParameters(string userAddress = null, int chainId = -1)
             {
-                if(address!=null)
-                    this._address = address;
+                if(userAddress!=null)
+                    this._userAddress = userAddress;
                 if (chainId != -1)
                 this._chainID = chainId;
                 return this;
@@ -130,10 +130,10 @@ namespace AlturaNFT
 
             string BuildUrl()
             {
-                    WEB_URL = RequestUriInit + "?address=" + this._address + "&chainId=" + this._chainID.ToString();
+                    WEB_URL = RequestUriInit + "?userAddress=" + this._userAddress + "&chainId=" + this._chainID.ToString();
 
             if (debugErrorLog)
-                        Debug.Log("Getting Balance of: " + this._address + " on chainID: " + this._chainID.ToString());
+                        Debug.Log("Getting Balance of: " + this._userAddress + " on chainID: " + this._chainID.ToString());
                 return WEB_URL;
             }
             
