@@ -57,24 +57,5 @@ To import some samples made by Altura Team do:
 
 ## Documentation
 Read our [Documentation](https://docs.alturanft.com/altura-developer-api/integrate/unity-sdk-reference) to learn more about <b>Altura SDK</b>.
-## Methods
- 
-| Method                              | Description    |
-| ------------- | ----------- |
-| AuthenticateUser(address, code)     | Use this method to authenticate user with Altura Guard. On success, `true` is returned.                                              |
-| GetUser(address)     | Use this method to get user information such as Name, Bio, social etc. etc. On success, the data is returned as JSON.    |
-| GetUsers(perPage, page, sortBy, sortDir)     | Use this method to get information of multiple users at same time such as Name, Bio, social etc. etc. On success, the data is returned as JSON.    |
-| GetItem(collecttionAddress, tokenId)     | Use this method to get item metadata. On success, the data is returned as JSON.    |
-| GetItems(perPage, page, sortBy, sortDir, slim)     | Use this method to get metadata of multiple Items at same time. On success, the data is returned as JSON.    |
-| GetCollection(address)     | Use this method to get Collection information. On success, the data is returned as JSON.    |
-| GetCollections(perPage, page, sortBy, sortDir)     | Use this method to get information of multiple Collections at same time. On success, the data is returned as JSON.    |
-| TransferItem(collectionAddress, tokenId, amount, to)     | Description    |
-| TransferItems()     | Description    |
-| MintAdditionalSupply()     | Description    |
-| GetUserItems()     | Use this method to get items of specific user.On success, the data is returned as JSON.    |
-| GetHolders()     | Description    |
-| GetHistory()     | Description    |
-| UpdateProperty()     | Description    |
-| UpdatePrimaryImage()     | Description    |
-| Update()     | Description    |
+
 
