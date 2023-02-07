@@ -137,7 +137,7 @@ namespace AlturaNFT
 
             string url = AlturaConstants.APILink + "/sdk/unity/";
             WWWForm form = new WWWForm();
-            UnityWebRequest www = UnityWebRequest.Post(url + "GetCollection" + "?apiKey=" + _apiKey, form);
+            UnityWebRequest www = UnityWebRequest.Post(url + "GetCollection", form);
 
             yield return www.SendWebRequest();
 

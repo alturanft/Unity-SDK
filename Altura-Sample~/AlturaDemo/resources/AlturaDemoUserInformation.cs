@@ -6,20 +6,22 @@ namespace AlturaNFT.Samples.AlturaDemo
     using UnityEngine.UI;
 
     // get user details
-    public class AlturaDemoItemInformation : MonoBehaviour
+    public class AlturaDemoUserInformation : MonoBehaviour
     {
 
         #region ItemInformation
 
         public Button _getdataButton;
         [SerializeField]
-        public InputField _collectionaddress;
+        public InputField _address;
 
         [SerializeField]
-        public InputField _tokenID;
+        public Text NameInfo;
 
         [SerializeField]
-        public Text console;
+        public Text BioInfo;
+        [SerializeField]
+        public GameObject UserInformationObject;
 
         #endregion
 
@@ -32,23 +34,21 @@ namespace AlturaNFT.Samples.AlturaDemo
         public void GetDataFunction()
         {
 
-            int number; int.TryParse(_tokenID.text, out int result); number = result;
-            Debug.Log("Starting Dropdown Value : " + _collectionaddress.text.ToString());
-            Debug.Log("Starting Dropdown Value : " + number);
-            GetItem
+            GetUser
               .Initialize(destroyAtEnd: true)
               .SetParameters(
-                collection_address: _collectionaddress.text.ToString(),
-                token_id: number
+                _address.text.ToString()
               ).OnError(error => Debug.Log(error))
               .OnComplete(result => setData(result)
               )
               .Run();
 
         }
-        private void setData(Internal.Items_model _result)
+        private void setData(Internal.User_model _result)
         {
-            console.text = "Please check the console log!";
+            NameInfo.text = _result.user.name;
+            BioInfo.text = _result.user.bio;
+            UserInformationObject.SetActive(true);
         }
 
     }

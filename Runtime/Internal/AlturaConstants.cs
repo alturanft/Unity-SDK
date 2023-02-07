@@ -4,24 +4,24 @@ namespace AlturaNFT.Internal
     {
         //public const string APILink = AlturaConstants.APILink + "";
         public const string APILink = "https://cloud.alturanft.com/api";
-        public const string DefaultAPIKey = "Enter your Altura API KEY here";
-        public const string Docs_GettingStarted = "https://docs.alturanft.com/altura-developer-api/unity-sdk/installation"; 
-        public const string Docs_GetUser = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-user"; 
-        public const string Docs_GetUsers = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-users"; 
-        public const string Docs_NFTDetails = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-item";
+        public const string DefaultAPIKey = "none";
+        public const string Docs_GettingStarted = "https://docs.alturanft.com/altura-documentation/unity-sdk-reference/installation"; 
+        public const string Docs_GetUser = "https://docs.alturanft.com/altura-documentation/unity-sdk-reference/get-methods/get-user"; 
+        public const string Docs_GetUsers = "https://docs.alturanft.com/altura-documentation/unity-sdk-reference/get-methods/get-users"; 
+        public const string Docs_NFTDetails = "https://docs.alturanft.com/altura-documentation/unity-sdk-reference/get-methods/get-item";
         public const string Docs_GetUsersItems = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-users-items";
-        public const string AuthenticateUser = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/authenticate-user";
+        public const string AuthenticateUser = "https://docs.alturanft.com/altura-documentation/unity-sdk-reference/get-methods/verify-a-users-altura-guard-code";
         public const string Docs_ConnectUserWallet = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/authenticate-user";
         public const string Docs_PlayerWalletConnect = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/authenticate-user";
-        public const string Docs_GetCollections = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-collections";
-        public const string Docs_GetItems = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-items";
-        public const string Docs_GetCollection = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-collection";
-        public const string Docs_GetHolder = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-item-holders";
+        public const string Docs_GetCollections = "https://docs.alturanft.com/altura-documentation/unity-sdk-reference/get-methods/get-collections";
+        public const string Docs_GetItems = "https://docs.alturanft.com/altura-documentation/unity-sdk-reference/get-methods/get-items";
+        public const string Docs_GetCollection = "https://docs.alturanft.com/altura-documentation/unity-sdk-reference/get-methods/get-collection";
+        public const string Docs_GetHolder = "https://docs.alturanft.com/altura-documentation/unity-sdk-reference/get-methods/get-an-items-holders";
         
-        public const string Docs_GetUserBalance = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-item-holders";
-        public const string Docs_GetUserItemBalance = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-item-holders";
-        public const string Docs_GetUserERC20Balance = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-item-holders";
-        public const string Docs_GetHistory = "https://docs.alturanft.com/altura-developer-api/unity-sdk/methods/get-an-items-history";
+        public const string Docs_GetUserBalance = "https://docs.alturanft.com/altura-documentation/unity-sdk-reference/get-methods/get-a-users-native-token-balance";
+        public const string Docs_GetUserItemBalance = "https://docs.alturanft.com/altura-documentation/unity-sdk-reference/get-methods/get-a-users-item-balance";
+        public const string Docs_GetUserERC20Balance = "https://docs.alturanft.com/altura-documentation/unity-sdk-reference/get-methods/get-a-users-erc20-balance";
+        public const string Docs_GetHistory = "https://docs.alturanft.com/altura-documentation/unity-sdk-reference/get-methods/get-an-items-history";
 
 
 

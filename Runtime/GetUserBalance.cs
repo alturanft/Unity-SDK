@@ -25,8 +25,9 @@ namespace AlturaNFT
             [SerializeField]
             [Tooltip("Network ID!")]
             private int _chainID = 1;
-         private string RequestUriInit = AlturaConstants.APILink + "/v2/native/balance";
-        private string WEB_URL;
+
+            private string RequestUriInit = AlturaConstants.APILink + "/v2/native/balance";
+            private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
 
@@ -54,7 +55,6 @@ namespace AlturaNFT
         private void Awake()
         {
             AlturaUser.Initialise();
-            _apiKey = AlturaUser.GetUserApiKey();
             
         }
 

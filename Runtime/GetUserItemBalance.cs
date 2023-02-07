@@ -58,8 +58,6 @@ namespace AlturaNFT
         private void Awake()
         {
             AlturaUser.Initialise();
-            _apiKey = AlturaUser.GetUserApiKey();
-            
         }
 
         private void OnEnable()
@@ -133,7 +131,7 @@ namespace AlturaNFT
 
             string BuildUrl()
             {
-                    WEB_URL = RequestUriInit + "?userAddress=" + this._userAddress + "&collectionAddress=" + this._collectionAddress +"&tokenId=" + this._tokenId.ToString() +"&tokenId=" + this._chainId.ToString();
+                    WEB_URL = RequestUriInit + "?userAddress=" + this._userAddress + "&collectionAddress=" + this._collectionAddress +"&tokenId=" + this._tokenId.ToString() +"&chainId=" + this._chainId.ToString();
             if (debugErrorLog)
                         Debug.Log("Checking if: " + this._userAddress + " is owner of item: " + this._tokenId.ToString() + " from the following collection:"  + this._collectionAddress);
                 return WEB_URL;

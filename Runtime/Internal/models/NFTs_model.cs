@@ -8,7 +8,7 @@ namespace AlturaNFT
 {
 
 
-    [Serializable]
+    /*[Serializable]
     public class Items_model
     {
         public Items item;
@@ -52,7 +52,7 @@ namespace AlturaNFT
         public int imageCount;
         public int totalListings;
 
-    }
+    }*/
 
     [Serializable]
     public class AllImages 

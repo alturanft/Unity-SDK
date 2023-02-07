@@ -50,7 +50,6 @@ namespace AlturaNFT
         private void Awake()
         {
             AlturaUser.Initialise();
-            _apiKey = AlturaUser.GetUserApiKey();
             
         }
         
@@ -142,10 +141,6 @@ namespace AlturaNFT
             request = UnityWebRequest.Get(WEB_URL);
             request.SetRequestHeader("Content-Type", "application/json");
             request.SetRequestHeader("source",  AlturaUser.GetSource());
-            request.SetRequestHeader("Authorization", _apiKey);
-            string url = AlturaConstants.APILink + "/sdk/unity/";
-            WWWForm form = new WWWForm();
-            UnityWebRequest www = UnityWebRequest.Post(url + "AlturaUserSetting" + "?apiKey=" + _apiKey, form);
             //Make request
             if(OnRequestStarted!=null)
                 OnRequestStarted.Invoke();
