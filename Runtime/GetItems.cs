@@ -32,7 +32,7 @@ namespace AlturaNFT
 
             [SerializeField]
             [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
-            private string _perPage = "Input How much pqges you want to get";
+            private string _perPage = "Input How much pages you want to get";
             [SerializeField]
             [DrawIf("chain", Chains.binance , DrawIfAttribute.DisablingType.DontDrawInverse)]
             private string _page = "Input Which page you want to get";
@@ -85,7 +85,6 @@ namespace AlturaNFT
         private void Awake()
         {
             AlturaUser.Initialise();
-            _apiKey = AlturaUser.GetUserApiKey();
             
         }
 
@@ -227,7 +226,7 @@ namespace AlturaNFT
                 if (this._supply != null)
                 this.jsonString += "&supply=" + this._supply;
 
-                    WEB_URL = "https://api.alturanft.com/api/v2/item?" + jsonString;
+                    WEB_URL = AlturaConstants.APILink + "/v2/item?" + jsonString;
 
                     
                     if(debugErrorLog)
@@ -240,9 +239,6 @@ namespace AlturaNFT
                 //Make request
                 UnityWebRequest request = UnityWebRequest.Get(WEB_URL);
                 request.SetRequestHeader("Content-Type", "application/json");    
-            string url = "https://api.alturanft.com/api/sdk/unity/";
-            WWWForm form = new WWWForm();
-            UnityWebRequest www = UnityWebRequest.Post(url + "GetItems" + "?apiKey=" + _apiKey, form);
                 {
                     yield return request.SendWebRequest();
                     string jsonResult = System.Text.Encoding.UTF8.GetString(request.downloadHandler.data);

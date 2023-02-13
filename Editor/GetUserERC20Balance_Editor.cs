@@ -5,13 +5,13 @@ namespace AlturaNFT.Editor
     using UnityEditor;
     using Internal;
 
-    [CustomEditor(typeof(UpdateProperty))]
-    public class UpdateProperty_Editor : Editor
+    [CustomEditor(typeof(GetUserERC20Balance))]
+    public class GetUserERC20Balance_Editor : Editor
     {
         public override void OnInspectorGUI()
         {
             
-            UpdateProperty myScript = (UpdateProperty)target;
+            GetUserERC20Balance myScript = (GetUserERC20Balance)target;
             
             
             Texture banner = Resources.Load<Texture>("AlturaFrame");
@@ -19,14 +19,14 @@ namespace AlturaNFT.Editor
             GUILayout.Box(banner);
             GUILayout.EndHorizontal();
 
-            if (GUILayout.Button("Update Property", GUILayout.Height(45)))
+            if (GUILayout.Button("GET User ERC20 Balance", GUILayout.Height(45)))
             {
                 AlturaUser.SetFromEditorWin();
                 myScript.Run();
             }
 
             if(GUILayout.Button("View Documentation", GUILayout.Height(25)))
-                Application.OpenURL(AlturaConstants.Docs_UpdateProperty);
+                Application.OpenURL(AlturaConstants.Docs_GetUserERC20Balance);
             DrawDefaultInspector();
         }
     }

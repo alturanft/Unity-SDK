@@ -4,40 +4,37 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 
+
 namespace AlturaNFT  
 { using Internal;
     
     /// <summary>
-    /// Get Users Details API
+    /// Get Users Native Balances
     /// </summary>
-    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_GetUsers)]
+    [AddComponentMenu(AlturaConstants.BaseComponentMenu+AlturaConstants.FeatureName_GetUserERC20Balance)]
     [ExecuteAlways]
-    [HelpURL(AlturaConstants.Docs_GetUsers)]
-    public class GetUsers : MonoBehaviour
+    [HelpURL(AlturaConstants.Docs_GetUserERC20Balance)]
+    public class GetUserERC20Balance : MonoBehaviour
     {
 
         #region Parameter Defines
   
             [SerializeField]
-            private string _perPage = "Input How much pages you want to get";
+            private string _userAddress = "input users address";
             [SerializeField]
-            private string _page = "Input Which page you want to get";
+            private string _tokenAddress = "input token address";
             [SerializeField]
-            private string _sortBy = "Input Sort By = name";
-            [SerializeField]
-            private string _sortDir = "Input Asc or Desc";
+            [Tooltip("Network ID!")]
+            private int _chainID = 1;
 
-            private string jsonString;
-            private string _address;
-            private string _name;
-            private string _bio;
-            private string RequestUriInit = AlturaConstants.APILink + "/v2/user";
+         private string RequestUriInit = AlturaConstants.APILink + "/v2/erc20/balance";
             private string WEB_URL;
             private string _apiKey;
             private bool destroyAtEnd = false;
 
+
             private UnityAction<string> OnErrorAction;
-            private UnityAction<User_model> OnCompleteAction;
+            private UnityAction<Reponse_Balance_model> OnCompleteAction;
             
             [Space(20)]
             //[Header("Called After Successful API call")]
@@ -51,8 +48,7 @@ namespace AlturaNFT
             public bool debugLogRawApiResponse = true;
             
             [Header("Gets filled with data and can be referenced:")]
-            public User_model users;
-
+            public Reponse_Balance_model reponse;
 
         #endregion
 
@@ -78,9 +74,9 @@ namespace AlturaNFT
         /// Initialize creates a gameobject and assings this script as a component. This must be called if you are not refrencing the script any other way and it doesn't already exists in the scene.
         /// </summary>
         /// <param name="destroyAtEnd"> Optional bool parameter can set to false to avoid Spawned GameObject being destroyed after the Api process is complete. </param>
-        public static GetUsers Initialize(bool destroyAtEnd = true)
+        public static GetUserERC20Balance Initialize(bool destroyAtEnd = true)
             {
-                var _this = new GameObject(AlturaConstants.FeatureName_GetUsers).AddComponent<GetUsers>();
+                var _this = new GameObject(AlturaConstants.FeatureName_GetUserERC20Balance).AddComponent<GetUserERC20Balance>();
                 _this.destroyAtEnd = destroyAtEnd;
                 _this.onEnable = false;
                 _this.debugErrorLog = false;
@@ -88,51 +84,35 @@ namespace AlturaNFT
             }
 
         /// <summary>
-        /// Set Parameters to retrieve User From .
+        /// Set Parameters to retrieve Item Details
         /// </summary>
-        /// <param name="perPage"> amount of pages to query</param>
-        /// <param name="page"> page to query</param>
-        /// <param name="sortBy"> sort by field</param>
-        /// <param name="sortDir"> sort direction</param>
-        public GetUsers SetParameters(string perPage = "20", string page = "1", string sortBy = "name", string sortDir = "asc")
+        
+        /// <param name="userAddress"> as string - EVM</param>
+        /// <param name="chainId"> as string - EVM</param>
+        /// <param name="tokenAddress"> as string - EVM</param>
+        public GetUserERC20Balance SetParameters(string userAddress , int chainId , string tokenAddress)
             {
-            if (perPage!=null)
-                this._perPage = perPage;
-                if(page!=null)
-                this._page = page;
-            if (sortBy!=null)
-                this._sortBy = sortBy;
-            if (sortDir != null)
-                this._sortDir = sortDir;
+                if(userAddress!=null)
+                    this._userAddress = userAddress;
+                if (chainId != -1)
+                this._chainID = chainId;
+                if(tokenAddress !=null)
+                this._tokenAddress =tokenAddress;
                 return this;
             }
-            /// <summary>
-            /// Set Filter. 
-            /// </summary>        
-            /// <param name="address"> address of the user</param>
-        /// <param name="name"> user name</param>
-        /// <param name="bio"> user bio</param>
-            public GetUsers filter(string address = null, string name= null, string bio = null)
-            {
-            if (address != null)
-                this._address = address;
-            if (name != null)
-                this._name = name;
-            if (bio != null)
-                this._bio = bio;
-            return this;
-        }
-            public GetUsers OnComplete(UnityAction<User_model> action)
+
+            public GetUserERC20Balance OnComplete(UnityAction<Reponse_Balance_model> action)
             {
                 this.OnCompleteAction = action;
                 return this;
             }
+            
             /// <summary>
             /// Action on Error (⊙.◎)
             /// </summary>
             /// <param name="UnityAction action"> string.</param>
             /// <returns> Information on Error as string text.</returns>
-            public GetUsers OnError(UnityAction<string> action)
+            public GetUserERC20Balance OnError(UnityAction<string> action)
             {
                 this.OnErrorAction = action;
                 return this;
@@ -145,38 +125,20 @@ namespace AlturaNFT
             /// <summary>
             /// Runs the Api call and fills the corresponding model in the component on success.
             /// </summary>
-            public User_model Run()
+            public Reponse_Balance_model Run()
             {
                 WEB_URL = BuildUrl();
                 StopAllCoroutines();
                 StartCoroutine(CallAPIProcess());
-                return users;
+                return reponse;
             }
 
             string BuildUrl()
             {
-                this.jsonString = "";
-                if (this._perPage!=null)
-                this.jsonString += "&perPage=" + this._perPage;
-                if(this._page!=null)
-                this.jsonString +=  "&page=" + this._page;
-                if (this._sortBy!=null)
-                this.jsonString += "&sortBy=" + this._sortBy;
-                if (this._sortDir != null)
-                this.jsonString += "&sortDir=" + this._sortDir;
-                if (this._address != null)
-                this.jsonString += "&address=" + this._address;
-                if (this._name != null)
-                this.jsonString += "&name=" + this._name;
-                if (this._bio != null)
-                this.jsonString += "&bio=" + this._bio;
+                    WEB_URL = RequestUriInit + "?userAddress=" + this._userAddress + "&chainId=" + this._chainID.ToString() + "&tokenAddress=" + this._tokenAddress;
 
-
-                    WEB_URL = RequestUriInit + "?" + jsonString;
-                        Debug.Log("Abol: " + WEB_URL);
-                    if(debugErrorLog)
-                        Debug.Log("Querying Details of User: " );
-
+            if (debugErrorLog)
+                        Debug.Log("Getting ERC20 Balance of: " + this._userAddress + " on chainID: " + this._chainID.ToString());
                 return WEB_URL;
             }
             
@@ -184,7 +146,8 @@ namespace AlturaNFT
             {
                 //Make request
                 UnityWebRequest request = UnityWebRequest.Get(WEB_URL);
-                request.SetRequestHeader("Content-Type", "application/json");              
+                request.SetRequestHeader("Content-Type", "application/json");
+                
                 {
                     yield return request.SendWebRequest();
                     string jsonResult = System.Text.Encoding.UTF8.GetString(request.downloadHandler.data);
@@ -194,18 +157,19 @@ namespace AlturaNFT
 
                     if (request.error != null)
                     {
+                    reponse = null;
                         if(OnErrorAction!=null)
                             OnErrorAction($"Null data. Response code: {request.responseCode}. Result {jsonResult}");
                         if(debugErrorLog)
                             Debug.Log($" Null data. Response code: {request.responseCode}. Result {jsonResult}");
                         if(afterError!=null)
                             afterError.Invoke();
-                        users = null;
                         //yield break;
                     }
                     else
                     {
-                        users = JsonConvert.DeserializeObject<User_model>(
+                    //Fill Data Model from recieved class
+                    reponse = JsonConvert.DeserializeObject<Reponse_Balance_model>(
                             jsonResult,
                             new JsonSerializerSettings
                             {
@@ -214,12 +178,13 @@ namespace AlturaNFT
                             });
                         
                         if(OnCompleteAction!=null)
-                            OnCompleteAction.Invoke(users);
+                            OnCompleteAction.Invoke(reponse);
                         
                         if(afterSuccess!=null)
                             afterSuccess.Invoke();
                         
-                            Debug.Log($"view User under User model" );
+                        if(debugErrorLog)
+                            Debug.Log("Success , view Item under Item model" );
                     }
                 }
                 request.Dispose();

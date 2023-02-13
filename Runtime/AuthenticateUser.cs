@@ -51,7 +51,6 @@ namespace AlturaNFT
         private void Awake()
         {
             AlturaUser.Initialise();
-            _apiKey = AlturaUser.GetUserApiKey();
             
         }
 
@@ -123,7 +122,7 @@ namespace AlturaNFT
 
             string BuildUrl()
             {
-                WEB_URL = "https://api.alturanft.com/api/v2/user/verify_auth_code/" + wallet_address + "/" + altura_guard;
+                WEB_URL = AlturaConstants.APILink +"/v2/user/verify_auth_code/" + wallet_address + "/" + altura_guard;
 
                 return WEB_URL;
             }
@@ -133,9 +132,6 @@ namespace AlturaNFT
                 //Make request
                 UnityWebRequest request = UnityWebRequest.Get(WEB_URL);
                 request.SetRequestHeader("Content-Type", "application/json");         
-            string url = "https://api.alturanft.com/api/sdk/unity/";
-            WWWForm form = new WWWForm();
-            UnityWebRequest www = UnityWebRequest.Post(url + "Authenticate" + "?apiKey=" + _apiKey, form);
                 {
                     yield return request.SendWebRequest();
                     string jsonResult = System.Text.Encoding.UTF8.GetString(request.downloadHandler.data);

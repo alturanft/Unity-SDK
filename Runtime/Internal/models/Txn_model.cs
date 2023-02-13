@@ -9,7 +9,17 @@ namespace AlturaNFT
         public string authenticated;
 
     }
+    [Serializable]
+    public class Reponse_Balance_model
+    {
+        public string balance;
 
+    }
+    [Serializable]
+    public class Reponse_owner_model
+    {
+        public string balance;
+    }
 
     [Serializable]
     public class TransferOneReq
@@ -64,7 +74,31 @@ namespace AlturaNFT
         public string propertyName;
         public string propertyValue;
     }
-
+    [Serializable]
+    public class AddPropertyReq
+    {
+        public string chainId;
+        public string address;
+        public string tokenId;
+        public string propertyName;
+        public string propertyValue;
+    }
+    [Serializable]
+    public class UpdateItemDataReq
+    {
+        public string address;
+        public string tokenId;
+        public string itemDesc;
+        public string itemName;
+    }
+    [Serializable]
+    public class RemovePropertyReq
+    {
+        public string chainId;
+        public string address;
+        public string tokenId;
+        public string propertyName;
+    }
     [Serializable]
     public class UpdatePrimaryImageReq
     {

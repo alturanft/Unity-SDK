@@ -87,47 +87,27 @@ namespace AlturaNFT.Editor
             Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_GetCollection).AddComponent<GetCollection>().gameObject;
         }
 
-        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_Transfer)]
-        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_Transfer)]
-        static void Spawn_Transfer()
+        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_GetUserBalance)]
+        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_GetUserBalance)]
+        static void Spawn_GetUserBalance()
         {
-            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_Transfer).AddComponent<TransferItem>().gameObject;
+            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_GetUserBalance).AddComponent<GetUserBalance>().gameObject;
         }
 
-        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_TransferItems)]
-        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_TransferItems)]
-        static void Spawn_TransferItems()
+        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_GetUserERC20Balance)]
+        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_GetUserERC20Balance)]
+        static void Spawn_GetUserERC20Balance()
         {
-            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_TransferItems).AddComponent<TransferItems>().gameObject;
+            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_GetUserERC20Balance).AddComponent<GetUserERC20Balance>().gameObject;
         }
 
-        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_MintAdditionalNFT)]
-        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_MintAdditionalNFT)]
-        static void Spawn_MintAdditionalNFT()
+        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_GetUserItemBalance)]
+        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_GetUserItemBalance)]
+        static void Spawn_GetUserItemBalance()
         {
-            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_MintAdditionalNFT).AddComponent<MintAdditionalNFT>().gameObject;
+            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_GetUserItemBalance).AddComponent<GetUserItemBalance>().gameObject;
         }
 
-        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_UpdateCollection)]
-        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_UpdateCollection)]
-        static void Spawn_UpdateCollection()
-        {
-            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_UpdateCollection).AddComponent<UpdateCollection>().gameObject;
-        }
-
-        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_UpdatePrimaryImage)]
-        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_UpdatePrimaryImage)]
-        static void Spawn_UpdatePrimaryImage()
-        {
-            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_UpdatePrimaryImage).AddComponent<UpdatePrimaryImage>().gameObject;
-        }
-
-        [MenuItem(AlturaConstants.BaseFeatureSpawnerMenu + AlturaConstants.FeatureName_UpdateProperty)]
-        [MenuItem(GameObjMenu + AlturaConstants.FeatureName_UpdateProperty)]
-        static void Spawn_UpdateProperty()
-        {
-            Selection.activeGameObject= new GameObject(AlturaConstants.FeatureName_UpdateProperty).AddComponent<UpdateProperty>().gameObject;
-        }
     }
 
 }

@@ -13,15 +13,13 @@ namespace AlturaNFT.Samples.AlturaDemo
 
         public Button _getdataButton;
         [SerializeField]
-        public InputField _address;
+        public InputField _collectionaddress;
 
         [SerializeField]
-        public Text NameInfo;
+        public InputField _tokenID;
 
         [SerializeField]
-        public Text BioInfo;
-        [SerializeField]
-        public GameObject UserInformationObject;
+        public Text console;
 
         #endregion
 
@@ -34,21 +32,23 @@ namespace AlturaNFT.Samples.AlturaDemo
         public void GetDataFunction()
         {
 
-            GetUser
+            int number; int.TryParse(_tokenID.text, out int result); number = result;
+            Debug.Log("Starting Dropdown Value : " + _collectionaddress.text.ToString());
+            Debug.Log("Starting Dropdown Value : " + number);
+            GetItem
               .Initialize(destroyAtEnd: true)
               .SetParameters(
-                _address.text.ToString()
+                collection_address: _collectionaddress.text.ToString(),
+                token_id: number
               ).OnError(error => Debug.Log(error))
               .OnComplete(result => setData(result)
               )
               .Run();
 
         }
-        private void setData(Internal.User_model _result)
+        private void setData(Internal.Items_model _result)
         {
-            NameInfo.text = _result.user.name;
-            BioInfo.text = _result.user.bio;
-            UserInformationObject.SetActive(true);
+            console.text = "Please check the console log!";
         }
 
     }

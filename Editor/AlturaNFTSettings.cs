@@ -28,7 +28,7 @@ namespace AlturaNFT.Editor
         static int _selectedSample;
 
                 
-        [MenuItem("AlturaNFT/Home")]
+        /*[MenuItem("AlturaNFT/Home")]
         public static void ShowWindow()
         {
             var win = GetWindow<AlturaNFTSettings>(AlturaConstants.HomeWindowName);
@@ -39,7 +39,7 @@ namespace AlturaNFT.Editor
         public static void InitializeOnLoadMethod()
         {
             Events.registeredPackages += RegisteredPackagesEventHandler;
-        }
+        }*/
 
         static void RegisteredPackagesEventHandler(PackageRegistrationEventArgs packageRegistrationEventArgs)
         {
@@ -283,7 +283,7 @@ namespace AlturaNFT.Editor
             VSAttribution.SendAttributionEvent("SavingApiKey","AlturaNFT", myAPIString); 
         }
         
-        static void ShowHomeWindow()
+       /* static void ShowHomeWindow()
         {
             if(windowopen)
                 return;
@@ -297,7 +297,7 @@ namespace AlturaNFT.Editor
             windowopen = true;
             SetSize(win);
             win.Show();
-        }
+        }*/
         
         static void SetSize(AlturaNFTSettings win) 
         {
@@ -331,8 +331,8 @@ namespace AlturaNFT.Editor
             { 
                 AlturaUser._initialised = false;
                 myAPIString = AlturaConstants.DefaultAPIKey;
-                if(!windowopen)
-                    ShowHomeWindow();
+               /* if(!windowopen)
+                    ShowHomeWindow();*/
             }
 
         }
@@ -361,7 +361,7 @@ namespace AlturaNFT.Editor
         {
             if (!windowopen && !APIkeyOk())
             {
-                ShowHomeWindow();
+             //   ShowHomeWindow();
             }
         }
 
