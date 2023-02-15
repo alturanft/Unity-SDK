@@ -50,8 +50,6 @@ namespace AlturaNFT
 
         private void Awake()
         {
-            AlturaUser.Initialise();
-            _apiKey = AlturaUser.GetUserApiKey();
             
         }
 

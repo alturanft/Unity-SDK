@@ -40,7 +40,7 @@ namespace AlturaNFT
             public UnityEvent afterError;
 
             [Header("Run Component when this Game Object is Set Active")]
-            [SerializeField] private bool onEnable = true;
+            [SerializeField] private bool onEnable = false;
             public bool debugErrorLog = true;
             public bool debugLogRawApiResponse = true;
             
@@ -70,10 +70,18 @@ namespace AlturaNFT
      
         public static GetUser Initialize(bool destroyAtEnd = true)
             {
-                var _this = new GameObject(AlturaConstants.FeatureName_GetUser).AddComponent<GetUser>();
-                _this.destroyAtEnd = destroyAtEnd;
-                _this.onEnable = false;
-                _this.debugErrorLog = false;
+
+            Debug.Log("Hi");
+            var _this = new GameObject(AlturaConstants.FeatureName_GetUser).AddComponent<GetUser>();
+
+            Debug.Log("Hi2");
+            _this.destroyAtEnd = destroyAtEnd;
+
+            Debug.Log("Hi3");
+            _this.onEnable = false;
+
+            Debug.Log("Hi4");
+            _this.debugErrorLog = false;
                 return _this;
             }
 

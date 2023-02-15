@@ -42,7 +42,7 @@ namespace AlturaNFT
             public UnityEvent afterError;
 
             [Header("Run Component when this Game Object is Set Active")]
-            [SerializeField] private bool onEnable = true;
+            [SerializeField] private bool onEnable = false;
             public bool debugErrorLog = true;
             public bool debugLogRawApiResponse = true;
             
