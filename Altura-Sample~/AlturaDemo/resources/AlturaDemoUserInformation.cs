@@ -294,7 +294,7 @@ namespace AlturaNFT.Samples.AlturaDemo
             GetUsersItems
               .Initialize(destroyAtEnd: true)
               .SetAddress(
-                _address.text.ToString()
+                _Itemaddress.text.ToString()
               ).OnError(error => Debug.Log(error))
               .OnComplete(result => setItemData(result)
               )
