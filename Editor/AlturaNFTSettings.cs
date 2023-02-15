@@ -314,16 +314,12 @@ namespace AlturaNFT.Editor
            
         #region ReadWrite UserPrefs
         
-        private static AlturaUser.UserPrefs _userPrefs = new AlturaUser.UserPrefs();
         private static TextAsset targetFile;
         static void ReadFromUserPrefs()
         {
             targetFile = Resources.Load<TextAsset>("AlturaNFT UserPrefs");
             if (targetFile != null)
             {
-                _userPrefs = JsonConvert.DeserializeObject<AlturaUser.UserPrefs>(targetFile.text);
-                myAPIString = _userPrefs.API_KEY;
-                AlturaUser.SaveNewApi(myAPIString);
                 AlturaUser.Initialise();
                 UserStats();
             }
@@ -338,7 +334,6 @@ namespace AlturaNFT.Editor
         }
         void WriteToUserPrefs()
         {
-            AlturaUser.SaveNewApi(myAPIString);
             base.SaveChanges();
         }
 
