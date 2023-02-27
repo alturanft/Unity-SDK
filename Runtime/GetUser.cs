@@ -70,17 +70,10 @@ namespace AlturaNFT
      
         public static GetUser Initialize(bool destroyAtEnd = true)
             {
-
-            Debug.Log("Hi");
             var _this = new GameObject(AlturaConstants.FeatureName_GetUser).AddComponent<GetUser>();
-
-            Debug.Log("Hi2");
             _this.destroyAtEnd = destroyAtEnd;
-
-            Debug.Log("Hi3");
             _this.onEnable = false;
-
-            Debug.Log("Hi4");
+            
             _this.debugErrorLog = false;
                 return _this;
             }
