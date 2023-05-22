@@ -21,10 +21,6 @@ namespace AlturaNFT
 
         public UnityEvent afterSuccess;
         private UnityAction<string,string> OnCompleteAction;
-
-        [DllImport("__Internal")]
-        private static extern void SendCallTo_GetAddress();
-
         
         /// <summary>
         /// Initialize creates a gameobject and assings this script as a component. This must be called if it doesn't already exists in the scene on gameObject named PlayerConnect_AlturaNFT.
@@ -59,9 +55,6 @@ namespace AlturaNFT
             User.ConnectedPlayerNetworkID = connectedNetworkID;
             Debug.Log("Editor Mock Wallet Connected , Address: " + User.ConnectedPlayerAddress + " at Network ID:" + User.ConnectedPlayerNetworkID +" | Access it via User.ConnectedPlayerAddress");
             GetAddressSuccess();
-#endif
-#if !UNITY_EDITOR
-            SendCallTo_GetAddress();
 #endif
         }
         
