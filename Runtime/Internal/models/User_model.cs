@@ -28,6 +28,7 @@ namespace AlturaNFT.Internal
     {
         public Items item;
         public List<Items> items;
+        public Pagination pagination;
     }
     [Serializable]
     public class Items
@@ -66,5 +67,17 @@ namespace AlturaNFT.Internal
         public int imageCount;
         public int totalListings;
 
+    }
+    [Serializable]
+    public class Pagination
+    {
+        public int current;
+        public int next;
+        public bool hasPrevious;
+        public bool hasNext;
+        public int perPageCount;
+        public int currentCount;
+        public int totalCount;
+        public int lastPage;
     }
 }
