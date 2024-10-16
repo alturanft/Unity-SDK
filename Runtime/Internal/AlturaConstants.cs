@@ -53,5 +53,19 @@ namespace AlturaNFT.Internal
         public const string FeatureName_GetUserBalance = "Get User Balance";
         public const string FeatureName_GetUserERC20Balance = "Get User ERC20 Balance";
         public const string FeatureName_GetHistory = "History | Get History";
+        public const string FeatureName_UpdateAnItemsProperties = "Update An Items Properties";
+        public const string FeatureName_AddNewProperties = "Add New Properties";
+        public const string FeatureName_RemoveProperties = "Remove Properties";
+        public const string FeatureName_SwitchItemsPrimaryImage = "Switch Items Primary Image";
+        public const string FeatureName_AddNewImageToItem = "Add New Image To Item";
+        public const string FeatureName_UpdateItemsNameAndDescription = "Update Items Name And Description";
+        public const string FeatureName_UpdateCollectionsMetadata = "Update Collections Metadata";
+        public const string FeatureName_AlturaGuardConnectToUserWallet = "Altura Guard - Connect to User Wallet";
+        public const string FeatureName_AlturaGuardRevokeConnection = "Altura Guard - Revoke Connection";
+        public const string FeatureName_AlturaGuardCheckConnection = "Altura Guard - Check Connection";
+        public const string FeatureName_AlturaGuardPollTransactionResponse = "Altura Guard - Poll Transaction Response";
+        public const string FeatureName_GetUsersDomainNames = "Get Users Domain Names";
+        public const string FeatureName_GetUserFromDomainName = "Get User From Domain Name";
+
     }
 }
