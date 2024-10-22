@@ -23,11 +23,11 @@ namespace AlturaNFT
         private string _requestId;
         private string RequestUriInit = AlturaConstants.APILink + "/alturaguard/getResponse";
         private string WEB_URL;
-        private string FORM;
+        private WWWForm FORM;
         private bool destroyAtEnd = false;
 
         private UnityAction<string> OnErrorAction;
-        private UnityAction<AlturaGuard_model> OnCompleteAction;
+        private UnityAction<AlturaGuardTransactionResponse_model> OnCompleteAction;
 
         [Space(20)]
         //[Header("Called After Successful API call")]
@@ -41,7 +41,7 @@ namespace AlturaNFT
         public bool debugLogRawApiResponse = true;
 
         [Header("Gets filled with data and can be referenced:")]
-        public AlturaGuard_model alturaGuard;
+        public AlturaGuardTransactionResponse_model alturaGuard;
 
 
         #endregion
@@ -84,15 +84,13 @@ namespace AlturaNFT
         /// <param name="requestId"> transaction request ID received</param>
         public AlturaGuardPollTransactionResponse SetProperties(string apiKey = null, string token = null, string requestId = null)
         {
-            if (apiKey != null)
-                this._apiKey = apiKey;
             if (token != null)
                 this._token = token;
             if (requestId != null)
-                this._requestId = requestId
+                this._requestId = requestId;
             return this;
         }
-        public AlturaGuardPollTransactionResponse OnComplete(UnityAction<AlturaGuard_model> action)
+        public AlturaGuardPollTransactionResponse OnComplete(UnityAction<AlturaGuardTransactionResponse_model> action)
         {
             this.OnCompleteAction = action;
             return this;
@@ -115,18 +113,18 @@ namespace AlturaNFT
         /// <summary>
         /// Runs the Api call and fills the corresponding model in the component on success.
         /// </summary>
-        public AlturaGuard_model Run()
+        public AlturaGuardTransactionResponse_model Run()
         {
             WEB_URL = BuildUrl();
             FORM = CreateForm();
             StopAllCoroutines();
             StartCoroutine(CallAPIProcess());
-            return item;
+            return alturaGuard;
         }
 
         string BuildUrl()
         {
-            WEB_URL = RequestUriInit
+            WEB_URL = RequestUriInit;
             Debug.Log("Abol: " + WEB_URL);
             if (debugErrorLog)
                 Debug.Log("polling Altura Guard transaction response: ");
@@ -140,14 +138,14 @@ namespace AlturaNFT
             if (this._token != null)
                 form.AddField("token", this._token);
             if (this._requestId != null)
-                form.AddField("requestId", this._requestId)
+                form.AddField("requestId", this._requestId);
             return form;
         }
 
         IEnumerator CallAPIProcess()
         {
             //Make request
-            UnityWebRequest www = UnityWebRequest.Post(WEB_URL, FORM);
+            UnityWebRequest request = UnityWebRequest.Post(WEB_URL, FORM);
             request.SetRequestHeader("Content-Type", "application/json");
             {
                 yield return request.SendWebRequest();
@@ -164,26 +162,24 @@ namespace AlturaNFT
                         Debug.Log($" Null data. Response code: {request.responseCode}. Result {jsonResult}");
                     if (afterError != null)
                         afterError.Invoke();
-                    item = null;
                     //yield break;
                 }
                 else
                 {
-                    item = JsonConvert.DeserializeObject<AlturaGuard_model>(
-                        jsonResult,
-                        new JsonSerializerSettings
-                        {
-                            NullValueHandling = NullValueHandling.Ignore,
-                            MissingMemberHandling = MissingMemberHandling.Ignore
-                        });
-
+                    alturaGuard = JsonConvert.DeserializeObject<AlturaGuardTransactionResponse_model>(
+                            jsonResult,
+                            new JsonSerializerSettings
+                            {
+                                NullValueHandling = NullValueHandling.Ignore,
+                                MissingMemberHandling = MissingMemberHandling.Ignore
+                            });
                     if (OnCompleteAction != null)
-                        OnCompleteAction.Invoke(item);
+                        OnCompleteAction.Invoke(alturaGuard);
 
                     if (afterSuccess != null)
                         afterSuccess.Invoke();
 
-                    Debug.Log($"view txHash under AlturaGuard_model");
+                    Debug.Log($"view txHash under AlturaGuardTransactionResponse_model");
                 }
             }
             request.Dispose();

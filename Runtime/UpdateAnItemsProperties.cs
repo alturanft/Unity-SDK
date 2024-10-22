@@ -26,12 +26,12 @@ namespace AlturaNFT
         private string _propertyValue;
         private string RequestUriInit = AlturaConstants.APILink + "/v2/item/update_property";
         private string WEB_URL;
-        private string FORM;
+        private WWWForm FORM;
         private string _apiKey;
         private bool destroyAtEnd = false;
 
         private UnityAction<string> OnErrorAction;
-        private UnityAction<Item_model> OnCompleteAction;
+        private UnityAction OnCompleteAction;
 
         [Space(20)]
         //[Header("Called After Successful API call")]
@@ -43,9 +43,6 @@ namespace AlturaNFT
         [SerializeField] private bool onEnable = false;
         public bool debugErrorLog = true;
         public bool debugLogRawApiResponse = true;
-
-        [Header("Gets filled with data and can be referenced:")]
-        public Item_model item;
 
 
         #endregion
@@ -89,13 +86,13 @@ namespace AlturaNFT
         /// <param name="tokenId"> id of token you want to update</param>
         /// <param name="propertyName"> name of property you want to update</param>
         /// <param name="propertyValue"> value to update the property with</param>
-        public UpdateAnItemsProperties SetProperties(string apiKey = null, string address = null, int tokenId = null, string propertyName = null, string propertyValue = null)
+        public UpdateAnItemsProperties SetProperties(string apiKey = null, string address = null, int tokenId = -1, string propertyName = null, string propertyValue = null)
         {
             if (apiKey != null)
                 this._apiKey = apiKey;
             if (address != null)
                 this._address = address;
-            if (tokenId != null)
+            if (tokenId != -1)
                 this._tokenId = tokenId;
             if (propertyName != null)
                 this._propertyName = propertyName;
@@ -103,7 +100,7 @@ namespace AlturaNFT
                 this._propertyValue = propertyValue;
             return this;
         }
-        public UpdateAnItemsProperties OnComplete(UnityAction<Item_model> action)
+        public UpdateAnItemsProperties OnComplete(UnityAction action)
         {
             this.OnCompleteAction = action;
             return this;
@@ -126,13 +123,12 @@ namespace AlturaNFT
         /// <summary>
         /// Runs the Api call and fills the corresponding model in the component on success.
         /// </summary>
-        public Item_model Run()
+        public void Run()
         {
             WEB_URL = BuildUrl();
             FORM = CreateForm();
             StopAllCoroutines();
-            StartCoroutine(CallAPIProcess());
-            return item;
+            StartCoroutine(CallAPIProcess());            
         }
 
         string BuildUrl()
@@ -155,7 +151,7 @@ namespace AlturaNFT
             WWWForm form = new WWWForm();
             if(this._address != null)
                 form.AddField("address", this._address);
-            if (this._tokenId != null)
+            if (this._tokenId != -1)
                 form.AddField("tokenId", this._tokenId);
             if (this._propertyName != null)
                 form.AddField("propertyName", this._propertyName);
@@ -167,7 +163,7 @@ namespace AlturaNFT
         IEnumerator CallAPIProcess()
         {
             //Make request
-            UnityWebRequest www = UnityWebRequest.Post(WEB_URL, FORM);
+            UnityWebRequest request = UnityWebRequest.Post(WEB_URL, FORM);
             request.SetRequestHeader("Content-Type", "application/json");
             {
                 yield return request.SendWebRequest();
@@ -184,21 +180,12 @@ namespace AlturaNFT
                         Debug.Log($" Null data. Response code: {request.responseCode}. Result {jsonResult}");
                     if (afterError != null)
                         afterError.Invoke();
-                    item = null;
                     //yield break;
                 }
                 else
                 {
-                    item = JsonConvert.DeserializeObject<Item_model>(
-                        jsonResult,
-                        new JsonSerializerSettings
-                        {
-                            NullValueHandling = NullValueHandling.Ignore,
-                            MissingMemberHandling = MissingMemberHandling.Ignore
-                        });
-
                     if (OnCompleteAction != null)
-                        OnCompleteAction.Invoke(item);
+                        OnCompleteAction.Invoke();
 
                     if (afterSuccess != null)
                         afterSuccess.Invoke();

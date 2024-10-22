@@ -25,12 +25,12 @@ namespace AlturaNFT
         private int _imageIndex;        
         private string RequestUriInit = AlturaConstants.APILink + "/v2/item/update_primary_image";
         private string WEB_URL;
-        private string FORM;
+        private WWWForm FORM;
         private string _apiKey;
         private bool destroyAtEnd = false;
 
         private UnityAction<string> OnErrorAction;
-        private UnityAction<Item_model> OnCompleteAction;
+        private UnityAction OnCompleteAction;
 
         [Space(20)]
         //[Header("Called After Successful API call")]
@@ -42,9 +42,6 @@ namespace AlturaNFT
         [SerializeField] private bool onEnable = false;
         public bool debugErrorLog = true;
         public bool debugLogRawApiResponse = true;
-
-        [Header("Gets filled with data and can be referenced:")]
-        public Item_model item;
 
 
         #endregion
@@ -87,19 +84,19 @@ namespace AlturaNFT
         /// <param name="address"> collection address</param>
         /// <param name="tokenId"> id of token you want to update</param>
         /// <param name="imageIndex"> index of image to set as primary</param>
-        public SwitchItemsPrimaryImage SetProperties(string apiKey = null, string address = null, int tokenId = null, int imageIndex = 0)
+        public SwitchItemsPrimaryImage SetProperties(string apiKey = null, string address = null, int tokenId = -1, int imageIndex = 0)
         {
             if (apiKey != null)
                 this._apiKey = apiKey;
             if (address != null)
                 this._address = address;
-            if (tokenId != null)
+            if (tokenId != -1)
                 this._tokenId = tokenId;
             if (imageIndex != null)
                 this._imageIndex = imageIndex;
             return this;
         }
-        public SwitchItemsPrimaryImage OnComplete(UnityAction<Item_model> action)
+        public SwitchItemsPrimaryImage OnComplete(UnityAction action)
         {
             this.OnCompleteAction = action;
             return this;
@@ -122,13 +119,12 @@ namespace AlturaNFT
         /// <summary>
         /// Runs the Api call and fills the corresponding model in the component on success.
         /// </summary>
-        public Item_model Run()
+        public void Run()
         {
             WEB_URL = BuildUrl();
             FORM = CreateForm();
             StopAllCoroutines();
             StartCoroutine(CallAPIProcess());
-            return item;
         }
 
         string BuildUrl()
@@ -151,9 +147,9 @@ namespace AlturaNFT
             WWWForm form = new WWWForm();
             if(this._address != null)
                 form.AddField("address", this._address);
-            if (this._tokenId != null)
+            if (this._tokenId != -1)
                 form.AddField("tokenId", this._tokenId);
-            if (this._imageIndex != null)
+            if (this._imageIndex != -1)
                 form.AddField("imageIndex", this._imageIndex);
             return form;
         }
@@ -161,7 +157,7 @@ namespace AlturaNFT
         IEnumerator CallAPIProcess()
         {
             //Make request
-            UnityWebRequest www = UnityWebRequest.Post(WEB_URL, FORM);
+            UnityWebRequest request = UnityWebRequest.Post(WEB_URL, FORM);
             request.SetRequestHeader("Content-Type", "application/json");
             {
                 yield return request.SendWebRequest();
@@ -177,22 +173,13 @@ namespace AlturaNFT
                     if (debugErrorLog)
                         Debug.Log($" Null data. Response code: {request.responseCode}. Result {jsonResult}");
                     if (afterError != null)
-                        afterError.Invoke();
-                    item = null;
+                        afterError.Invoke();                    
                     //yield break;
                 }
                 else
-                {
-                    item = JsonConvert.DeserializeObject<Item_model>(
-                        jsonResult,
-                        new JsonSerializerSettings
-                        {
-                            NullValueHandling = NullValueHandling.Ignore,
-                            MissingMemberHandling = MissingMemberHandling.Ignore
-                        });
-
+                {                    
                     if (OnCompleteAction != null)
-                        OnCompleteAction.Invoke(item);
+                        OnCompleteAction.Invoke();
 
                     if (afterSuccess != null)
                         afterSuccess.Invoke();

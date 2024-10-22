@@ -23,12 +23,12 @@ namespace AlturaNFT
         private string _token;
         private string RequestUriInit = AlturaConstants.APILink + "/alturaguard/status";
         private string WEB_URL;
-        private string FORM;
+        private WWWForm FORM;
         private string _apiKey;
         private bool destroyAtEnd = false;
 
         private UnityAction<string> OnErrorAction;
-        private UnityAction<AlturaGuard_model> OnCompleteAction;
+        private UnityAction OnCompleteAction;
 
         [Space(20)]
         //[Header("Called After Successful API call")]
@@ -41,8 +41,6 @@ namespace AlturaNFT
         public bool debugErrorLog = true;
         public bool debugLogRawApiResponse = true;
 
-        [Header("Gets filled with data and can be referenced:")]
-        public AlturaGuard_model alturaGuard;
 
 
         #endregion
@@ -90,7 +88,7 @@ namespace AlturaNFT
                 this._token = token;
             return this;
         }
-        public AlturaGuardCheckConnection OnComplete(UnityAction<AlturaGuard_model> action)
+        public AlturaGuardCheckConnection OnComplete(UnityAction action)
         {
             this.OnCompleteAction = action;
             return this;
@@ -113,13 +111,12 @@ namespace AlturaNFT
         /// <summary>
         /// Runs the Api call and fills the corresponding model in the component on success.
         /// </summary>
-        public AlturaGuard_model Run()
+        public void Run()
         {
             WEB_URL = BuildUrl();
             FORM = CreateForm();
             StopAllCoroutines();
-            StartCoroutine(CallAPIProcess());
-            return item;
+            StartCoroutine(CallAPIProcess());            
         }
 
         string BuildUrl()
@@ -148,7 +145,7 @@ namespace AlturaNFT
         IEnumerator CallAPIProcess()
         {
             //Make request
-            UnityWebRequest www = UnityWebRequest.Post(WEB_URL, FORM);
+            UnityWebRequest request = UnityWebRequest.Post(WEB_URL, FORM);
             request.SetRequestHeader("Content-Type", "application/json");
             {
                 yield return request.SendWebRequest();
@@ -164,22 +161,13 @@ namespace AlturaNFT
                     if (debugErrorLog)
                         Debug.Log($" Null data. Response code: {request.responseCode}. Result {jsonResult}");
                     if (afterError != null)
-                        afterError.Invoke();
-                    item = null;
+                        afterError.Invoke();                    
                     //yield break;
                 }
                 else
                 {
-                    item = JsonConvert.DeserializeObject<AlturaGuard_model>(
-                        jsonResult,
-                        new JsonSerializerSettings
-                        {
-                            NullValueHandling = NullValueHandling.Ignore,
-                            MissingMemberHandling = MissingMemberHandling.Ignore
-                        });
-
                     if (OnCompleteAction != null)
-                        OnCompleteAction.Invoke(item);
+                        OnCompleteAction.Invoke();
 
                     if (afterSuccess != null)
                         afterSuccess.Invoke();

@@ -13,7 +13,7 @@ namespace AlturaNFT
     /// </summary>
     [AddComponentMenu(AlturaConstants.BaseComponentMenu + AlturaConstants.FeatureName_GetUsersDomainNames)]
     [ExecuteAlways]
-    [HelpURL(AlturaConstants.Docs_GetUsers)]
+    [HelpURL(AlturaConstants.Docs_PENDING)]
     public class GetUsersDomainNames : MonoBehaviour
     {
 
@@ -27,7 +27,7 @@ namespace AlturaNFT
         private bool destroyAtEnd = false;
 
         private UnityAction<string> OnErrorAction;
-        private UnityAction<Domain_model> OnCompleteAction;
+        private UnityAction<UsersDomainNames_model> OnCompleteAction;
 
         [Space(20)]
         //[Header("Called After Successful API call")]
@@ -41,7 +41,7 @@ namespace AlturaNFT
         public bool debugLogRawApiResponse = true;
 
         [Header("Gets filled with data and can be referenced:")]
-        public Domain_model domains;
+        public UsersDomainNames_model domains;
 
 
         #endregion
@@ -87,7 +87,7 @@ namespace AlturaNFT
                 this._address = address;
             return this;
         }
-        public GetUsersDomainNames OnComplete(UnityAction<Domain_model> action)
+        public GetUsersDomainNames OnComplete(UnityAction<UsersDomainNames_model> action)
         {
             this.OnCompleteAction = action;
             return this;
@@ -110,12 +110,12 @@ namespace AlturaNFT
         /// <summary>
         /// Runs the Api call and fills the corresponding model in the component on success.
         /// </summary>
-        public Domain_model Run()
+        public UsersDomainNames_model Run()
         {
             WEB_URL = BuildUrl();
             StopAllCoroutines();
             StartCoroutine(CallAPIProcess());
-            return users;
+            return domains;
         }
 
         string BuildUrl()
@@ -153,12 +153,12 @@ namespace AlturaNFT
                         Debug.Log($" Null data. Response code: {request.responseCode}. Result {jsonResult}");
                     if (afterError != null)
                         afterError.Invoke();
-                    users = null;
+                    domains = null;
                     //yield break;
                 }
                 else
                 {
-                    users = JsonConvert.DeserializeObject<Domain_model>(
+                    domains = JsonConvert.DeserializeObject<UsersDomainNames_model>(
                         jsonResult,
                         new JsonSerializerSettings
                         {
@@ -167,7 +167,7 @@ namespace AlturaNFT
                         });
 
                     if (OnCompleteAction != null)
-                        OnCompleteAction.Invoke(users);
+                        OnCompleteAction.Invoke(domains);
 
                     if (afterSuccess != null)
                         afterSuccess.Invoke();

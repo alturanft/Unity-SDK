@@ -27,12 +27,12 @@ namespace AlturaNFT
         private bool _setAsPrimary;
         private string RequestUriInit = AlturaConstants.APILink + "/v2/item/append_images";
         private string WEB_URL;
-        private string FORM;
+        private WWWForm FORM;
         private string _apiKey;
         private bool destroyAtEnd = false;
 
         private UnityAction<string> OnErrorAction;
-        private UnityAction<Item_model> OnCompleteAction;
+        private UnityAction OnCompleteAction;
 
         [Space(20)]
         //[Header("Called After Successful API call")]
@@ -44,9 +44,6 @@ namespace AlturaNFT
         [SerializeField] private bool onEnable = false;
         public bool debugErrorLog = true;
         public bool debugLogRawApiResponse = true;
-
-        [Header("Gets filled with data and can be referenced:")]
-        public Item_model item;
 
 
         #endregion
@@ -91,23 +88,22 @@ namespace AlturaNFT
         /// <param name="imageUrl"> url of image/video to add</param>
         /// <param name="imageIndex"> index of image to set as primary</param>
         /// <param name="setAsPrimary"> boolean to set the newly appened image as the items primary image</param>
-        public AddNewImageToItem SetProperties(string apiKey = null, string address = null, int tokenId = null, string imageUrl = null, int imageIndex = 0, bool setAsPrimary = false)
+        public AddNewImageToItem SetProperties(string apiKey = null, string address = null, int tokenId = -1, string imageUrl = null, int imageIndex = 0, bool setAsPrimary = false)
         {
             if (apiKey != null)
                 this._apiKey = apiKey;
             if (address != null)
                 this._address = address;
-            if (tokenId != null)
+            if (tokenId != -1)
                 this._tokenId = tokenId;
             if (imageUrl != null)
-                this._imageIndex = imageIndex;
-            if (imageIndex != null)
-                this._imageIndex = imageIndex;
+                this._imageUrl = imageUrl;            
+            this._imageIndex = imageIndex;
             if (setAsPrimary)
                 this._setAsPrimary = setAsPrimary;
             return this;
         }
-        public AddNewImageToItem OnComplete(UnityAction<Item_model> action)
+        public AddNewImageToItem OnComplete(UnityAction action)
         {
             this.OnCompleteAction = action;
             return this;
@@ -130,13 +126,12 @@ namespace AlturaNFT
         /// <summary>
         /// Runs the Api call and fills the corresponding model in the component on success.
         /// </summary>
-        public Item_model Run()
+        public void Run()
         {
             WEB_URL = BuildUrl();
             FORM = CreateForm();
             StopAllCoroutines();
-            StartCoroutine(CallAPIProcess());
-            return item;
+            StartCoroutine(CallAPIProcess());            
         }
 
         string BuildUrl()
@@ -159,20 +154,21 @@ namespace AlturaNFT
             WWWForm form = new WWWForm();
             if (this._address != null)
                 form.AddField("address", this._address);
-            if (this._tokenId != null)
+            if (this._tokenId != -1)
                 form.AddField("tokenId", this._tokenId);
             if (this._imageUrl != null)
                 form.AddField("imageUrl", this._imageUrl);
-            if (this._imageIndex != null)
+            if (this._imageIndex != -1)
                 form.AddField("imageIndex", this._imageIndex);
-            form.AddField("setAsPrimary", this._setAsPrimary);
+            // Verify .toString() works
+            form.AddField("setAsPrimary", this._setAsPrimary.ToString());
             return form;
         }
 
         IEnumerator CallAPIProcess()
         {
             //Make request
-            UnityWebRequest www = UnityWebRequest.Post(WEB_URL, FORM);
+            UnityWebRequest request = UnityWebRequest.Post(WEB_URL, FORM);
             request.SetRequestHeader("Content-Type", "application/json");
             {
                 yield return request.SendWebRequest();
@@ -188,22 +184,13 @@ namespace AlturaNFT
                     if (debugErrorLog)
                         Debug.Log($" Null data. Response code: {request.responseCode}. Result {jsonResult}");
                     if (afterError != null)
-                        afterError.Invoke();
-                    item = null;
+                        afterError.Invoke();                    
                     //yield break;
                 }
                 else
                 {
-                    item = JsonConvert.DeserializeObject<Item_model>(
-                        jsonResult,
-                        new JsonSerializerSettings
-                        {
-                            NullValueHandling = NullValueHandling.Ignore,
-                            MissingMemberHandling = MissingMemberHandling.Ignore
-                        });
-
                     if (OnCompleteAction != null)
-                        OnCompleteAction.Invoke(item);
+                        OnCompleteAction.Invoke();
 
                     if (afterSuccess != null)
                         afterSuccess.Invoke();
