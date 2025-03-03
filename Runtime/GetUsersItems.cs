@@ -34,6 +34,8 @@ namespace AlturaNFT
             private string _fileType;
             private string _holders;
             private string _isVerified;
+            private string _page;
+            private string _perPage;
             private UnityAction<string> OnErrorAction;
             private UnityAction<Items_model> OnCompleteAction;
             
@@ -102,23 +104,28 @@ namespace AlturaNFT
             /// <param name="creatorAddress"> creator Address</param>
             /// <param name="fileType"> file Type</param>
             /// <param name="isVerified"> is Verified</param>
-            public GetUsersItems filter(string name = null,string collectionAddress = null, string chainId= null, string creatorAddress = null,string fileType= null,string isVerified = null)
+            /// <param name="page"> page number for pagination</param>
+            /// <param name="perPage"> number of items per page</param>
+            public GetUsersItems filter(string name = null, string collectionAddress = null, string chainId = null, string creatorAddress = null, string fileType = null, string isVerified = null, string page = null, string perPage = null)
             {
-
-            if (name != null)
-                this._name = name;
-            if (collectionAddress != null)
-                this._collectionAddress = collectionAddress;
-            if (chainId != null)
-                this._chainId = chainId;
-            if (creatorAddress != null)
-                this._creatorAddress = creatorAddress;
-            if (fileType != null)
-                this._fileType = fileType;
-            if (isVerified != null)
-                this._isVerified = isVerified;
-            return this;
-        }
+                if (name != null)
+                    this._name = name;
+                if (collectionAddress != null)
+                    this._collectionAddress = collectionAddress;
+                if (chainId != null)
+                    this._chainId = chainId;
+                if (creatorAddress != null)
+                    this._creatorAddress = creatorAddress;
+                if (fileType != null)
+                    this._fileType = fileType;
+                if (isVerified != null)
+                    this._isVerified = isVerified;
+                if (page != null)
+                    this._page = page;
+                if (perPage != null)
+                    this._perPage = perPage;
+                return this;
+            }
 
 
             public GetUsersItems OnComplete(UnityAction<Items_model> action)
@@ -156,20 +163,24 @@ namespace AlturaNFT
             string BuildUrl()
             {
                 this.jsonString = "";
-            if (this._name != null)
-                this.jsonString += "&name=" + this._name;
-            if (this._collectionAddress != null)
-                this.jsonString += "&collectionAddress=" + this._collectionAddress;
-            if (this._chainId != null)
-                this.jsonString += "&chainId=" + this._chainId;
-            if (this._creatorAddress != null)
-                this.jsonString += "&creatorAddress=" + this._creatorAddress;
-            if (this._fileType != null)
-                this.jsonString += "&fileType=" + this._fileType;
-            if (this._isVerified != null)
-                this.jsonString += "&isVerified=" + this._isVerified;
+                if (this._name != null)
+                    this.jsonString += "&name=" + this._name;
+                if (this._collectionAddress != null)
+                    this.jsonString += "&collectionAddress=" + this._collectionAddress;
+                if (this._chainId != null)
+                    this.jsonString += "&chainId=" + this._chainId;
+                if (this._creatorAddress != null)
+                    this.jsonString += "&creatorAddress=" + this._creatorAddress;
+                if (this._fileType != null)
+                    this.jsonString += "&fileType=" + this._fileType;
+                if (this._isVerified != null)
+                    this.jsonString += "&isVerified=" + this._isVerified;
+                if (this._page != null)
+                    this.jsonString += "&page=" + this._page;
+                if (this._perPage != null)
+                    this.jsonString += "&perPage=" + this._perPage;
 
-                    WEB_URL = AlturaConstants.APILink + "/v2/user/items/" + address +"?" +jsonString;
+                WEB_URL = AlturaConstants.APILink + "/v2/user/items/" + address + "?" + jsonString;
            
                 
                 if (debugErrorLog)
